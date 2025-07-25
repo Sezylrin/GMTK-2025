@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public static GameManager Instance { get; private set; }
     public TimerManager TimerManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
 
     #region Unity Functions
     private void Awake()
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
     }
     public static void UpdateScripts()
     {
-        string assetPath = "Assets/Prefabs/GameManager.prefab";
+        string assetPath = AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("t:prefab GameManager")[0]);
+        //"Assets/Prefabs/GameManager.prefab";
 
         GameObject contentsRoot = PrefabUtility.LoadPrefabContents(assetPath);
         contentsRoot.GetComponentInChildren<GameManager>().SetValues();
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void SetValues()
     {
         TimerManager = GetComponentInChildren<TimerManager>();
+        AudioManager = GetComponentInChildren<AudioManager>();
     }
 #endif
 
