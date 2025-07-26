@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6345ea7ca25b31042a414d1e596b0d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
+  Use3D: 1
+  IsString: 0
   AudioClipSOLoc: 
+  clipLoc: {fileID: 0}

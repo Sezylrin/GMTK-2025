@@ -54,7 +54,10 @@ public class GameManager : MonoBehaviour
     }
     public static void UpdateScripts()
     {
-        string assetPath = AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("t:prefab GameManager")[0]);
+        string[] guids = AssetDatabase.FindAssets("t:prefab GameManager");
+        if (guids.Length == 0)
+            return;
+        string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
         //"Assets/Prefabs/GameManager.prefab";
 
         GameObject contentsRoot = PrefabUtility.LoadPrefabContents(assetPath);

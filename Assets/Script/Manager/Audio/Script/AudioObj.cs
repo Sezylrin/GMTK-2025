@@ -12,6 +12,11 @@ public class AudioObj : MonoBehaviour
     private bool isPaused = false;
     private AudioManager manager;
     private float initialVolume;
+    private float transitionDist;
+    private float minSpatial;
+    private float maxSpatial;
+    private bool is3D = false;
+    private bool isStatic;
     void Start()
     {
     }
@@ -22,12 +27,51 @@ public class AudioObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(is3D && !isStatic)
+        {
+            CalculateSpatialBlend();
+        }
         if (!source.isPlaying && isPaused == false)
         {
             OnComplete();
         }
     }
 
+    private void CalculateSpatialBlend()
+    {
+        Vector3 pos = manager.listener.transform == null ? Vector3.zero : manager.listener.transform.position;
+        float dist = Vector3.Distance(pos, transform.position);
+        if (dist <= source.minDistance)
+            source.spatialBlend = minSpatial;
+        else if (dist >= transitionDist)
+            source.spatialBlend = maxSpatial;
+        else
+        {
+            float distRatio = (dist - source.minDistance)/(transitionDist - source.maxDistance);
+            float spatial = (maxSpatial - minSpatial) * distRatio + minSpatial;
+            source.spatialBlend = spatial;
+        }
+    }
+    public void Set3DValues(float maxDist, float minDist, float transitionPoint, float maxSpatial, float minSpatial, AudioRolloffMode rolloff)
+    {
+        is3D = true;
+        isStatic = false;
+        source.maxDistance = maxDist;
+        source.minDistance = minDist;
+        source.rolloffMode = rolloff;
+        transitionDist = transitionPoint;
+        this.minSpatial = minSpatial;
+        this.maxSpatial = maxSpatial;
+    }
+    public void Set3DValues(float maxDist, float mindist, float spatial, AudioRolloffMode rolloff)
+    {
+        is3D = true;
+        isStatic = true;
+        source.maxDistance = maxDist;
+        source.minDistance = mindist;
+        source.rolloffMode = rolloff;
+        source.spatialBlend = spatial;
+    }
     public void StartPlaying(AudioClip clipToPlay, AudioMixerGroup group, bool loop, float volume)
     {
         enabled = true;

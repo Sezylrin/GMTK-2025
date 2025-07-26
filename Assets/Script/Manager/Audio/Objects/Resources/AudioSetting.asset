@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: Example
+  m_Script: {fileID: 11500000, guid: f192a0570d68ecc4097b90fddf11e8d3, type: 3}
+  m_Name: AudioSetting
   m_EditorClassIdentifier: 
-  ReferenceName: Example
-  clips: []
-  mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
-  setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
-  notDefault: 0
+  IsAudio3D: 1
+  AudioRefPath: Assets/Script/Manager/Audio/Script/AudioRef
+  SoundLibPath: Assets/Script/Manager/Audio/Objects/Resources
+  AudioClipSOPath: Assets/Script/Manager/Audio/Example/AudioSO
   maxDistance: 36.81
   minDistance: 6.4
   transitionPoint: 2.61
@@ -25,4 +24,3 @@ MonoBehaviour:
   maxSpatialBlend: 1
   minSpatialBlend: 0
   rolloffMode: 1
-  defaultSet: 1

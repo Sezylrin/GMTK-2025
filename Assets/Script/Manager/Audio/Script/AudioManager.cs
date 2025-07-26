@@ -11,6 +11,9 @@ using System.IO;
 #endif
 public class AudioManager : MonoBehaviour
 {
+    public AudioSettingSO setting;
+    public TransformSO listener;
+
     public float masterVolume = 100;
     public float sfxVolume = 100;
     public float bgmVolume = 100;
@@ -28,6 +31,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private LoadedSoundDict loadedAudio;
 
+    
+    [HideInInspector] public float maxDistance;
+    [HideInInspector] public float minDistance;
+    [HideInInspector] public float transitionPoint;
+    [HideInInspector] public bool isStaticSpatial;
+    [HideInInspector] public float staticSpatial;
+    [HideInInspector] public float maxSpatialBlend;
+    [HideInInspector] public float minSpatialBlend;
+    [HideInInspector] public AudioRolloffMode rolloffMode;
+    
     private void Start()
     {
         UpdateDict(loadedAudio);
@@ -36,9 +49,8 @@ public class AudioManager : MonoBehaviour
     
     public void LoadSounds(AudioClipSO[] newList)
     {
-        string[] guids = AssetDatabase.FindAssets("t:LoadedSoundDict", new[] { AudioSetUp.SoundLibPath });
+        string[] guids = AssetDatabase.FindAssets("t:LoadedSoundDict", new[] { setting.SoundLibPath });
         var path = AssetDatabase.GUIDToAssetPath(guids[0]);
-        Debug.Log(path);
         LoadedSoundDict loadedSO = AssetDatabase.LoadAssetAtPath<LoadedSoundDict>(path);
         loadedSO.loadedSound.Clear();
         foreach (AudioClipSO clip in newList)
@@ -47,6 +59,27 @@ public class AudioManager : MonoBehaviour
         }
         UpdateDict(loadedSO);
         EditorUtility.SetDirty(loadedSO);
+    }
+
+    [UnityEditor.Callbacks.DidReloadScripts]
+    private static void OnScriptsReloaded()
+    {
+        UpdateScripts();
+    }
+
+    private static void UpdateScripts()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:prefab AudioManager");
+        if (guids.Length == 0)
+            return;
+        string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
+        GameObject contentsRoot = PrefabUtility.LoadPrefabContents(assetPath);
+        AudioManager temp = contentsRoot.GetComponentInChildren<AudioManager>();
+        if (temp.setting != null)
+            return;
+        temp.setting = Resources.Load<AudioSettingSO>("AudioSetting");
+        PrefabUtility.SaveAsPrefabAsset(contentsRoot, assetPath);
+        PrefabUtility.UnloadPrefabContents(contentsRoot);
     }
 #endif
     private void UpdateDict(LoadedSoundDict loadedSO)
@@ -57,7 +90,7 @@ public class AudioManager : MonoBehaviour
             LoadedAudioClips.Add(obj.Key, obj.Value);
         }
     }
-    public AudioObj PlaySound(string reference, bool loop = false, float volume = 1)
+    public AudioObj PlaySound(string reference, bool loop = false, float volume = 1, Transform parent = null)
     {
         AudioClipSO SO = loadedAudio.loadedSound[reference];
         AudioClip clipToPlay = SO.clips[UnityEngine.Random.Range(0,SO.clips.Count)];
@@ -68,10 +101,17 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            temp = Instantiate(audioObjPF, transform).GetComponent<AudioObj>();
+            temp = Instantiate(audioObjPF, parent == null? transform : parent).GetComponent<AudioObj>();
             temp.Init(this);
         }
         temp.StartPlaying(clipToPlay, SO.mixGroup, loop, volume);
+        if (setting.IsAudio3D)
+        {
+            if (!isStaticSpatial)
+                temp.Set3DValues(SO.maxDistance, SO.minDistance, SO.transitionPoint, SO.maxSpatialBlend, SO.minSpatialBlend, SO.rolloffMode);
+            else
+                temp.Set3DValues(SO.maxDistance, SO.minDistance, SO.staticSpatial, SO.rolloffMode);
+        }
         return temp;
     }
     /// <summary>
@@ -81,9 +121,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="loop"></param>
     /// <param name="volume"></param>
     /// <returns></returns>
-    public AudioObj PlaySound(AudioRef reference, bool loop = false, float volume = 1)
+    public AudioObj PlaySound(AudioRef reference, bool loop = false, float volume = 1, Transform parent = null)
     {
-        return PlaySound(reference.ToString(), loop, volume);
+        return PlaySound(reference.ToString(), loop, volume, parent);
     }
 
     public void ReAddToStack(AudioObj obj)
@@ -115,5 +155,10 @@ public class AudioManager : MonoBehaviour
     {
         sfxVolume = volume;
         SFXMixerGroup.audioMixer.SetFloat("SFX_Volume", LinearToDecibel(sfxVolume / 100f));
+    }
+
+    public LoadedSoundDict GetDict()
+    {
+        return loadedAudio;
     }
 }

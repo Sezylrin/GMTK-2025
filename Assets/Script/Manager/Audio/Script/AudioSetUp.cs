@@ -1,3 +1,5 @@
+using Cinemachine.Editor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -5,12 +7,16 @@ using UnityEngine;
 
 public class AudioSetUp : MonoBehaviour
 {
-    [Header("File Path to where AudioClipSO are Stored. Blank for default")]
-    public string AudioClipSOLoc;
+    public AudioSettingSO setting;
+    [Header("Wether the project should be 2D or 3D audio")]
+    public bool Use3D;
+    [Header("AudioClipSO storage locator")]
+    [Tooltip("Wether to set the storage destination via string path or automatically locate path based on where a given AudioClipSO is stored at")]
+    public bool IsString;
+    [HideInInspector] public string AudioClipSOLoc;
+    [HideInInspector] public AudioClipSO clipLoc;
 
-    public static string AudioRefPath;
-    public static string SoundLibPath;
-    public static string AudioClipSOPath;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,25 +28,72 @@ public class AudioSetUp : MonoBehaviour
     {
         
     }
+    public void Is3D()
+    {
+        if(setting.IsAudio3D != Use3D) 
+            setting.IsAudio3D = Use3D;
+    }
+#if UNITY_EDITOR
     public void RunSetup()
     {
         string[] guid = AssetDatabase.FindAssets("t:script AudioRef");
         string audioRef = AssetDatabase.GUIDToAssetPath(guid[0]);
         guid = AssetDatabase.FindAssets("t:LoadedSoundDict");
         string soundLib = AssetDatabase.GUIDToAssetPath(guid[0]);
-        
-        AudioRefPath = audioRef.Replace("/AudioRef.cs", "");
-        SoundLibPath = soundLib.Replace("/LoadedSoundDictionary.asset", "");
-        if (AudioClipSOLoc.Equals(""))
+        string[] guids = AssetDatabase.FindAssets("t:AudioSettingSO AudioSetting");
+        string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+        AudioSettingSO setting = AssetDatabase.LoadAssetAtPath<AudioSettingSO>(path);
+        setting.AudioRefPath = audioRef.Replace("/AudioRef.cs", "");
+        setting.SoundLibPath = soundLib.Replace("/LoadedSoundDictionary.asset", "");
+        if(IsString)
         {
-            guid = AssetDatabase.FindAssets("t:AudioClipSO Example");
-            string ClipPath = AssetDatabase.GUIDToAssetPath(guid[0]);
-            AudioClipSOPath = ClipPath.Replace("/Example.asset", "");
+            if (AudioClipSOLoc.Equals(""))
+                DefaultLoc(setting);
+            else
+                setting.AudioClipSOPath = AudioClipSOLoc;
         }
         else
         {
-            AudioClipSOPath = AudioClipSOLoc;
+            if (clipLoc == null)
+                DefaultLoc(setting);
+            else
+            {
+                path = AssetDatabase.GetAssetPath(clipLoc);
+                path = path.Replace(clipLoc.name + ".asset", "");
+                setting.AudioClipSOPath = path;
+            }
         }
-        
+        EditorUtility.SetDirty(setting);
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
+        EditorApplication.ExecuteMenuItem("File/Save Project");
+
     }
+    private void DefaultLoc(AudioSettingSO setting)
+    {
+        string[] guid = AssetDatabase.FindAssets("t:AudioClipSO Example");
+        string ClipPath = AssetDatabase.GUIDToAssetPath(guid[0]);
+        setting.AudioClipSOPath = ClipPath.Replace("/Example.asset", "");
+    }
+    [UnityEditor.Callbacks.DidReloadScripts]
+    private static void OnScriptsReloaded()
+    {
+        UpdateScripts();
+    }
+
+    private static void UpdateScripts()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:prefab AudioSetup");
+        if (guids.Length == 0)
+            return;
+        string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
+        GameObject contentsRoot = PrefabUtility.LoadPrefabContents(assetPath);
+        AudioSetUp temp = contentsRoot.GetComponentInChildren<AudioSetUp>();
+        if (temp.setting != null)
+            return;
+        temp.setting = Resources.Load<AudioSettingSO>("AudioSetting");
+        PrefabUtility.SaveAsPrefabAsset(contentsRoot, assetPath);
+        PrefabUtility.UnloadPrefabContents(contentsRoot);
+    }
+#endif
 }
