@@ -151,7 +151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5875697163231259418}
   points: []
+  collisionPoint: []
   edgeCollider: {fileID: 1002931137228433810}
+  collisionResolution: 15
   timerManager: {fileID: 3353144822770167061}
   durationTillErase: 3
 --- !u!68 &1002931137228433810
