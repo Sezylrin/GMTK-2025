@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadedSound:
     _serializedList:
-    - Key: Example
-      Value: {fileID: 11400000, guid: 7ad14664dd753814f9230d75f828b574, type: 2}
+    - Key: Slam
+      Value: {fileID: 11400000, guid: d62b4ace0f92fc74d8521f06dc83eb66, type: 2}
