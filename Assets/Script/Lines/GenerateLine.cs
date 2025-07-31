@@ -48,7 +48,7 @@ public class GenerateLine : MonoBehaviour
         edgeCollider.points = points.ToArray();
         List<Vector3> vec3 = new List<Vector3>();
         foreach (Vector2 v in points)
-            vec3.Add(UtilityFunction.Vector2ToFlatVector3(v));
+            vec3.Add(UtilityFunction.Vector2ToVector3(v,1f));
         lineRenderer.positionCount = vec3.Count;
         lineRenderer.SetPositions(vec3.ToArray());
     }
