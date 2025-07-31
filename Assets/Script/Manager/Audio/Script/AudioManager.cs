@@ -121,11 +121,22 @@ public class AudioManager : MonoBehaviour
     /// <param name="loop"></param>
     /// <param name="volume"></param>
     /// <returns></returns>
-    public AudioObj PlaySound(AudioRef reference, bool loop = false, float volume = 1, Transform parent = null)
+    public AudioObj PlaySound(AudioRef reference, bool loop = false, float volume = 1)
+    {
+        return PlaySound(reference.ToString(), loop, volume, null);
+    }
+    /// <summary>
+    /// Play clip based on AudioRef
+    /// </summary>
+    /// <param name="reference"></param>
+    /// <param name="parent"></param>
+    /// <param name="loop"></param>
+    /// <param name="volume"></param>
+    /// <returns></returns>
+    public AudioObj PlaySound(AudioRef reference, Transform parent, bool loop = false, float volume = 1)
     {
         return PlaySound(reference.ToString(), loop, volume, parent);
     }
-
     public void ReAddToStack(AudioObj obj)
     {
         availableSources.Push(obj);

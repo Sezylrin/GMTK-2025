@@ -24,7 +24,11 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
+    private FloatSO maxSpeedSO;
+    [SerializeField]
     private float acceleration;
+    [SerializeField]
+    private FloatSO velocitySO;
 
     [Header("Steering")]
     [SerializeField]
@@ -74,6 +78,8 @@ public class CarController : MonoBehaviour
     private PlayerInputs playerInputs;
     private PlayerInputs.PlayerActions player;
     [Header("Input")]
+    [SerializeField]
+    private FloatSO throttleSO;
     [SerializeField, ReadOnlyProp]
     private float throttle;
     [SerializeField, ReadOnlyProp]
@@ -97,6 +103,7 @@ public class CarController : MonoBehaviour
 
     private void OnDisable()
     {
+        player.Disable();
         player.Steering.performed -= SetSteering;
         player.Steering.canceled -= SetSteering;
         player.Throttle.canceled -= SetThrottle;
@@ -105,12 +112,12 @@ public class CarController : MonoBehaviour
         player.Nitros.canceled -= SetNitros;
         player.DrawLine.started -= SetDrawLine;
         player.DrawLine.canceled -= SetDrawLine;
-        player.Disable();
     }
 
     private void SetThrottle(InputAction.CallbackContext context)
     {
         throttle = context.ReadValue<float>();
+        throttleSO.Float = throttle;
     }
     private void SetSteering(InputAction.CallbackContext context)
     {
@@ -150,6 +157,7 @@ public class CarController : MonoBehaviour
         currentNitros.Float = nitrosMaxDuration;
         recoveryTimer = timerManager.GenerateTimers(1, gameObject);
         recoveryTimer.SetTime(nitrosRecoveryDelay, false);
+        maxSpeedSO.Float = maxSpeed;
     }
 
     void Update()
@@ -167,6 +175,7 @@ public class CarController : MonoBehaviour
         Throttle();
         ApplyNitros();
         ApplyDrag();
+        velocitySO.Float = rb.velocity.magnitude;
     }
 
     private void ApplyDrag()
