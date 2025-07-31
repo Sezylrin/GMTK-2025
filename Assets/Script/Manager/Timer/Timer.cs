@@ -103,8 +103,9 @@ public class Timer
     {
         if (ErrorPosition(position, "SetTime"))
             return;
-        if (startInstantly)
-            times[position].time = amount;
+        if (!startInstantly)
+            PauseTimer(position);
+        times[position].time = amount;
         times[position].setTime = amount;
     }
     /// <summary>

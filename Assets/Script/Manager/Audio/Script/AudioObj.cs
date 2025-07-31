@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using DG.Tweening;
+using System;
+using KevinCastejon.MissingFeatures.MissingAttributes;
 
 public class AudioObj : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
     private AudioSource source;
+    [SerializeField]
     private bool isPaused = false;
+    private bool isPausing = false;
     private AudioManager manager;
+    [SerializeField,ReadOnlyProp]
     private float initialVolume;
     private float transitionDist;
     private float minSpatial;
     private float maxSpatial;
     private bool is3D = false;
     private bool isStatic;
+
+    public EventHandler OnIsComplete;
     void Start()
     {
     }
@@ -31,8 +38,9 @@ public class AudioObj : MonoBehaviour
         {
             CalculateSpatialBlend();
         }
-        if (!source.isPlaying && isPaused == false)
+        if (!source.isPlaying && isPaused == false && !source.loop)
         {
+            OnIsComplete?.Invoke(this, EventArgs.Empty);
             OnComplete();
         }
     }
@@ -92,25 +100,35 @@ public class AudioObj : MonoBehaviour
         }
         else
         {
-            source.DOFade(0, dur).OnComplete(() =>
+            isPausing = true;
+            source.DOFade(0, dur).SetEase(Ease.Linear).OnComplete(() =>
              {
+                 if (isPausing == false)
+                     return;
                  source.Pause();
+                 isPausing = false;
                  isPaused = true;
              });
         }
     }
 
     public void ResumeSound(bool fade = false, float dur = 1)
-    {
+    {        
+        isPaused = false;
+        isPausing = false;
         if (!fade) 
             source.volume = initialVolume;
         source.UnPause();
-        isPaused = false;
         if (fade)
         {
-            source.DOFade(initialVolume, dur);
+            source.DOFade(initialVolume, dur).SetEase(Ease.Linear);
         }
         
+    }
+
+    public void ModifyPitch(float newPitch)
+    {
+        source.pitch = newPitch;
     }
 
     public void StopSound(bool fade = false, float dur = 1)
@@ -141,6 +159,16 @@ public class AudioObj : MonoBehaviour
     {
         source.volume = startVol;
         source.DOFade(endVol, dur);
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
+    }
+
+    public bool IsPausing()
+    {
+        return isPausing;
     }
 
 }

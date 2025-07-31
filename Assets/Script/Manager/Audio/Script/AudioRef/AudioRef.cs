@@ -3,5 +3,7 @@ using System;
 [Serializable]
 public enum AudioRef
 {
-	Example,
+	EngineDriving,
+	EngineIdle,
+	EngineStart,
 }

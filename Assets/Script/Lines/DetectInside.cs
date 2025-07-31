@@ -9,6 +9,10 @@ public class DetectInside : MonoBehaviour
     private LayerMask lineLayer;
     [SerializeField]
     private bool IsInside;
+    [SerializeField]
+    private CircleCollider2D col2D;
+    [SerializeField]
+    private EnemyAI ai;
     void Start()
     {
         
@@ -17,9 +21,8 @@ public class DetectInside : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
     }
-    [ContextMenu("DebugCheck")]
     public void CheckDetection()
     {
         Vector2 pos = UtilityFunction.Vector3ToFlatVector2(transform.position);
@@ -38,10 +41,11 @@ public class DetectInside : MonoBehaviour
                 rayHit = false;
             }
         }
-        if (hitAmount % 2 == 0)
-            IsInside = false;
-        else
-            IsInside = true;
+        if (hitAmount % 2 != 0)
+        {
+            if (ai)
+                ai.KillEnemy();
+        }
 
     }
 }

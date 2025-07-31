@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
+  listener: {fileID: 11400000, guid: cb12bf362c4072d4daf59a562e9dc3a5, type: 2}
   masterVolume: 100
   sfxVolume: 100
   bgmVolume: 100
@@ -57,8 +58,11 @@ MonoBehaviour:
   MasterMixerGroup: {fileID: 24300002, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   audioObjPF: {fileID: 4554925132576604545, guid: 9b9163a5e9cfcdf4499d0395d3589338, type: 3}
   loadedAudio: {fileID: 11400000, guid: b110c43d4b578834880638a6f4582e13, type: 2}
-  maxDistance: 0
-  minDistance: 0
+  maxDistance: 50
+  minDistance: 15
   transitionPoint: 0
+  isStaticSpatial: 1
+  staticSpatial: 0.5
   maxSpatialBlend: 0
-  rolloffMode: 0
+  minSpatialBlend: 0
+  rolloffMode: 1

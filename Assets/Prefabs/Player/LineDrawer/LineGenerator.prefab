@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5875697163231259418}
   - component: {fileID: 7012745315283291106}
   - component: {fileID: 1002931137228433810}
+  - component: {fileID: 3353144822770167061}
   m_Layer: 6
   m_Name: LineGenerator
   m_TagString: Untagged
@@ -55,7 +56,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44b3b1dda228eda43b02987e95f4962e, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,8 +122,8 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
+      m_Mode: 2
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -151,7 +152,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 5875697163231259418}
   points: []
   edgeCollider: {fileID: 1002931137228433810}
-  newPoint: {fileID: 11400000, guid: 9d30d8bd8cb7d6843abf8e67cdd10fd0, type: 2}
+  timerManager: {fileID: 3353144822770167061}
+  durationTillErase: 3
 --- !u!68 &1002931137228433810
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -193,3 +195,16 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &3353144822770167061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752648098266102943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b69c96556586a2428a1f93d6b3e0aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timers: []

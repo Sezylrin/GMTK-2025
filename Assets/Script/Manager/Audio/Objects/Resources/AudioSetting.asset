@@ -15,12 +15,12 @@ MonoBehaviour:
   IsAudio3D: 1
   AudioRefPath: Assets/Script/Manager/Audio/Script/AudioRef
   SoundLibPath: Assets/Script/Manager/Audio/Objects/Resources
-  AudioClipSOPath: Assets/Script/Manager/Audio/Example/AudioSO
-  maxDistance: 36.81
-  minDistance: 6.4
-  transitionPoint: 2.61
-  isStaticSpatial: 0
-  staticSpatial: 0
-  maxSpatialBlend: 1
+  AudioClipSOPath: Assets/ScriptableObjects/Audio/AudioSO/
+  maxDistance: 50
+  minDistance: 15
+  transitionPoint: 0
+  isStaticSpatial: 1
+  staticSpatial: 0.5
+  maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1
