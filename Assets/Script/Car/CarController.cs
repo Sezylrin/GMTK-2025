@@ -73,12 +73,15 @@ public class CarController : MonoBehaviour
     #region Inputs
     private PlayerInputs playerInputs;
     private PlayerInputs.PlayerActions player;
+    [Header("Input")]
     [SerializeField, ReadOnlyProp]
     private float throttle;
     [SerializeField, ReadOnlyProp]
     private float steering;
     [SerializeField, ReadOnlyProp]
     private bool isNitros;
+    [SerializeField]
+    private BoolSO drawLine;
     private void OnEnable()
     {
         player.Enable();
@@ -88,6 +91,8 @@ public class CarController : MonoBehaviour
         player.Steering.canceled += SetSteering;
         player.Nitros.started += SetNitros;
         player.Nitros.canceled += SetNitros;
+        player.DrawLine.started += SetDrawLine;
+        player.DrawLine.canceled += SetDrawLine;
     }
 
     private void OnDisable()
@@ -96,6 +101,10 @@ public class CarController : MonoBehaviour
         player.Steering.canceled -= SetSteering;
         player.Throttle.canceled -= SetThrottle;
         player.Throttle.performed -= SetThrottle;
+        player.Nitros.started -= SetNitros;
+        player.Nitros.canceled -= SetNitros;
+        player.DrawLine.started -= SetDrawLine;
+        player.DrawLine.canceled -= SetDrawLine;
         player.Disable();
     }
 
@@ -108,6 +117,10 @@ public class CarController : MonoBehaviour
         steering = context.ReadValue<float>();
     }
 
+    private void SetDrawLine(InputAction.CallbackContext context)
+    {
+        drawLine.Bool = !drawLine.Bool;
+    }
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
