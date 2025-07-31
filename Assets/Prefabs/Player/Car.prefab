@@ -397,9 +397,10 @@ GameObject:
   - component: {fileID: 2979393584578532721}
   - component: {fileID: 8318505280478440448}
   - component: {fileID: -4659006351807129547}
+  - component: {fileID: 363552916028700327}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -581,6 +582,25 @@ MonoBehaviour:
   outerRadius: 30
   enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
   enemyParent: {fileID: 11400000, guid: e8a3de13d5ebc914ea0695997bedc5d0, type: 2}
+--- !u!114 &363552916028700327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a710d8f85a1e9f48b427d8306930c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthSO: {fileID: 11400000, guid: cddf67509a08acc4582397ac7c9f437f, type: 2}
+  currentHealthSO: {fileID: 11400000, guid: 680026a21806f1542987ef2bb05cd80b, type: 2}
+  maxHealthFuel: 600
+  healthDrainRate: 10
+  drawDrainRate: 10
+  isDrawing: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  DoDamage: {fileID: 0}
 --- !u!1 &7489164484233605628
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,10 @@ public class EnemyAI : MonoBehaviour
 
     public TransformSO playerPos;
 
+    [SerializeField]
+    private FloatSO damageToDo;
+    [SerializeField]
+    private float damage;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,6 +70,12 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag(Tags.T_Player))
+        {
+            damageToDo.Float += damage;
+        }
+    }
 
 }
