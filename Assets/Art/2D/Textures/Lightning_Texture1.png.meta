@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff04ec447ad6ac94bb440e9a13ff474c
+guid: 0a8ac77b57ceea74d86fe5de730ebefe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,14 +43,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1920
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -108,84 +108,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: LightningTextureSheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1920
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 877ac4a4edc75084da4a99804d2d3328
-      internalID: -727840237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LightningTextureSheet_1
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 0
-        width: 1920
-        height: 1920
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f77c20892dde9f419cf906c8dd6ecfe
-      internalID: 289629220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LightningTextureSheet_2
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 0
-        width: 1920
-        height: 1920
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e693c61652b1a3345af19293909f3a07
-      internalID: 239624835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 51333667bec185044a23a021bedbc70b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      LightningTextureSheet_0: -727840237
-      LightningTextureSheet_1: 289629220
-      LightningTextureSheet_2: 239624835
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
