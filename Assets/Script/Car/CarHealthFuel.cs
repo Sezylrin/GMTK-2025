@@ -19,6 +19,8 @@ public class CarHealthFuel : MonoBehaviour
     private BoolSO isDrawing;
     [SerializeField]
     private FloatSO DoDamage;
+    [SerializeField]
+    private FloatSO HealthGain;
 
     void Start()
     {
@@ -48,6 +50,11 @@ public class CarHealthFuel : MonoBehaviour
         {
             ModifyHealth(DoDamage.Float);
             DoDamage.Float = 0;
+        }
+        if(HealthGain.Float > 0)
+        {
+            ModifyHealth(-HealthGain.Float);
+            HealthGain.Float = 0;
         }
 
     }
