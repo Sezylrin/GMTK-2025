@@ -6,22 +6,23 @@ public class EnemyAI : MonoBehaviour
 {
 
 
-    private GameObject player;
-
     private Rigidbody rb;
 
     public float speed = 5f;
 
     private float speedMod = 1;
 
+    public TransformSO playerPos;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player");
 
         speed = Random.Range(0.8f, 1.2f);
+
+
 
     }
 
@@ -30,7 +31,12 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform);
+        if (!playerPos.transform)
+        {
+            return;
+        }
+
+        transform.LookAt(playerPos.transform);
 
         
         rb.velocity = new Vector3(GetPlayerDir().x * GetTrueSpeed(), rb.velocity.y, GetPlayerDir().z * GetTrueSpeed());
@@ -49,7 +55,7 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 GetPlayerDir()
     {
-        return (player.transform.position - transform.position).normalized;
+        return (playerPos.transform.position - transform.position).normalized;
     }
 
 
