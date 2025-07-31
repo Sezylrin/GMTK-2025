@@ -280,6 +280,8 @@ GameObject:
   - component: {fileID: 6629741568350300391}
   - component: {fileID: 2069075016986612840}
   - component: {fileID: 2979393584578532721}
+  - component: {fileID: 8318505280478440448}
+  - component: {fileID: -4659006351807129547}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -430,8 +432,39 @@ MonoBehaviour:
   maxSpeed: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
   currentSpeed: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
   isThrottleOn: {fileID: 11400000, guid: 22f205bfc1dc4d648a041f9be23d4a1c, type: 2}
-  maxPitch: 2
+  maxPitch: 2.74
   valueToScale: 0
+--- !u!114 &8318505280478440448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26b5b41f6e4fc54fac6dfd1877da6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
+--- !u!114 &-4659006351807129547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e06311f0c6a6ac4980204567ea920a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawning: 1
+  spawnDelay: 4
+  innerRadius: 5
+  outerRadius: 30
+  enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
+  enemyParent: {fileID: 11400000, guid: e8a3de13d5ebc914ea0695997bedc5d0, type: 2}
 --- !u!1 &7489164484233605628
 GameObject:
   m_ObjectHideFlags: 0

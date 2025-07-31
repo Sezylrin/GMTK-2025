@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject enemyPrefab;
 
-    public Transform enemyParent;
+    public TransformSO enemyParent;
 
 
 
@@ -48,8 +48,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-
-        Instantiate(enemyPrefab, PickSpawnSpot(), Quaternion.identity, enemyParent);
+        if(enemyParent.transform == null)
+        {
+            Debug.Break();
+            Debug.LogWarning("No enemy parent transform SO in scene");
+            return;
+        }
+        Instantiate(enemyPrefab, PickSpawnSpot(), Quaternion.identity, enemyParent.transform);
 
 
     }
