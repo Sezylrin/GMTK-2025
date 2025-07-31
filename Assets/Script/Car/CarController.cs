@@ -5,6 +5,7 @@ using KevinCastejon.MissingFeatures;
 using Unity.Collections;
 using KevinCastejon.MissingFeatures.MissingAttributes;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class CarController : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class CarController : MonoBehaviour
     private float maxForce;
     [SerializeField]
     private List<Transform> suspensionPoint = new List<Transform>();
+
 
     [Header("Debug")]
     [SerializeField, ReadOnlyProp]
@@ -219,6 +221,7 @@ public class CarController : MonoBehaviour
             return;
         Vector3 dir = rb.transform.forward * throttle;
         Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
+        float maxSpeed = throttle > 0 ? this.maxSpeed : this.maxSpeed * 0.5f;
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / maxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;

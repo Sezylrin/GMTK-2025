@@ -30,11 +30,12 @@ public class DrawPoint : MonoBehaviour
 
     public void DetectCollision()
     {
-        Collider2D col = Physics2D.OverlapBox(UtilityFunction.Vector3ToFlatVector2(collisionCheckPoint.position), Vector2.one * 0.75f, transform.eulerAngles.y,line);
+        Vector2 pos = UtilityFunction.Vector3ToFlatVector2(collisionCheckPoint.position);
+        Collider2D col = Physics2D.OverlapBox(pos, Vector2.one * 0.75f, transform.eulerAngles.y,line);
 
         if (col)
         {
-            currentLine.DetectAllInternal();
+            currentLine.DetectAllInternal(pos);
         }
     }
 
