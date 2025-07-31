@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.FD7A1EDD" = "ref=\"Assets/ScriptableObjects/BaseType/Float/MaxHealth.asset\""
+	"last_search.FD7A1EDD" = "ref=\"Assets/ScriptableObjects/BaseType/Bool/isDrawLine.asset\""
 	"OpenInspectorPreview.FD7A1EDD" = "0"
 	"currentGroup.FD7A1EDD" = "all"
 	"last_search.310DEAF3" = "h:t:CarHealthFuel #maxHealthSO=\"Assets/ScriptableObjects/BaseType/Float/MaxHealth.asset\""

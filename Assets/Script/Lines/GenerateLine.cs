@@ -21,6 +21,15 @@ public class GenerateLine : MonoBehaviour
     private TimerManager timerManager;
     [SerializeField]
     private float durationTillErase;
+    [SerializeField]
+    private Vector2SO circleCentre;
+    [SerializeField]
+    private FloatSO minRadius;
+    [SerializeField]
+    private FloatSO maxRadius;
+    [SerializeField]
+    private BoolSO spawnExplosion;
+
 
     private Timer eraseTimer;
     
@@ -99,6 +108,22 @@ public class GenerateLine : MonoBehaviour
         }
         edgeCollider.points = temp.ToArray();
         Bounds bound = edgeCollider.bounds;
+        circleCentre.Vector2 = bound.center;
+        float min;
+        float max;
+        if(bound.size.x < bound.size.y)
+        {
+            min = bound.size.x * 0.5f;
+            max = bound.size.y * 0.5f;
+        }
+        else
+        {
+            min = bound.size.y * 0.5f;
+            max = bound.size.x * 0.5f;
+        }
+        minRadius.Float = min;
+        maxRadius.Float = max;
+        spawnExplosion.Bool = true;
 
         Collider2D[] cols = Physics2D.OverlapBoxAll(bound.center, bound.size,0);
         foreach (Collider2D col in cols)
