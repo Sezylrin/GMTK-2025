@@ -157,6 +157,10 @@ MonoBehaviour:
   collisionResolution: 15
   timerManager: {fileID: 3353144822770167061}
   durationTillErase: 3
+  circleCentre: {fileID: 11400000, guid: 7dc7def0cd927024fbe53670ab4b93dc, type: 2}
+  minRadius: {fileID: 11400000, guid: 4ddc1ac00ba80f04db380bca13045f8f, type: 2}
+  maxRadius: {fileID: 11400000, guid: de2db3d5911dc6e44aa21f5e51df59cc, type: 2}
+  spawnExplosion: {fileID: 11400000, guid: db28bbe00e0650042ad4b803f5530c22, type: 2}
 --- !u!68 &1002931137228433810
 EdgeCollider2D:
   m_ObjectHideFlags: 0

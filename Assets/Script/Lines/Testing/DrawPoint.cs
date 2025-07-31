@@ -36,7 +36,14 @@ public class DrawPoint : MonoBehaviour
         if (col)
         {
             currentLine.DetectAllInternal(pos);
+            DecayLine();
         }
+    }
+
+    private void DecayLine()
+    {
+        currentLine.StartDecay();
+        currentLine = null;
     }
 
     public void StartGenerateLine()
@@ -44,10 +51,7 @@ public class DrawPoint : MonoBehaviour
         if (currentLine == null && DrawLine.Bool)
             currentLine = Instantiate(lineGen, Vector3.zero, Quaternion.identity).GetComponent<GenerateLine>();
         else if (!DrawLine.Bool && currentLine)
-        {
-            currentLine.StartDecay();
-            currentLine = null;
-        }
+            DecayLine();
         if (!currentLine)
             return;
 
