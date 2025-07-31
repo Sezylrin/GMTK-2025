@@ -67,10 +67,6 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private List<Transform> suspensionPoint = new List<Transform>();
 
-    [SerializeField]
-    private ParticleSystem trailA;
-    [SerializeField]
-    private ParticleSystem trailB;
 
     [Header("Debug")]
     [SerializeField, ReadOnlyProp]

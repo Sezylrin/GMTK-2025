@@ -59,7 +59,7 @@ public class GenerateLine : MonoBehaviour
         }
         List<Vector3> vec3 = new List<Vector3>();
         foreach (Vector2 v in points)
-            vec3.Add(UtilityFunction.Vector2ToVector3(v,1f));
+            vec3.Add(UtilityFunction.Vector2ToVector3(v,0.2f));
         lineRenderer.positionCount = vec3.Count;
         lineRenderer.SetPositions(vec3.ToArray());
     }
@@ -83,16 +83,11 @@ public class GenerateLine : MonoBehaviour
     public void DetectAllInternal(Vector2 collisionPoint)
     {
         int pointPosition = 0;
-        
-        Vector2 pos1 = Vector2.zero;
-        Vector2 pos2 = Vector2.zero;
         for(int i = edgeCollider.pointCount - 5; i > 0; i--)
         {
             float dist = Vector2.Distance(edgeCollider.ClosestPoint(collisionPoint), edgeCollider.points[i]);
             if(dist <= 1f)
             {
-                pos1 = collisionPoint;
-                pos2 = edgeCollider.points[i];
                 pointPosition = i;
                 break;
             }
@@ -104,11 +99,6 @@ public class GenerateLine : MonoBehaviour
         }
         edgeCollider.points = temp.ToArray();
         Bounds bound = edgeCollider.bounds;
-        Debug.Log(pos1);
-        Debug.Log(pos2);
-        Debug.Log(pointPosition);
-        Debug.Log(bound.size);
-        Debug.Break();
 
         Collider2D[] cols = Physics2D.OverlapBoxAll(bound.center, bound.size,0);
         foreach (Collider2D col in cols)
