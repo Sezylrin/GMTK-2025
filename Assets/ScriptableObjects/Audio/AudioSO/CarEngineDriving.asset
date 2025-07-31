@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: AudioClipObj
+  m_Name: CarEngineDriving
   m_EditorClassIdentifier: 
-  ReferenceName: Slam
+  ReferenceName: EngineDriving
   clips:
-  - {fileID: 8300000, guid: c4888829278303340a020de6b27b187b, type: 3}
+  - {fileID: 8300000, guid: 6440935cb1b639a448642b384c6b4d6b, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
-  notDefault: 0
-  maxDistance: 36.81
-  minDistance: 6.4
-  transitionPoint: 2.61
-  isStaticSpatial: 0
+  notDefault: 1
+  maxDistance: 50
+  minDistance: 15
+  transitionPoint: 0
+  isStaticSpatial: 1
   staticSpatial: 0
-  maxSpatialBlend: 1
+  maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1
-  defaultSet: 1
+  defaultSet: 0

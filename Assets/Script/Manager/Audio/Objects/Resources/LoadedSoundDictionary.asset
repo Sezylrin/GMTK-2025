@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadedSound:
     _serializedList:
-    - Key: Slam
-      Value: {fileID: 11400000, guid: d62b4ace0f92fc74d8521f06dc83eb66, type: 2}
+    - Key: EngineDriving
+      Value: {fileID: 11400000, guid: 68a78990cd914524c827f6b841640043, type: 2}
+    - Key: EngineIdle
+      Value: {fileID: 11400000, guid: 545c191d4f3847a4d8c1c79696d88e10, type: 2}
+    - Key: EngineStart
+      Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}

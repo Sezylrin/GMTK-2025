@@ -9,6 +9,8 @@ public class DrawPoint : MonoBehaviour
     private GameObject lineGen;
     [SerializeField]
     private BoolSO DrawLine;
+    [SerializeField]
+    private LayerMask line;
 
     private GenerateLine currentLine;
     [SerializeField]
@@ -28,7 +30,7 @@ public class DrawPoint : MonoBehaviour
 
     public void DetectCollision()
     {
-        Collider2D col = Physics2D.OverlapBox(UtilityFunction.Vector3ToFlatVector2(collisionCheckPoint.position), Vector2.one * 0.75f, transform.eulerAngles.y);
+        Collider2D col = Physics2D.OverlapBox(UtilityFunction.Vector3ToFlatVector2(collisionCheckPoint.position), Vector2.one * 0.75f, transform.eulerAngles.y,line);
 
         if (col)
         {
