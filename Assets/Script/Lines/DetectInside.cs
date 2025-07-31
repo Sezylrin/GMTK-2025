@@ -42,7 +42,10 @@ public class DetectInside : MonoBehaviour
             }
         }
         if (hitAmount % 2 != 0)
-            ai.KillEnemy();
+        {
+            if (ai)
+                ai.KillEnemy();
+        }
 
     }
 }

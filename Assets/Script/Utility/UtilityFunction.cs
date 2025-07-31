@@ -8,7 +8,10 @@ public static class UtilityFunction
     {
         return new Vector3(vec2.x,0,vec2.y);
     }
-
+    public static Vector3 Vector2ToVector3(Vector2 vec2, float y)
+    {
+        return new Vector3(vec2.x,y,vec2.y);
+    }
     public static Vector2 Vector3ToFlatVector2(Vector3 vec3)
     {
         return new Vector2(vec3.x, vec3.z);
