@@ -10,8 +10,12 @@ public class GenerateLine : MonoBehaviour
     [SerializeField]
     private List<Vector2> points = new List<Vector2>();
     [SerializeField]
+    private List<Vector2> collisionPoint = new List<Vector2>();
+    [SerializeField]
     private EdgeCollider2D edgeCollider;
-
+    [SerializeField]
+    private float collisionResolution;
+    private float resolutionRatio;
     [Header("timer")]
     [SerializeField]
     private TimerManager timerManager;
@@ -28,9 +32,11 @@ public class GenerateLine : MonoBehaviour
         eraseTimer = timerManager.GenerateTimers(1, gameObject);
         eraseTimer.SetTime(durationTillErase,false);
         eraseTimer.times[0].OnTimeIsZero += RemovePoint;
+        resolutionRatio = 1 / collisionResolution;
     }
 
     // Update is called once per frame
+    private float nextCollisionCheck = 0;
     void Update()
     {
         ShouldAddPoint();
@@ -45,7 +51,12 @@ public class GenerateLine : MonoBehaviour
     private void AddPoint()
     {        
         points.Add(newPoint);
-        edgeCollider.points = points.ToArray();
+        if(nextCollisionCheck <= Time.time)
+        {
+            collisionPoint.Add(newPoint);
+            edgeCollider.points = collisionPoint.ToArray();
+            nextCollisionCheck += resolutionRatio;
+        }
         List<Vector3> vec3 = new List<Vector3>();
         foreach (Vector2 v in points)
             vec3.Add(UtilityFunction.Vector2ToVector3(v,1f));
@@ -69,9 +80,36 @@ public class GenerateLine : MonoBehaviour
         edgeCollider.enabled = false;
     }
 
-    public void DetectAllInternal()
+    public void DetectAllInternal(Vector2 collisionPoint)
     {
+        int pointPosition = 0;
+        
+        Vector2 pos1 = Vector2.zero;
+        Vector2 pos2 = Vector2.zero;
+        for(int i = edgeCollider.pointCount - 5; i > 0; i--)
+        {
+            float dist = Vector2.Distance(edgeCollider.ClosestPoint(collisionPoint), edgeCollider.points[i]);
+            if(dist <= 1f)
+            {
+                pos1 = collisionPoint;
+                pos2 = edgeCollider.points[i];
+                pointPosition = i;
+                break;
+            }
+        }
+        List<Vector2> temp = new List<Vector2>();
+        for(int i = pointPosition; i < edgeCollider.pointCount; i++)
+        {
+            temp.Add(edgeCollider.points[i]);
+        }
+        edgeCollider.points = temp.ToArray();
         Bounds bound = edgeCollider.bounds;
+        Debug.Log(pos1);
+        Debug.Log(pos2);
+        Debug.Log(pointPosition);
+        Debug.Log(bound.size);
+        Debug.Break();
+
         Collider2D[] cols = Physics2D.OverlapBoxAll(bound.center, bound.size,0);
         foreach (Collider2D col in cols)
         {
