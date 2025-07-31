@@ -8,7 +8,19 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
+    [Header("Core")]
+    [SerializeField]
+    private Rigidbody rb;
+    [SerializeField]
+    private LayerMask ground;
+    [SerializeField]
+    private Transform COM;
+    [SerializeField]
+    private TimerManager timerManager;
+
     [Header("Acceleration")]
+    [SerializeField]
+    private Transform relativePos;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -22,6 +34,26 @@ public class CarController : MonoBehaviour
     [SerializeField, Range(-1, 3)]
     private float slippiness;
 
+    [Header("Nitros")]
+    [SerializeField]
+    private float nitrosMaxSpeed;
+    [SerializeField]
+    private float nitrosBoost;
+    [SerializeField]
+    private float nitrosMaxDuration;
+    [SerializeField]
+    private float nitroDrainRate;
+    [SerializeField]
+    private float nitrosRecoveryDelay;
+    [SerializeField]
+    private float nitrosRecoveryRate;
+    [SerializeField]
+    private FloatSO currentNitros;
+    [SerializeField]
+    private FloatSO maxNitros;
+    [SerializeField]
+    private Timer recoveryTimer;
+
     [Header("Suspension")]
     [SerializeField]
     private float maxDist;
@@ -29,21 +61,24 @@ public class CarController : MonoBehaviour
     private float maxForce;
     [SerializeField]
     private List<Transform> suspensionPoint = new List<Transform>();
-    [SerializeField]
-    private Transform relativePos;
-    [SerializeField]
-    private Rigidbody rb;
-    [SerializeField]
-    private LayerMask ground;
 
-    private Vector3 groundNormal;
+    [Header("Debug")]
+    [SerializeField, ReadOnlyProp]
+    private bool isGrounded;
+
+    private Vector3 projectedForward;
+
+    private float drag;
 
     #region Inputs
     private PlayerInputs playerInputs;
     private PlayerInputs.PlayerActions player;
-    [SerializeField,ReadOnlyProp]
+    [SerializeField, ReadOnlyProp]
     private float throttle;
+    [SerializeField, ReadOnlyProp]
     private float steering;
+    [SerializeField, ReadOnlyProp]
+    private bool isNitros;
     private void OnEnable()
     {
         player.Enable();
@@ -51,6 +86,8 @@ public class CarController : MonoBehaviour
         player.Throttle.canceled += SetThrottle;
         player.Steering.performed += SetSteering;
         player.Steering.canceled += SetSteering;
+        player.Nitros.started += SetNitros;
+        player.Nitros.canceled += SetNitros;
     }
 
     private void OnDisable()
@@ -70,6 +107,22 @@ public class CarController : MonoBehaviour
     {
         steering = context.ReadValue<float>();
     }
+
+    private void SetNitros(InputAction.CallbackContext context)
+    {
+        isNitros = !isNitros;
+        if (!isNitros)
+        {
+            turningForce *= 0.5f;
+            recoveryTimer.ResumeTimer();
+        }
+        else
+        {
+            turningForce *= 2;
+            recoveryTimer.ResetTime();
+            recoveryTimer.PauseTimer();
+        }
+    }
     #endregion
     private void Awake()
     {
@@ -78,29 +131,61 @@ public class CarController : MonoBehaviour
     }
     void Start()
     {
+        drag = rb.drag;
+        rb.centerOfMass = COM.transform.localPosition;
+        maxNitros.Float = nitrosMaxDuration;
+        currentNitros.Float = nitrosMaxDuration;
+        recoveryTimer = timerManager.GenerateTimers(1, gameObject);
+        recoveryTimer.SetTime(nitrosRecoveryDelay, false);
+    }
+
+    void Update()
+    {
+        CalculateRemainingNitros();    
     }
 
     void FixedUpdate()
     {
+
+        CalculateSuspension();
+        CalculateGroundNormal();
         Steering();
         AddCounterCentrifugalForce();
         Throttle();
-        CalculateSuspension();
+        ApplyNitros();
+        ApplyDrag();
+    }
+
+    private void ApplyDrag()
+    {
+        if (!isGrounded)
+            rb.drag = 0;
+        else
+            rb.drag = drag;
     }
 
     private void CalculateSuspension()
     {
         foreach (Transform t in suspensionPoint)
         {
-            Vector3 normal = Vector3.zero;
+            bool grounded = false;
             if(Physics.Raycast(t.position, -t.up, out RaycastHit hit, maxDist, ground))
             {
                 float compressRatio = Vector3.Distance(t.position, hit.point) / maxDist;
                 float force =(1 - compressRatio) * maxForce;
                 rb.AddForceAtPosition(force * t.up, t.position);
-                normal = hit.normal;
+                grounded = true;
             }
-            groundNormal = normal;
+            isGrounded = grounded;
+        }
+    }
+
+    private void CalculateGroundNormal()
+    {
+        projectedForward = Vector3.zero;
+        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 10f, ground))
+        {
+            projectedForward = Vector3.ProjectOnPlane(transform.forward - transform.up, hit.normal).normalized;
         }
     }
 
@@ -108,15 +193,14 @@ public class CarController : MonoBehaviour
     {
         if (throttle == 0)
             return;
-        if (groundNormal == Vector3.zero)
+        if (!isGrounded)
             return;
         Vector3 dir = rb.transform.forward * throttle;
         Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / maxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
-        Vector3 forceDir = Vector3.ProjectOnPlane(transform.forward - transform.up, groundNormal).normalized;
-        rb.AddForceAtPosition(forceDir * acceleration * accelerationMultiplier * throttle,relativePos.position);
+        rb.AddForceAtPosition(projectedForward * acceleration * accelerationMultiplier * throttle,relativePos.position);
     }
 
     private void Steering()
@@ -130,5 +214,50 @@ public class CarController : MonoBehaviour
     {
         Vector3 proj = Vector3.Project(rb.velocity, transform.right);
         rb.AddForce(-proj * slippiness);
+    }
+
+    private void ApplyNitros()
+    {
+        if (!isNitros)
+            return;
+        if (currentNitros.Float == 0)
+            return;
+        Vector3 boostDir;
+        if (isGrounded)
+        {
+            boostDir = projectedForward;
+        }
+        else
+        {
+            boostDir = transform.forward;
+        }
+        Vector3 dir = rb.transform.forward;
+        Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
+        float accelerationMultiplier = (1 - (rb.velocity.magnitude / nitrosMaxSpeed));
+        if (normalized.magnitude < 0.5f)
+            accelerationMultiplier = 1;
+        rb.AddForceAtPosition(boostDir * nitrosBoost * accelerationMultiplier, relativePos.position);
+    }
+
+    private void CalculateRemainingNitros()
+    {
+        if (isNitros)
+        {
+            currentNitros.Float -= nitroDrainRate * Time.deltaTime;
+            if(currentNitros.Float < 0)
+                currentNitros.Float = 0;
+        }
+        else
+        {
+            if (recoveryTimer.IsTimeZero())
+            {
+                if(currentNitros.Float < maxNitros.Float)
+                    currentNitros.Float += nitrosRecoveryRate * Time.deltaTime;
+                if(currentNitros.Float > maxNitros.Float)
+                    currentNitros.Float = maxNitros.Float;
+            }
+        }
+
+
     }
 }
