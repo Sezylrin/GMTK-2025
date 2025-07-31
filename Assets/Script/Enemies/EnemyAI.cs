@@ -15,6 +15,10 @@ public class EnemyAI : MonoBehaviour
     public TransformSO playerPos;
 
     [SerializeField]
+    private FloatSO healthToGive;
+    [SerializeField]
+    private float healthGain;
+    [SerializeField]
     private FloatSO damageToDo;
     [SerializeField]
     private float damage;
@@ -66,6 +70,7 @@ public class EnemyAI : MonoBehaviour
 
     public void KillEnemy()
     {
+        healthToGive.Float += healthGain;
         Destroy(gameObject);
     }
 

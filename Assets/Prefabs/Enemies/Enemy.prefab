@@ -504,5 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
+  healthToGive: {fileID: 11400000, guid: 0d6ffa6da0ba3e74cbd64c55545948e5, type: 2}
+  healthGain: 10
   damageToDo: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
   damage: 5

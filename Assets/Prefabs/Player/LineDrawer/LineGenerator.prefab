@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7012745315283291106}
   - component: {fileID: 1002931137228433810}
   - component: {fileID: 3353144822770167061}
+  - component: {fileID: 135224488997098699}
   m_Layer: 6
   m_Name: LineGenerator
   m_TagString: Untagged
@@ -56,7 +57,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14d9f33cec73baf46837c806aab16d0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,11 +130,11 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0
     generateLightingData: 0
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
@@ -210,3 +211,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timers: []
+--- !u!114 &135224488997098699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752648098266102943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1299800178fa95e4f8ae364a46d70f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 5875697163231259418}
+  textures:
+  - {fileID: 2800000, guid: 414f8efe80645bf4895633804861d8fa, type: 3}
+  - {fileID: 2800000, guid: 0a8ac77b57ceea74d86fe5de730ebefe, type: 3}
+  - {fileID: 2800000, guid: 1a611d91483c4ec4f86848a774aed302, type: 3}
+  fps: 30
