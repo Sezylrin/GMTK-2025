@@ -62,7 +62,7 @@ public class EnemyAI : MonoBehaviour
 
     public void KillEnemy()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
 
