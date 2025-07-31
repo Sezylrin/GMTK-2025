@@ -5,9 +5,16 @@ using UnityEngine;
 public class DrawPoint : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Vector2SO vector2SO;
-    public BoxCollider2D boxCollider2D;
-    public bool DrawLine;
+    [SerializeField]
+    private GameObject lineGen;
+    [SerializeField]
+    private BoolSO DrawLine;
+
+    private GenerateLine currentLine;
+    [SerializeField]
+    private Transform collisionCheckPoint;
+    [SerializeField]
+    private Transform lineDrawPoint;
     void Start()
     {
     }
@@ -15,14 +22,33 @@ public class DrawPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(DrawLine)
-        vector2SO.Vector2 = new Vector2(transform.position.x, transform.position.z);
+        StartGenerateLine();
         DetectCollision();
     }
 
     public void DetectCollision()
     {
-        Collider2D col = Physics2D.OverlapBox(UtilityFunction.Vector3ToFlatVector2(transform.position), Vector2.one, 0);
+        Collider2D col = Physics2D.OverlapBox(UtilityFunction.Vector3ToFlatVector2(collisionCheckPoint.position), Vector2.one * 0.75f, transform.eulerAngles.y);
+
+        if (col)
+        {
+            currentLine.DetectAllInternal();
+        }
+    }
+
+    public void StartGenerateLine()
+    {
+        if (currentLine == null && DrawLine.Bool)
+            currentLine = Instantiate(lineGen, Vector3.zero, Quaternion.identity).GetComponent<GenerateLine>();
+        else if (!DrawLine.Bool && currentLine)
+        {
+            currentLine.StartDecay();
+            currentLine = null;
+        }
+        if (!currentLine)
+            return;
+
+        currentLine.SetVector(UtilityFunction.Vector3ToFlatVector2(lineDrawPoint.position));
+
     }
 }

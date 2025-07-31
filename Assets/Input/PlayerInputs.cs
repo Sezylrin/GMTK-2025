@@ -53,6 +53,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DrawLine"",
+                    ""type"": ""Button"",
+                    ""id"": ""8632dd00-4b91-4c99-8617-10b5a613e759"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Nitros"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""050878a2-463b-4018-85a2-0ea8bc86f42f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DrawLine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -720,6 +740,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
         m_Player_Steering = m_Player.FindAction("Steering", throwIfNotFound: true);
         m_Player_Nitros = m_Player.FindAction("Nitros", throwIfNotFound: true);
+        m_Player_DrawLine = m_Player.FindAction("DrawLine", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -796,6 +817,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throttle;
     private readonly InputAction m_Player_Steering;
     private readonly InputAction m_Player_Nitros;
+    private readonly InputAction m_Player_DrawLine;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -803,6 +825,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
         public InputAction @Steering => m_Wrapper.m_Player_Steering;
         public InputAction @Nitros => m_Wrapper.m_Player_Nitros;
+        public InputAction @DrawLine => m_Wrapper.m_Player_DrawLine;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -821,6 +844,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Nitros.started += instance.OnNitros;
             @Nitros.performed += instance.OnNitros;
             @Nitros.canceled += instance.OnNitros;
+            @DrawLine.started += instance.OnDrawLine;
+            @DrawLine.performed += instance.OnDrawLine;
+            @DrawLine.canceled += instance.OnDrawLine;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -834,6 +860,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Nitros.started -= instance.OnNitros;
             @Nitros.performed -= instance.OnNitros;
             @Nitros.canceled -= instance.OnNitros;
+            @DrawLine.started -= instance.OnDrawLine;
+            @DrawLine.performed -= instance.OnDrawLine;
+            @DrawLine.canceled -= instance.OnDrawLine;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1019,6 +1048,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnThrottle(InputAction.CallbackContext context);
         void OnSteering(InputAction.CallbackContext context);
         void OnNitros(InputAction.CallbackContext context);
+        void OnDrawLine(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

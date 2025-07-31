@@ -9,6 +9,8 @@ public class DetectInside : MonoBehaviour
     private LayerMask lineLayer;
     [SerializeField]
     private bool IsInside;
+    [SerializeField]
+    private CircleCollider2D col2D;
     void Start()
     {
         
@@ -17,7 +19,7 @@ public class DetectInside : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
     }
     [ContextMenu("DebugCheck")]
     public void CheckDetection()
