@@ -8,7 +8,7 @@ public class ExampleAudio : MonoBehaviour
     public AudioManager AudioManager;
     void Start()
     {
-        AudioManager.PlaySound(AudioRef.Example);
+
     }
 
     // Update is called once per frame

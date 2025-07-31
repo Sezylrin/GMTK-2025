@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ce96cf0c11dba459943281d6fcece4, type: 3}
-  m_Name: LoadedSoundDictionary
+  m_Script: {fileID: 11500000, guid: d5833d25c6200a143abf3e8f76624158, type: 3}
+  m_Name: MaxNitros
   m_EditorClassIdentifier: 
-  loadedSound:
-    _serializedList:
-    - Key: Slam
-      Value: {fileID: 11400000, guid: d62b4ace0f92fc74d8521f06dc83eb66, type: 2}
+  Float: 0
