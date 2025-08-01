@@ -40,6 +40,13 @@ public class CarController : MonoBehaviour
     private float minSpeedTurnRate;
     [SerializeField, Range(-2, 5)]
     private float slippiness;
+    private float currentSlippiness;
+    private float currentTurningForce;
+    [Header("Drifting")]
+    [SerializeField, Range(-2,0)]
+    private float driftSlippiness;
+    [SerializeField]
+    private float driftTurningForce;
 
     [Header("Nitros")]
     [SerializeField]
@@ -60,6 +67,8 @@ public class CarController : MonoBehaviour
     private FloatSO maxNitros;
     [SerializeField]
     private Timer recoveryTimer;
+    [SerializeField]
+    private float turnFactor;
 
     [Header("Suspension")]
     [SerializeField]
@@ -91,7 +100,7 @@ public class CarController : MonoBehaviour
     [SerializeField, ReadOnlyProp]
     private bool isNitros;
     [SerializeField]
-    private BoolSO drawLine;
+    private BoolSO IsDrifting;
     private void OnEnable()
     {
         player.Enable();
@@ -101,8 +110,8 @@ public class CarController : MonoBehaviour
         player.Steering.canceled += SetSteering;
         player.Nitros.started += SetNitros;
         player.Nitros.canceled += SetNitros;
-        player.DrawLine.started += SetDrawLine;
-        player.DrawLine.canceled += SetDrawLine;
+        player.DrawLine.started += SetDrift;
+        player.DrawLine.canceled += SetDrift;
     }
 
     private void OnDisable()
@@ -114,8 +123,8 @@ public class CarController : MonoBehaviour
         player.Throttle.performed -= SetThrottle;
         player.Nitros.started -= SetNitros;
         player.Nitros.canceled -= SetNitros;
-        player.DrawLine.started -= SetDrawLine;
-        player.DrawLine.canceled -= SetDrawLine;
+        player.DrawLine.started -= SetDrift;
+        player.DrawLine.canceled -= SetDrift;
     }
 
     private void SetThrottle(InputAction.CallbackContext context)
@@ -128,21 +137,19 @@ public class CarController : MonoBehaviour
         steering = context.ReadValue<float>();
     }
 
-    private void SetDrawLine(InputAction.CallbackContext context)
+    private void SetDrift(InputAction.CallbackContext context)
     {
-        drawLine.Bool = !drawLine.Bool;
+        IsDrifting.Bool = !IsDrifting.Bool;
     }
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
         if (!isNitros)
         {
-            turningForce *= 0.5f;
             recoveryTimer.ResumeTimer();
         }
         else
         {
-            turningForce *= 2;
             recoveryTimer.ResetTime();
             recoveryTimer.PauseTimer();
         }
@@ -162,6 +169,42 @@ public class CarController : MonoBehaviour
         recoveryTimer = timerManager.GenerateTimers(1, gameObject);
         recoveryTimer.SetTime(nitrosRecoveryDelay, false);
         maxSpeedSO.Float = maxSpeed;
+        
+    }
+
+    private void DetermineSlippiness()
+    {
+        if (IsDrifting.Bool && currentSlippiness != driftSlippiness)
+        {
+            currentSlippiness = driftSlippiness;
+        }
+        else if (!IsDrifting.Bool && currentSlippiness != slippiness)
+        {
+            currentSlippiness = slippiness;
+        }
+    }
+
+    private void DetermineTurningForce()
+    {
+        float turningForce = currentTurningForce;
+        if(currentTurningForce != turningForce && !IsDrifting)
+        {
+            turningForce = this.turningForce;
+        }
+        else if (currentTurningForce != driftTurningForce && IsDrifting)
+        {
+            turningForce = driftTurningForce;
+        }
+
+        
+        if(isNitros && currentNitros.Float > 0)
+        {
+            turningForce *= turnFactor;
+        }
+        else if (!isNitros)
+        {
+            turningForce /= turnFactor;
+        }
     }
 
     void Update()
@@ -241,7 +284,7 @@ public class CarController : MonoBehaviour
     private void AddCounterCentrifugalForce()
     {
         Vector3 proj = Vector3.Project(rb.velocity, transform.right);
-        rb.AddForce(-proj * slippiness, ForceMode.Acceleration);
+        rb.AddForce(-proj * currentSlippiness, ForceMode.Acceleration);
     }
 
     private void ApplyNitros()

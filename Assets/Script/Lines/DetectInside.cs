@@ -1,3 +1,4 @@
+using KevinCastejon.MissingFeatures.MissingAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,20 +9,31 @@ public class DetectInside : MonoBehaviour
     [SerializeField]
     private LayerMask lineLayer;
     [SerializeField]
-    private bool IsInside;
-    [SerializeField]
     private CircleCollider2D col2D;
     private IKillable ai;
+    [SerializeField]
+    private bool isStatic;
+
+    private bool IsInside;
     void Start()
     {
         ai = GetComponentInParent<IKillable>();
-        Debug.Log(ai);
+        if (ai == null)
+        {
+            Debug.Break();
+            Debug.LogWarning("There is no script containing IKillable in parent");
+        }
+        if (isStatic)
+        {
+            col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
+        if(!isStatic)
+            col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
     }
     public void CheckDetection()
     {
