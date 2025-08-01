@@ -85,7 +85,6 @@ public class GenerateLine : MonoBehaviour
 
     public void StartDecay()
     {
-        Debug.Log(eraseTimer);
         eraseTimer.ResumeTimer();
         edgeCollider.enabled = false;
     }
