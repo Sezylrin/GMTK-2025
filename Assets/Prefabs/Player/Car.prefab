@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1098407020157814568}
   - component: {fileID: 3002231868155704136}
   - component: {fileID: 6750710123421693643}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: vfx_Lightning_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 191078156155990201}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9869383, y: -0, z: -0, w: 0.16109921}
-  m_LocalPosition: {x: 0.04, y: -0.19, z: -2.32}
+  m_LocalPosition: {x: 0.04, y: -0.19, z: -1.72}
   m_LocalScale: {x: 2.47, y: 2.47, z: 2.47}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3793,7 +3793,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 375
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4841,7 +4841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042241357546944896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SuspensionBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +4872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7115869968488408741}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LineOverlapCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3016999529214149778}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamFollowTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4936,8 +4936,7 @@ GameObject:
   - component: {fileID: 3413392761090438205}
   - component: {fileID: 1797241043098303384}
   - component: {fileID: 4545788426333491026}
-  - component: {fileID: 4132597742719266632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GovCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5010,27 +5009,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4132597742719266632
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2600017401078558343}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.013578467, y: 0.0373713, z: 0.011635836}
-  m_Center: {x: 0.0000056196004, y: 0.0026118602, z: 0.0000033986282}
 --- !u!1 &2802153547733378887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5042,7 +5020,7 @@ GameObject:
   - component: {fileID: 6870262023672364104}
   - component: {fileID: 2882827097717796831}
   - component: {fileID: 6633182714698079114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5123,7 +5101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7301663505907591074}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AccelerationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5156,7 +5134,7 @@ GameObject:
   - component: {fileID: 7891462169620117915}
   - component: {fileID: 1790647038309879215}
   - component: {fileID: 5994491831456508693}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10042,7 +10020,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4554484926869889709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SuspensionBL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10064,6 +10042,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4154383201514489306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5495437681232642301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3594989661502680230}
+  - component: {fileID: 51890247133793765}
+  m_Layer: 3
+  m_Name: hitbox
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3594989661502680230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495437681232642301}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3586790732711329800}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &51890247133793765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495437681232642301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013578467, y: 0.0373713, z: 0.011635836}
+  m_Center: {x: 0.0000056196004, y: 0.0026118602, z: 0.0000033986282}
 --- !u!1 &5857605476858210549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10073,7 +10104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3625996317823804079}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10108,7 +10139,7 @@ GameObject:
   - component: {fileID: 7681228877176181472}
   - component: {fileID: 4522704244288788884}
   - component: {fileID: 4403850151939602706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: vfx_Smoke_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10213,8 +10244,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 1.5
+      minScalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14936,7 +14967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4154383201514489306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14973,7 +15004,7 @@ GameObject:
   - component: {fileID: 7933220615819104648}
   - component: {fileID: 4198090864020888316}
   - component: {fileID: 4151435436731136634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: vfx_Smoke_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15078,8 +15109,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 1.5
+      minScalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19810,7 +19841,8 @@ GameObject:
   - component: {fileID: -4659006351807129547}
   - component: {fileID: 363552916028700327}
   - component: {fileID: 7450168924159284617}
-  m_Layer: 0
+  - component: {fileID: 2246086755151435760}
+  m_Layer: 3
   m_Name: Car
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -19838,6 +19870,7 @@ Transform:
   - {fileID: 7933220615819104648}
   - {fileID: 7681228877176181472}
   - {fileID: 1098407020157814568}
+  - {fileID: 3594989661502680230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7272446105964579704
@@ -19885,27 +19918,31 @@ MonoBehaviour:
     m_Bits: 256
   COM: {fileID: 7798657703425998754}
   timerManager: {fileID: 6629741568350300391}
+  isDead: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
   relativePos: {fileID: 7301663505907591074}
   maxSpeed: 50
   maxSpeedSO: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
-  acceleration: 12000
+  acceleration: 120
   velocitySO: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
-  turningForce: 800
+  turningForce: 5
   minSpeedTurnRate: 0.4
-  slippiness: 3
-  nitrosMaxSpeed: 100
-  nitrosBoost: 30000
+  slippiness: 4
+  driftSlippiness: -1.5
+  driftTurningForce: 8
+  nitrosMaxSpeed: 80
+  nitrosBoost: 180
   nitrosMaxDuration: 2
   nitroDrainRate: 1
   nitrosRecoveryDelay: 1
   nitrosRecoveryRate: 1
+  nitrosTurnFactor: 1.5
   currentNitros: {fileID: 11400000, guid: 7ec894e73f10a804c8370359e95bb67c, type: 2}
   maxNitros: {fileID: 11400000, guid: 530420e187e52d04c928e135a805bc78, type: 2}
   recoveryTimer:
     <times>k__BackingField: []
     owner: {fileID: 0}
   maxDist: 0.32
-  maxForce: 1600
+  maxForce: 16
   suspensionPoint:
   - {fileID: 5545289562297193200}
   - {fileID: 4554484926869889709}
@@ -19916,7 +19953,7 @@ MonoBehaviour:
   throttle: 0
   steering: 0
   isNitros: 0
-  drawLine: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  IsDrifting: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
 --- !u!114 &6629741568350300391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19943,7 +19980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineGen: {fileID: 5752648098266102943, guid: e432e64c2e73774469e100a5bac55b59, type: 3}
-  DrawLine: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  throttle: {fileID: 11400000, guid: 22f205bfc1dc4d648a041f9be23d4a1c, type: 2}
   line:
     serializedVersion: 2
     m_Bits: 64
@@ -19987,7 +20024,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7263825737613432649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e06311f0c6a6ac4980204567ea920a5, type: 3}
   m_Name: 
@@ -20014,9 +20051,9 @@ MonoBehaviour:
   currentHealthSO: {fileID: 11400000, guid: 680026a21806f1542987ef2bb05cd80b, type: 2}
   maxHealthFuel: 600
   healthDrainRate: 10
-  drawDrainRate: 10
-  isDrawing: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
   DoDamage: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
+  HealthGain: {fileID: 11400000, guid: 0d6ffa6da0ba3e74cbd64c55545948e5, type: 2}
+  triggerDeath: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
 --- !u!114 &7450168924159284617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20034,6 +20071,20 @@ MonoBehaviour:
   throttle: {fileID: 11400000, guid: 22f205bfc1dc4d648a041f9be23d4a1c, type: 2}
   trailA: {fileID: 4198090864020888316}
   trailB: {fileID: 4522704244288788884}
+--- !u!114 &2246086755151435760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50fc249c5f7e884cb1d0a91bb75c685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnExplosion: {fileID: 11400000, guid: db28bbe00e0650042ad4b803f5530c22, type: 2}
+  explosionPrefab: {fileID: 4930612583977904521, guid: c9739289e78a235438f865bbc33d8dc1, type: 3}
 --- !u!1 &7489164484233605628
 GameObject:
   m_ObjectHideFlags: 0
@@ -20043,7 +20094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7798657703425998754}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CentreOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20075,7 +20126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6755512842410575920}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LineDrawStartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20106,7 +20157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3772424590977905153}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SuspensionFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20137,7 +20188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5545289562297193200}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SuspensionFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}

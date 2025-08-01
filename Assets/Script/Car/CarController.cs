@@ -18,6 +18,8 @@ public class CarController : MonoBehaviour
     private Transform COM;
     [SerializeField]
     private TimerManager timerManager;
+    [SerializeField]
+    private BoolSO isDead;
 
     [Header("Acceleration")]
     [SerializeField]
@@ -36,8 +38,15 @@ public class CarController : MonoBehaviour
     private float turningForce;
     [SerializeField, Range(0, 1)]
     private float minSpeedTurnRate;
-    [SerializeField, Range(-1, 3)]
+    [SerializeField, Range(-2, 5)]
     private float slippiness;
+    private float currentSlippiness;
+    private float currentTurnForce;
+    [Header("Drifting")]
+    [SerializeField, Range(-2,0)]
+    private float driftSlippiness;
+    [SerializeField]
+    private float driftTurningForce;
 
     [Header("Nitros")]
     [SerializeField]
@@ -52,6 +61,8 @@ public class CarController : MonoBehaviour
     private float nitrosRecoveryDelay;
     [SerializeField]
     private float nitrosRecoveryRate;
+    [SerializeField]
+    private float nitrosTurnFactor;
     [SerializeField]
     private FloatSO currentNitros;
     [SerializeField]
@@ -89,7 +100,7 @@ public class CarController : MonoBehaviour
     [SerializeField, ReadOnlyProp]
     private bool isNitros;
     [SerializeField]
-    private BoolSO drawLine;
+    private BoolSO IsDrifting;
     private void OnEnable()
     {
         player.Enable();
@@ -99,8 +110,8 @@ public class CarController : MonoBehaviour
         player.Steering.canceled += SetSteering;
         player.Nitros.started += SetNitros;
         player.Nitros.canceled += SetNitros;
-        player.DrawLine.started += SetDrawLine;
-        player.DrawLine.canceled += SetDrawLine;
+        player.DrawLine.started += SetDrift;
+        player.DrawLine.canceled += SetDrift;
     }
 
     private void OnDisable()
@@ -112,8 +123,8 @@ public class CarController : MonoBehaviour
         player.Throttle.performed -= SetThrottle;
         player.Nitros.started -= SetNitros;
         player.Nitros.canceled -= SetNitros;
-        player.DrawLine.started -= SetDrawLine;
-        player.DrawLine.canceled -= SetDrawLine;
+        player.DrawLine.started -= SetDrift;
+        player.DrawLine.canceled -= SetDrift;
     }
 
     private void SetThrottle(InputAction.CallbackContext context)
@@ -126,14 +137,14 @@ public class CarController : MonoBehaviour
         steering = context.ReadValue<float>();
     }
 
-    private void SetDrawLine(InputAction.CallbackContext context)
+    private void SetDrift(InputAction.CallbackContext context)
     {
-        drawLine.Bool = !drawLine.Bool;
+        IsDrifting.Bool = !IsDrifting.Bool;
     }
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
-        if (!isNitros)
+        if (!isNitros && !(currentNitros.Float <= 0))
         {
             turningForce *= 0.5f;
             recoveryTimer.ResumeTimer();
@@ -164,12 +175,15 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        CalculateRemainingNitros();    
+        CalculateRemainingNitros();
+        CalculateCurrentSlippiness();
+        CalculateTurnRate();
     }
 
     void FixedUpdate()
     {
-
+        if (isDead.Bool)
+            return;
         CalculateSuspension();
         CalculateGroundNormal();
         Steering();
@@ -197,7 +211,7 @@ public class CarController : MonoBehaviour
             {
                 float compressRatio = Vector3.Distance(t.position, hit.point) / maxDist;
                 float force =(1 - compressRatio) * maxForce;
-                rb.AddForceAtPosition(force * t.up, t.position);
+                rb.AddForceAtPosition(force * t.up, t.position, ForceMode.Acceleration);
                 grounded = true;
             }
             isGrounded = grounded;
@@ -225,20 +239,20 @@ public class CarController : MonoBehaviour
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / maxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
-        rb.AddForceAtPosition(projectedForward * acceleration * accelerationMultiplier * throttle,relativePos.position);
+        rb.AddForceAtPosition(projectedForward * acceleration * accelerationMultiplier * throttle,relativePos.position, ForceMode.Acceleration);
     }
 
     private void Steering()
     {
         if (rb.velocity.magnitude < maxSpeed * minSpeedTurnRate && throttle == 0)
             return;
-        rb.AddTorque(Vector3.up * turningForce * steering);
+        rb.AddTorque(Vector3.up * currentTurnForce * steering, ForceMode.Acceleration);
     }
 
     private void AddCounterCentrifugalForce()
     {
         Vector3 proj = Vector3.Project(rb.velocity, transform.right);
-        rb.AddForce(-proj * slippiness);
+        rb.AddForce(-proj * currentSlippiness, ForceMode.Acceleration);
     }
 
     private void ApplyNitros()
@@ -261,7 +275,7 @@ public class CarController : MonoBehaviour
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / nitrosMaxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
-        rb.AddForceAtPosition(boostDir * nitrosBoost * accelerationMultiplier, relativePos.position);
+        rb.AddForceAtPosition(boostDir * nitrosBoost * accelerationMultiplier, relativePos.position, ForceMode.Acceleration);
     }
 
     private void CalculateRemainingNitros()
@@ -282,7 +296,26 @@ public class CarController : MonoBehaviour
                     currentNitros.Float = maxNitros.Float;
             }
         }
+    }
 
+    private void CalculateCurrentSlippiness()
+    {
+        if(IsDrifting.Bool && currentSlippiness != driftSlippiness)
+        {
+            currentSlippiness = driftSlippiness;
+        }
+        else if (!IsDrifting.Bool && currentSlippiness != slippiness)
+        {
+            currentSlippiness = slippiness;
+        }
+    }
 
+    private void CalculateTurnRate()
+    {
+        
+        if (isNitros && currentNitros.Float > 0)
+            currentTurnForce = IsDrifting ? driftTurningForce * nitrosTurnFactor : turningForce * nitrosTurnFactor;
+        else
+            currentTurnForce = IsDrifting ? driftTurningForce : turningForce;
     }
 }

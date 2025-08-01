@@ -11,11 +11,10 @@ public class DetectInside : MonoBehaviour
     private bool IsInside;
     [SerializeField]
     private CircleCollider2D col2D;
-    [SerializeField]
-    private EnemyAI ai;
+    private IKillable ai;
     void Start()
     {
-        
+        ai = GetComponentInParent<IKillable>();
     }
 
     // Update is called once per frame
@@ -43,7 +42,7 @@ public class DetectInside : MonoBehaviour
         }
         if (hitAmount % 2 != 0)
         {
-            if (ai)
+            if (ai != null)
                 ai.KillEnemy();
         }
 

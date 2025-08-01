@@ -8,24 +8,41 @@ public class GenerateLine : MonoBehaviour
     [SerializeField]
     private LineRenderer lineRenderer;
     [SerializeField]
-    private List<Vector2> points = new List<Vector2>();
+    private Queue<Vector2> points = new Queue<Vector2>();
     [SerializeField]
-    private List<Vector2> collisionPoint = new List<Vector2>();
+    private Queue<Vector2> collisionPoint = new Queue<Vector2>();
     [SerializeField]
     private EdgeCollider2D edgeCollider;
     [SerializeField]
     private float collisionResolution;
     private float resolutionRatio;
+    [SerializeField]
+    private float lineResolution;
+    private float lineResoRatio;
+    [SerializeField]
+    private float trailDuration;
+    private int maxQueueSize;
+    private int maxColSize;
     [Header("timer")]
     [SerializeField]
     private TimerManager timerManager;
     [SerializeField]
     private float durationTillErase;
+    [SerializeField]
+    private Vector2SO circleCentre;
+    [SerializeField]
+    private FloatSO minRadius;
+    [SerializeField]
+    private FloatSO maxRadius;
+    [SerializeField]
+    private BoolSO spawnExplosion;
+
 
     private Timer eraseTimer;
     
     private Vector2 newPoint;
 
+    private Vector2 lastAddedPoint = Vector2.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,30 +50,50 @@ public class GenerateLine : MonoBehaviour
         eraseTimer.SetTime(durationTillErase,false);
         eraseTimer.times[0].OnTimeIsZero += RemovePoint;
         resolutionRatio = 1 / collisionResolution;
+        lineResoRatio = 1 / lineResolution;
+        maxQueueSize = Mathf.CeilToInt(trailDuration * lineResolution);
+        maxColSize = Mathf.CeilToInt(trailDuration * collisionResolution);
+        nextLineCheck = Time.time;
+        nextCollisionCheck = Time.time;
     }
 
     // Update is called once per frame
     private float nextCollisionCheck = 0;
+    private float nextLineCheck = 0;
     void Update()
     {
         ShouldAddPoint();
+        removeLine();
+    }
+
+    private void removeLine()
+    {
+        if(points.Count > maxQueueSize)
+            points.Dequeue();
+        if(collisionPoint.Count > maxColSize)
+            collisionPoint.Dequeue();
     }
     private void ShouldAddPoint()
     {
         if (points.Count == 0)
             AddPoint();
-        else if (points[points.Count - 1] != newPoint)
+        else if (lastAddedPoint != newPoint)
             AddPoint();
     }
     private void AddPoint()
-    {        
-        points.Add(newPoint);
+    {
+        if (nextLineCheck > Time.time)
+            return;
+        nextLineCheck += lineResoRatio;
+        lastAddedPoint = newPoint;
+        points.Enqueue(newPoint);
         if(nextCollisionCheck <= Time.time)
         {
-            collisionPoint.Add(newPoint);
+            collisionPoint.Enqueue(newPoint);
             edgeCollider.points = collisionPoint.ToArray();
             nextCollisionCheck += resolutionRatio;
         }
+        
         List<Vector3> vec3 = new List<Vector3>();
         foreach (Vector2 v in points)
             vec3.Add(UtilityFunction.Vector2ToVector3(v,0.2f));
@@ -99,6 +136,22 @@ public class GenerateLine : MonoBehaviour
         }
         edgeCollider.points = temp.ToArray();
         Bounds bound = edgeCollider.bounds;
+        circleCentre.Vector2 = bound.center;
+        float min;
+        float max;
+        if(bound.size.x < bound.size.y)
+        {
+            min = bound.size.x * 0.5f;
+            max = bound.size.y * 0.5f;
+        }
+        else
+        {
+            min = bound.size.y * 0.5f;
+            max = bound.size.x * 0.5f;
+        }
+        minRadius.Float = min;
+        maxRadius.Float = max;
+        spawnExplosion.Bool = true;
 
         Collider2D[] cols = Physics2D.OverlapBoxAll(bound.center, bound.size,0);
         foreach (Collider2D col in cols)

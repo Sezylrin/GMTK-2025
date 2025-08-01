@@ -14,11 +14,11 @@ public class CarHealthFuel : MonoBehaviour
     [SerializeField]
     private float healthDrainRate;
     [SerializeField]
-    private float drawDrainRate;
-    [SerializeField]
-    private BoolSO isDrawing;
-    [SerializeField]
     private FloatSO DoDamage;
+    [SerializeField]
+    private FloatSO HealthGain;
+    [SerializeField]
+    private BoolSO triggerDeath;
 
     void Start()
     {
@@ -30,16 +30,8 @@ public class CarHealthFuel : MonoBehaviour
     void Update()
     {
         DrainHealth();
-        DrainHealthOnDraw();
         CheckForDamage();
         CheckIfDead();
-    }
-    public void DrainHealthOnDraw()
-    {
-        if (!isDrawing.Bool)
-            return;
-        currentHealthSO.Float -= Time.deltaTime * drawDrainRate;
-        
     }
 
     private void CheckForDamage()
@@ -48,6 +40,11 @@ public class CarHealthFuel : MonoBehaviour
         {
             ModifyHealth(DoDamage.Float);
             DoDamage.Float = 0;
+        }
+        if(HealthGain.Float > 0)
+        {
+            ModifyHealth(-HealthGain.Float);
+            HealthGain.Float = 0;
         }
 
     }
@@ -65,7 +62,12 @@ public class CarHealthFuel : MonoBehaviour
     {
         if(currentHealthSO.Float < 0)
         {
-            ///dead
+            triggerDeath.Bool = true;
+        }
+        else if (triggerDeath.Bool)
+        {
+            Debug.Log("temporary solution");
+            triggerDeath.Bool = false;
         }
     }
 

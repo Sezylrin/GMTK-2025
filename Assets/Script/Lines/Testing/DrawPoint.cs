@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 public class DrawPoint : MonoBehaviour
@@ -8,7 +10,7 @@ public class DrawPoint : MonoBehaviour
     [SerializeField]
     private GameObject lineGen;
     [SerializeField]
-    private BoolSO DrawLine;
+    private FloatSO throttle;
     [SerializeField]
     private LayerMask line;
 
@@ -36,22 +38,32 @@ public class DrawPoint : MonoBehaviour
         if (col)
         {
             currentLine.DetectAllInternal(pos);
+            DecayLine();
         }
+    }
+
+    private void DecayLine()
+    {
+        currentLine.StartDecay();
+        currentLine = null;
     }
 
     public void StartGenerateLine()
     {
-        if (currentLine == null && DrawLine.Bool)
-            currentLine = Instantiate(lineGen, Vector3.zero, Quaternion.identity).GetComponent<GenerateLine>();
-        else if (!DrawLine.Bool && currentLine)
+        if (throttle.Float <= 0)
         {
-            currentLine.StartDecay();
-            currentLine = null;
-        }
-        if (!currentLine)
+            if (currentLine)
+                DecayLine();
             return;
+        }
+        if (currentLine == null)
+            currentLine = Instantiate(lineGen, Vector3.zero, Quaternion.identity).GetComponent<GenerateLine>();
+
 
         currentLine.SetVector(UtilityFunction.Vector3ToFlatVector2(lineDrawPoint.position));
 
     }
+
 }
+
+

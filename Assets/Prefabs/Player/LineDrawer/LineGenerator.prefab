@@ -131,7 +131,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 1
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 0.2, y: 1}
     shadowBias: 0
     generateLightingData: 0
   m_MaskInteraction: 2
@@ -151,12 +151,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5875697163231259418}
-  points: []
-  collisionPoint: []
   edgeCollider: {fileID: 1002931137228433810}
   collisionResolution: 15
+  lineResolution: 15
+  trailDuration: 5
   timerManager: {fileID: 3353144822770167061}
   durationTillErase: 3
+  circleCentre: {fileID: 11400000, guid: 7dc7def0cd927024fbe53670ab4b93dc, type: 2}
+  minRadius: {fileID: 11400000, guid: 4ddc1ac00ba80f04db380bca13045f8f, type: 2}
+  maxRadius: {fileID: 11400000, guid: de2db3d5911dc6e44aa21f5e51df59cc, type: 2}
+  spawnExplosion: {fileID: 11400000, guid: db28bbe00e0650042ad4b803f5530c22, type: 2}
 --- !u!68 &1002931137228433810
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5875697163231259418}
   textures:
-  - {fileID: 2800000, guid: 414f8efe80645bf4895633804861d8fa, type: 3}
-  - {fileID: 2800000, guid: 0a8ac77b57ceea74d86fe5de730ebefe, type: 3}
-  - {fileID: 2800000, guid: 1a611d91483c4ec4f86848a774aed302, type: 3}
-  fps: 30
+  - {fileID: 2800000, guid: 62188cb17562f854eaf70b39c2750ebb, type: 3}
+  - {fileID: 2800000, guid: a42871b9887eead48b1545bc0f71a84a, type: 3}
+  fps: 6
