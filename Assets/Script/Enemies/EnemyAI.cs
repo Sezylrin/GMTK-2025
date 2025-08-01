@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IKillable
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
         rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
-        
+
 
     }
 

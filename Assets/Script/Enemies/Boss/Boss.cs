@@ -12,12 +12,23 @@ public class Boss : MonoBehaviour, IKillable
     }
 
     private int Phase = 0;
-    private bool isShielded;
+    private bool isShielded = true;
     [Header("Core")]
     [SerializeField]
     private TransformSO playerPos;
     [SerializeField]
     private TimerManager timerManager;
+
+    [Header("shield")]
+    [SerializeField]
+    private GameObject ShieldPylon;
+    [SerializeField]
+    private float shieldSpawnRadius;
+    [SerializeField]
+    private FloatSO activeShields;
+    [SerializeField]
+    private GameObject shield;
+    
 
     [Header("General")]
     [SerializeField]
@@ -46,19 +57,59 @@ public class Boss : MonoBehaviour, IKillable
             return;
         isShielded = true;
         Phase++;
-        if(Phase > 3)
+        if(Phase > 2)
             Destroy(gameObject);
+        SpawnShield(Phase + 1);
+    }
+
+    private void SpawnShield(int amount)
+    {
+        List<Vector3> spawnPoint = new List<Vector3>();
+        while(activeShields.Float < amount)
+        {
+            Vector3 spawn = Vector3.forward * shieldSpawnRadius;
+            spawn = Quaternion.Euler(0f, Random.Range(0, 360), 0f) * spawn;
+            foreach (Vector3 p in spawnPoint)
+            {
+                if (Vector3.Distance(p,spawn) < shieldSpawnRadius)
+                {
+                    continue;
+                }
+            }
+            activeShields.Float++;
+            spawnPoint.Add(spawn);
+            Instantiate(ShieldPylon, spawn + transform.position, Quaternion.identity);
+            isShielded = true;
+            shield.SetActive(true);
+        }
+    }
+
+    private void CheckShield()
+    {
+        if(activeShields.Float <= 0 && isShielded)
+        {
+            shield.SetActive(false);
+            isShielded = false;
+        }
+    }
+
+    [ContextMenu("test")]
+    private void test()
+    {
+        SpawnShield(3);
     }
 
     private void Awake()
     {
         timers = timerManager.GenerateTimers(typeof(AttackCD), gameObject);
         timers.SetTime((int)AttackCD.meteor, meteorInterval);
+        activeShields.Float = 0;
         
     }
     // Start is called before the first frame update
     void Start()
     {
+        SpawnShield(1);
         if(playerPos.transform == null)
             playerPos.transform = transform;
     }
@@ -67,6 +118,7 @@ public class Boss : MonoBehaviour, IKillable
     void Update()
     {
         attemptMeteorAttack();
+        CheckShield();
     }
 
     private void attemptMeteorAttack()

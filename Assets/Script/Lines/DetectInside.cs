@@ -11,11 +11,11 @@ public class DetectInside : MonoBehaviour
     private bool IsInside;
     [SerializeField]
     private CircleCollider2D col2D;
-    [SerializeField]
     private IKillable ai;
     void Start()
     {
-        
+        ai = GetComponentInParent<IKillable>();
+        Debug.Log(ai);
     }
 
     // Update is called once per frame
