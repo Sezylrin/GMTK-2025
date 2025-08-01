@@ -76,6 +76,11 @@ public class CarHealthFuel : MonoBehaviour
         {
             triggerDeath.Bool = true;
         }
+        else if (triggerDeath.Bool)
+        {
+            Debug.Log("temporary solution");
+            triggerDeath.Bool = false;
+        }
     }
 
     public void SetMaxHealth(float value)

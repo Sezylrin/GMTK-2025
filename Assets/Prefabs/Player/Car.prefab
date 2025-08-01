@@ -10054,7 +10054,7 @@ GameObject:
   - component: {fileID: 51890247133793765}
   m_Layer: 3
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10244,8 +10244,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1.5
+      scalar: 1.5
+      minScalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15109,8 +15109,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1.5
+      scalar: 1.5
+      minScalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19922,13 +19922,13 @@ MonoBehaviour:
   relativePos: {fileID: 7301663505907591074}
   maxSpeed: 50
   maxSpeedSO: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
-  acceleration: 12000
+  acceleration: 120
   velocitySO: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
-  turningForce: 800
+  turningForce: 5
   minSpeedTurnRate: 0.4
-  slippiness: 3
+  slippiness: 5
   nitrosMaxSpeed: 100
-  nitrosBoost: 30000
+  nitrosBoost: 300
   nitrosMaxDuration: 2
   nitroDrainRate: 1
   nitrosRecoveryDelay: 1
@@ -19939,7 +19939,7 @@ MonoBehaviour:
     <times>k__BackingField: []
     owner: {fileID: 0}
   maxDist: 0.32
-  maxForce: 1600
+  maxForce: 16
   suspensionPoint:
   - {fileID: 5545289562297193200}
   - {fileID: 4554484926869889709}

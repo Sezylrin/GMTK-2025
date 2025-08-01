@@ -7,8 +7,14 @@ public class EnemyAI : MonoBehaviour
 
 
     private Rigidbody rb;
+    [SerializeField]
+    private float maxSpeed;
+    [SerializeField]
+    private float minSpeed;
+    [SerializeField]
+    private float acceleration;
 
-    public float speed = 5f;
+    private float speed;
 
     private float speedMod = 1;
 
@@ -23,12 +29,18 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float damage;
 
+    [Header("ragdoll")]
+    [SerializeField]
+    private float knockbackForce;
+    [SerializeField]
+    private float deathExplosionForce;
+
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
 
-        speed = Random.Range(0.8f, 1.2f);
+        speed = Random.Range(minSpeed, maxSpeed);
 
 
 
@@ -37,35 +49,23 @@ public class EnemyAI : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!playerPos.transform)
         {
             return;
         }
 
-        transform.LookAt(playerPos.transform);
-
+        rb.transform.LookAt(playerPos.transform);
+        Vector3 dir = rb.transform.forward;
+        Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
+        float accelerationMultiplier = (1 - (rb.velocity.magnitude / speed));
+        if (normalized.magnitude < 0.5f)
+            accelerationMultiplier = 1;
+        rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
         
-        rb.velocity = new Vector3(GetPlayerDir().x * GetTrueSpeed(), rb.velocity.y, GetPlayerDir().z * GetTrueSpeed());
 
     }
-
-
-
-
-
-    private float GetTrueSpeed()
-    {
-        return speed * speedMod;
-    }
-
-
-    private Vector3 GetPlayerDir()
-    {
-        return (playerPos.transform.position - transform.position).normalized;
-    }
-
 
 
     public void KillEnemy()
@@ -80,6 +80,7 @@ public class EnemyAI : MonoBehaviour
         if (collision.collider.CompareTag(Tags.T_Player))
         {
             damageToDo.Float += damage;
+            rb.AddExplosionForce(knockbackForce, collision.transform.position, 5f, 1f, ForceMode.Acceleration);
         }
     }
 
