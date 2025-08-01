@@ -10213,8 +10213,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 2
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15078,8 +15078,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 2
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19886,6 +19886,7 @@ MonoBehaviour:
     m_Bits: 256
   COM: {fileID: 7798657703425998754}
   timerManager: {fileID: 6629741568350300391}
+  isDead: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
   relativePos: {fileID: 7301663505907591074}
   maxSpeed: 50
   maxSpeedSO: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
@@ -20019,6 +20020,7 @@ MonoBehaviour:
   isDrawing: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
   DoDamage: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
   HealthGain: {fileID: 11400000, guid: 0d6ffa6da0ba3e74cbd64c55545948e5, type: 2}
+  triggerDeath: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
 --- !u!114 &7450168924159284617
 MonoBehaviour:
   m_ObjectHideFlags: 0

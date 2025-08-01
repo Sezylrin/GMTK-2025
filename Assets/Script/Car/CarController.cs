@@ -18,6 +18,8 @@ public class CarController : MonoBehaviour
     private Transform COM;
     [SerializeField]
     private TimerManager timerManager;
+    [SerializeField]
+    private BoolSO isDead;
 
     [Header("Acceleration")]
     [SerializeField]
@@ -169,7 +171,8 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        if (isDead.Bool)
+            return;
         CalculateSuspension();
         CalculateGroundNormal();
         Steering();
