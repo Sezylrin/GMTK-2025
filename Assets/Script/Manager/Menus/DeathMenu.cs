@@ -52,6 +52,10 @@ public class DeathMenu : MonoBehaviour
         if (showWinScreen.Bool && !winFlag)
         {
 
+            StartCoroutine(WinScreenRoutine());
+
+            winFlag = true;
+
         }
 
     }
@@ -70,6 +74,23 @@ public class DeathMenu : MonoBehaviour
         Time.timeScale = 0f;
 
     }
+
+    private IEnumerator WinScreenRoutine()
+    {
+        BgFade1.DOColor(BgFadeFinalColor, fadeInTime);
+
+        //BgFade.DOFade(150, fadeInTime);
+
+        yield return new WaitForSeconds(fadeInTime + 0.01f);
+
+        winScreenMenu.SetActive(true);
+
+        Time.timeScale = 0f;
+
+    }
+
+
+
 
 
     public void TryAgain()
