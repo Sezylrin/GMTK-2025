@@ -19810,6 +19810,7 @@ GameObject:
   - component: {fileID: -4659006351807129547}
   - component: {fileID: 363552916028700327}
   - component: {fileID: 7450168924159284617}
+  - component: {fileID: 2246086755151435760}
   m_Layer: 3
   m_Name: Car
   m_TagString: Player
@@ -20035,6 +20036,20 @@ MonoBehaviour:
   throttle: {fileID: 11400000, guid: 22f205bfc1dc4d648a041f9be23d4a1c, type: 2}
   trailA: {fileID: 4198090864020888316}
   trailB: {fileID: 4522704244288788884}
+--- !u!114 &2246086755151435760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50fc249c5f7e884cb1d0a91bb75c685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnExplosion: {fileID: 11400000, guid: db28bbe00e0650042ad4b803f5530c22, type: 2}
+  explosionPrefab: {fileID: 4930612583977904521, guid: c9739289e78a235438f865bbc33d8dc1, type: 3}
 --- !u!1 &7489164484233605628
 GameObject:
   m_ObjectHideFlags: 0

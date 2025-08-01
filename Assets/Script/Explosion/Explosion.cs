@@ -40,7 +40,6 @@ public class Explosion : MonoBehaviour
         ScaleExplosion(minRadius.Float);
 
 
-
         StartCoroutine(ExplosionRoutine());
     }
 
@@ -55,7 +54,7 @@ public class Explosion : MonoBehaviour
     {
 
 
-        Beam.transform.DOScale(new Vector3(0, 100, 1), windupTime).SetEase(Ease.InCubic);
+        Beam.transform.DOScale(new Vector3(0, 100, 1), windupTime).SetEase(Ease.InQuad);
         yield return new WaitForSeconds(windupTime - shockOffset);
 
         ShockPart.SetActive(true);
@@ -69,6 +68,10 @@ public class Explosion : MonoBehaviour
         ElecPart.SetActive(true);
 
         SmokePart.SetActive(true);
+
+        yield return new WaitForSeconds(6f);
+
+        Destroy(gameObject);
 
     }
 

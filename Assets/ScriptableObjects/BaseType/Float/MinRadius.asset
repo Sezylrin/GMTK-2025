@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5833d25c6200a143abf3e8f76624158, type: 3}
   m_Name: MinRadius
   m_EditorClassIdentifier: 
-  Float: 0
+  Float: 10

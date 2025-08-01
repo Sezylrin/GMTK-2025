@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Follow: {fileID: 257842983}
   m_Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 30
+    OrthographicSize: 20
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: -0
@@ -814,7 +814,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1771,9 +1771,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 100, z: 100}
-  m_XDamping: 1
+  m_XDamping: 2
   m_YDamping: 1
-  m_ZDamping: 1
+  m_ZDamping: 2
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
