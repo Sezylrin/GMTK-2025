@@ -306,6 +306,25 @@ public class Timer
             return 1 - (times[position].time / times[position].setTime);
     }
     /// <summary>
+    /// Check if timer at position is paused
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public bool IsPaused(int position)
+    {
+        if (ErrorPosition(position, "IsPaused"))
+            return false;
+        return times[position].isPaused;
+    }
+    /// <summary>
+    /// Check if first timer is paused
+    /// </summary>
+    /// <returns></returns>
+    public bool IsPaused()
+    {
+        return IsPaused(0);
+    }
+    /// <summary>
     /// For the timer at the first position,
     /// gives a ratio in decimals based on the current time compared to the initial setTime
     /// </summary>

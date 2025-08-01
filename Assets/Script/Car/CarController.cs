@@ -144,7 +144,7 @@ public class CarController : MonoBehaviour
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
-        if (!isNitros && (currentNitros.Float <= 0))
+        if (!isNitros)
         {
             recoveryTimer.ResumeTimer();
         }
@@ -280,12 +280,17 @@ public class CarController : MonoBehaviour
     {
         if (isNitros)
         {
-            currentNitros.Float -= nitroDrainRate * Time.deltaTime;
+            if(currentNitros.Float > 0)
+                currentNitros.Float -= nitroDrainRate * Time.deltaTime;
             if(currentNitros.Float < 0)
                 currentNitros.Float = 0;
         }
         else
         {
+            if (recoveryTimer.IsPaused())
+            {
+                recoveryTimer.ResumeTimer();
+            }
             if (recoveryTimer.IsTimeZero())
             {
                 if(currentNitros.Float < maxNitros.Float)
@@ -294,6 +299,7 @@ public class CarController : MonoBehaviour
                     currentNitros.Float = maxNitros.Float;
             }
         }
+        
     }
 
     private void CalculateCurrentSlippiness()
