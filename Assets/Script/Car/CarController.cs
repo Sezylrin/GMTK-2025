@@ -144,14 +144,12 @@ public class CarController : MonoBehaviour
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
-        if (!isNitros && !(currentNitros.Float <= 0))
+        if (!isNitros && (currentNitros.Float <= 0))
         {
-            turningForce *= 0.5f;
             recoveryTimer.ResumeTimer();
         }
-        else
+        else if(isNitros)
         {
-            turningForce *= 2;
             recoveryTimer.ResetTime();
             recoveryTimer.PauseTimer();
         }

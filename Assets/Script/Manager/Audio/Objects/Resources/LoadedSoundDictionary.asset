@@ -20,3 +20,9 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 545c191d4f3847a4d8c1c79696d88e10, type: 2}
     - Key: EngineStart
       Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
+    - Key: UFODeploy
+      Value: {fileID: 11400000, guid: 662deca6a995ab04f84c97136dd916bb, type: 2}
+    - Key: UFOFlyIn
+      Value: {fileID: 11400000, guid: 946d3a1a1f519fb41a503dcffa1d65ce, type: 2}
+    - Key: UFOFlyOut
+      Value: {fileID: 11400000, guid: 69f5a5ebacd1f1a4b8f38ff2a49b984a, type: 2}
