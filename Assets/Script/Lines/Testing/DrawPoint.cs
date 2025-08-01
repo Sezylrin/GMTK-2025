@@ -37,6 +37,8 @@ public class DrawPoint : MonoBehaviour
 
         if (col)
         {
+            if (currentLine == null)
+                return;
             currentLine.DetectAllInternal(pos);
             DecayLine();
         }

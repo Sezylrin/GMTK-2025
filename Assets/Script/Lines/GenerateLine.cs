@@ -113,6 +113,12 @@ public class GenerateLine : MonoBehaviour
 
     public void StartDecay()
     {
+        if (eraseTimer == null)
+            Debug.Log("timer is null");
+        if (this == null)
+            Debug.Log("somehow");
+        if (edgeCollider == null)
+            Debug.Log("collider is null");
         eraseTimer.ResumeTimer();
         edgeCollider.enabled = false;
     }
