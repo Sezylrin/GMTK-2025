@@ -154,7 +154,7 @@ MonoBehaviour:
   edgeCollider: {fileID: 1002931137228433810}
   collisionResolution: 15
   lineResolution: 15
-  trailDuration: 5
+  trailDuration: 8
   timerManager: {fileID: 3353144822770167061}
   durationTillErase: 3
   circleCentre: {fileID: 11400000, guid: 7dc7def0cd927024fbe53670ab4b93dc, type: 2}
