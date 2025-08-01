@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldAmount: {fileID: 11400000, guid: 110432e310780e6468b8c02e3b565521, type: 2}
+  lineRenderer: {fileID: 0}
+  laserSpawnPos: {fileID: 0}
 --- !u!1 &8585582886601055833
 GameObject:
   m_ObjectHideFlags: 0

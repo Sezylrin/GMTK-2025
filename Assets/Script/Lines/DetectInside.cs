@@ -15,7 +15,6 @@ public class DetectInside : MonoBehaviour
     void Start()
     {
         ai = GetComponentInParent<IKillable>();
-        Debug.Log(ai);
     }
 
     // Update is called once per frame

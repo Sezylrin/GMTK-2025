@@ -424,12 +424,15 @@ MonoBehaviour:
   turningForce: 8
   minSpeedTurnRate: 0.4
   slippiness: 3
+  driftSlippiness: 0
+  driftTurningForce: 0
   nitrosMaxSpeed: 100
   nitrosBoost: 500
   nitrosMaxDuration: 2
   nitroDrainRate: 1
   nitrosRecoveryDelay: 1
   nitrosRecoveryRate: 1
+  nitrosTurnFactor: 0
   currentNitros: {fileID: 11400000, guid: 7ec894e73f10a804c8370359e95bb67c, type: 2}
   maxNitros: {fileID: 11400000, guid: 530420e187e52d04c928e135a805bc78, type: 2}
   recoveryTimer:
@@ -447,7 +450,7 @@ MonoBehaviour:
   throttle: 0
   steering: 0
   isNitros: 0
-  drawLine: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  IsDrifting: {fileID: 0}
 --- !u!54 &246167776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -520,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineGen: {fileID: 5752648098266102943, guid: e432e64c2e73774469e100a5bac55b59, type: 3}
-  DrawLine: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  throttle: {fileID: 0}
   line:
     serializedVersion: 2
     m_Bits: 0
@@ -1300,6 +1303,34 @@ PrefabInstance:
     - target: {fileID: 3586790732711329800, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: IsDrifting
+      value: 
+      objectReference: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: slippiness
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: nitrosBoost
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: nitrosMaxSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: driftSlippiness
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: nitrosTurnFactor
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605269132073717602, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
+      propertyPath: driftTurningForce
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7263825737613432649, guid: 6306d5d33c08d10439dc2f841ceae1c9, type: 3}
       propertyPath: m_Name
