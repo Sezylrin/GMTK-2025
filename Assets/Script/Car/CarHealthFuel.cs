@@ -43,7 +43,7 @@ public class CarHealthFuel : MonoBehaviour
         }
         if(HealthGain.Float > 0)
         {
-            ModifyHealth(-HealthGain.Float);
+            AddHealth(HealthGain.Float);
             HealthGain.Float = 0;
         }
 
@@ -58,6 +58,13 @@ public class CarHealthFuel : MonoBehaviour
         CheckIfDead();
     }
 
+    public void AddHealth(float value)
+    {
+        currentHealthSO.Float += value;
+        if (currentHealthSO.Float > maxHealthFuel)
+            currentHealthSO.Float = maxHealthFuel;
+        
+    }
     private void CheckIfDead()
     {
         if(currentHealthSO.Float < 0)

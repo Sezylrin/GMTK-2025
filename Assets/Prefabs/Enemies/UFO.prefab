@@ -274,8 +274,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8147498034944236681, guid: c295746c221c6934fa7dcb32ce3d28bd, type: 3}
   beamObj: {fileID: 2108460509631371139}
   GFXScaler: {fileID: 3815314938888160531}
-  speed: 0.5
-  size: 1
+  speed: 2.5
+  minSpawn: {fileID: 11400000, guid: 223e02d63d5a44745bf408dffa515ead, type: 2}
 --- !u!1 &3815314938888160531
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,20 @@ public class AudioManager : MonoBehaviour
     [HideInInspector] public float maxSpatialBlend;
     [HideInInspector] public float minSpatialBlend;
     [HideInInspector] public AudioRolloffMode rolloffMode;
-    
+
+    public static AudioManager Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        if(this != Instance)
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
     private void Start()
     {
         UpdateDict(loadedAudio);
@@ -101,16 +114,16 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            temp = Instantiate(audioObjPF, parent == null? transform : parent).GetComponent<AudioObj>();
+            temp = Instantiate(audioObjPF, transform).GetComponent<AudioObj>();
             temp.Init(this);
         }
         temp.StartPlaying(clipToPlay, SO.mixGroup, loop, volume);
         if (setting.IsAudio3D)
         {
             if (!isStaticSpatial)
-                temp.Set3DValues(SO.maxDistance, SO.minDistance, SO.transitionPoint, SO.maxSpatialBlend, SO.minSpatialBlend, SO.rolloffMode);
+                temp.Set3DValues(parent, SO.maxDistance, SO.minDistance, SO.transitionPoint, SO.maxSpatialBlend, SO.minSpatialBlend, SO.rolloffMode);
             else
-                temp.Set3DValues(SO.maxDistance, SO.minDistance, SO.staticSpatial, SO.rolloffMode);
+                temp.Set3DValues(parent, SO.maxDistance, SO.minDistance, SO.staticSpatial, SO.rolloffMode);
         }
         return temp;
     }
