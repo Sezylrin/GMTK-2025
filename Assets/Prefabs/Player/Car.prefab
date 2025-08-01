@@ -19926,13 +19926,16 @@ MonoBehaviour:
   velocitySO: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
   turningForce: 5
   minSpeedTurnRate: 0.4
-  slippiness: 5
-  nitrosMaxSpeed: 100
-  nitrosBoost: 300
+  slippiness: 4
+  driftSlippiness: -1.5
+  driftTurningForce: 8
+  nitrosMaxSpeed: 80
+  nitrosBoost: 180
   nitrosMaxDuration: 2
   nitroDrainRate: 1
   nitrosRecoveryDelay: 1
   nitrosRecoveryRate: 1
+  nitrosTurnFactor: 1.5
   currentNitros: {fileID: 11400000, guid: 7ec894e73f10a804c8370359e95bb67c, type: 2}
   maxNitros: {fileID: 11400000, guid: 530420e187e52d04c928e135a805bc78, type: 2}
   recoveryTimer:
@@ -19950,7 +19953,7 @@ MonoBehaviour:
   throttle: 0
   steering: 0
   isNitros: 0
-  drawLine: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
+  IsDrifting: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
 --- !u!114 &6629741568350300391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20021,7 +20024,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7263825737613432649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e06311f0c6a6ac4980204567ea920a5, type: 3}
   m_Name: 
@@ -20048,8 +20051,6 @@ MonoBehaviour:
   currentHealthSO: {fileID: 11400000, guid: 680026a21806f1542987ef2bb05cd80b, type: 2}
   maxHealthFuel: 600
   healthDrainRate: 10
-  drawDrainRate: 10
-  isDrawing: {fileID: 11400000, guid: 17cd8ca396fd129408d46d7f61a48521, type: 2}
   DoDamage: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
   HealthGain: {fileID: 11400000, guid: 0d6ffa6da0ba3e74cbd64c55545948e5, type: 2}
   triggerDeath: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
