@@ -21,19 +21,23 @@ public class DeathMenu : MonoBehaviour
     public float fadeInTime = 1;
 
 
+    public bool deathFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        showDeathScreen.Bool = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (showDeathScreen.Bool)
+        if (showDeathScreen.Bool && !deathFlag)
         {
             StartCoroutine(DeathScreenRoutine());
-            showDeathScreen.Bool = false;
+
+            deathFlag = true;
+
         }
     }
 
@@ -42,7 +46,9 @@ public class DeathMenu : MonoBehaviour
     {
         BgFade.DOColor(BgFadeFinalColor, fadeInTime);
 
-        yield return new WaitForSeconds(fadeInTime);
+        //BgFade.DOFade(150, fadeInTime);
+        
+        yield return new WaitForSeconds(fadeInTime + 0.01f);
 
         deathScreenMenu.SetActive(true);
 
@@ -54,6 +60,7 @@ public class DeathMenu : MonoBehaviour
     public void TryAgain()
     {
         Time.timeScale = 1f;
+        DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

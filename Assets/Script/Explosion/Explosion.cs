@@ -34,6 +34,9 @@ public class Explosion : MonoBehaviour
     void Awake()
     {
 
+        DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
+
+
         transform.position = UtilityFunction.Vector2ToFlatVector3(center.Vector2);
 
 
