@@ -11,9 +11,15 @@ public class DeathMenu : MonoBehaviour
 
     public GameObject deathScreenMenu;
 
+    public GameObject winScreenMenu;
+
     public BoolSO showDeathScreen;
 
+    public BoolSO showWinScreen;
+
     public Image BgFade;
+
+    public Image BgFade1;
 
     [SerializeField]
     public Color BgFadeFinalColor;
@@ -22,6 +28,8 @@ public class DeathMenu : MonoBehaviour
 
 
     public bool deathFlag = false;
+
+    public bool winFlag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +47,13 @@ public class DeathMenu : MonoBehaviour
             deathFlag = true;
 
         }
+
+
+        if (showWinScreen.Bool && !winFlag)
+        {
+
+        }
+
     }
 
 
