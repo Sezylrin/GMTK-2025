@@ -313,7 +313,7 @@ public class CarController : MonoBehaviour
     private void CalculateTurnRate()
     {
         
-        if (isNitros)
+        if (isNitros && currentNitros.Float > 0)
             currentTurnForce = IsDrifting ? driftTurningForce * nitrosTurnFactor : turningForce * nitrosTurnFactor;
         else
             currentTurnForce = IsDrifting ? driftTurningForce : turningForce;
