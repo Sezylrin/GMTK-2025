@@ -12,7 +12,7 @@ public class DetectInside : MonoBehaviour
     [SerializeField]
     private CircleCollider2D col2D;
     [SerializeField]
-    private EnemyAI ai;
+    private IKillable ai;
     void Start()
     {
         
@@ -43,7 +43,7 @@ public class DetectInside : MonoBehaviour
         }
         if (hitAmount % 2 != 0)
         {
-            if (ai)
+            if (ai != null)
                 ai.KillEnemy();
         }
 
