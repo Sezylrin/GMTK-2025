@@ -22,6 +22,7 @@ public class AudioObj : MonoBehaviour
     private float maxSpatial;
     private bool is3D = false;
     private bool isStatic;
+    private Transform targetTransform;
 
     public EventHandler OnIsComplete;
     void Start()
@@ -43,6 +44,10 @@ public class AudioObj : MonoBehaviour
             OnIsComplete?.Invoke(this, EventArgs.Empty);
             OnComplete();
         }
+        if(targetTransform != null)
+        {
+            transform.position = targetTransform.position;
+        }
     }
 
     private void CalculateSpatialBlend()
@@ -60,7 +65,7 @@ public class AudioObj : MonoBehaviour
             source.spatialBlend = spatial;
         }
     }
-    public void Set3DValues(float maxDist, float minDist, float transitionPoint, float maxSpatial, float minSpatial, AudioRolloffMode rolloff)
+    public void Set3DValues(Transform target, float maxDist, float minDist, float transitionPoint, float maxSpatial, float minSpatial, AudioRolloffMode rolloff)
     {
         is3D = true;
         isStatic = false;
@@ -70,8 +75,9 @@ public class AudioObj : MonoBehaviour
         transitionDist = transitionPoint;
         this.minSpatial = minSpatial;
         this.maxSpatial = maxSpatial;
+        targetTransform = target;
     }
-    public void Set3DValues(float maxDist, float mindist, float spatial, AudioRolloffMode rolloff)
+    public void Set3DValues(Transform target, float maxDist, float mindist, float spatial, AudioRolloffMode rolloff)
     {
         is3D = true;
         isStatic = true;
@@ -79,6 +85,7 @@ public class AudioObj : MonoBehaviour
         source.minDistance = mindist;
         source.rolloffMode = rolloff;
         source.spatialBlend = spatial;
+        targetTransform = target;
     }
     public void StartPlaying(AudioClip clipToPlay, AudioMixerGroup group, bool loop, float volume)
     {
