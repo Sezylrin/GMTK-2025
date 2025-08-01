@@ -18,6 +18,8 @@ public class Boss : MonoBehaviour, IKillable
     private TransformSO playerPos;
     [SerializeField]
     private TimerManager timerManager;
+    [SerializeField]
+    private BoolSO triggerWin;
 
     [Header("shield")]
     [SerializeField]
@@ -50,7 +52,6 @@ public class Boss : MonoBehaviour, IKillable
     [SerializeField]
     private float spawnDelay;
     private Timer timers;
-   
     public void KillEnemy()
     {
         if (isShielded)
@@ -58,7 +59,11 @@ public class Boss : MonoBehaviour, IKillable
         isShielded = true;
         Phase++;
         if(Phase > 2)
+        {
+            triggerWin.Bool = true;
             Destroy(gameObject);
+            return;
+        }
         SpawnShield(Phase + 1);
     }
 

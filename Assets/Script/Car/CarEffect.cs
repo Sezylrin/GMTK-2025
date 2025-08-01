@@ -5,11 +5,9 @@ using UnityEngine;
 public class CarEffect : MonoBehaviour
 {
     [SerializeField]
-    private BoolSO isDrawingLine;
+    private FloatSO throttle;
     [SerializeField]
     private ParticleSystem lightning;
-    [SerializeField]
-    private FloatSO throttle;
     [SerializeField]
     private ParticleSystem trailA;
     [SerializeField]
@@ -28,11 +26,11 @@ public class CarEffect : MonoBehaviour
 
     private void Lightning()
     {
-        if (isDrawingLine.Bool && !lightning.isPlaying)
+        if (throttle.Float > 0 && !lightning.isPlaying)
         {
             lightning.Play();
         }
-        else if (!isDrawingLine.Bool && lightning.isPlaying)
+        else if (throttle.Float <= 0 && lightning.isPlaying)
         {
             lightning.Stop();
         }
