@@ -469,8 +469,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 3044964878436747721, guid: db81a301b74f6314eb787e7ba1faa840, type: 3}
   Pylons: 5
-  maxSpawnRange: 15
-  minSpawnRange: 50
+  maxSpawnRange: 50
+  minSpawnRange: 15
+  playerPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
 --- !u!1 &4833287243281033728
 GameObject:
   m_ObjectHideFlags: 0

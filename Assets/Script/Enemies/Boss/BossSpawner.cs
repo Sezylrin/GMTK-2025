@@ -12,6 +12,8 @@ public class BossSpawner : MonoBehaviour
     private float maxSpawnRange;
     [SerializeField]
     private float minSpawnRange;
+    [SerializeField]
+    private TransformSO playerPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class BossSpawner : MonoBehaviour
         if(Pylons == 0)
         {
             Vector3 spawn = PickSpawnSpot(minSpawnRange, maxSpawnRange);
+            if (playerPos.transform)
+                spawn += playerPos.transform.position;
             Instantiate(boss,spawn,Quaternion.identity);
         }
     }
