@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IKillable
 {
 
 
@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
         rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
-        
+
 
     }
 
@@ -84,4 +84,9 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+}
+
+public interface IKillable
+{
+    public void KillEnemy();
 }
