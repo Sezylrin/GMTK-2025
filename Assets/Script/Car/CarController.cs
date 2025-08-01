@@ -18,6 +18,8 @@ public class CarController : MonoBehaviour
     private Transform COM;
     [SerializeField]
     private TimerManager timerManager;
+    [SerializeField]
+    private BoolSO isDead;
 
     [Header("Acceleration")]
     [SerializeField]
@@ -36,7 +38,7 @@ public class CarController : MonoBehaviour
     private float turningForce;
     [SerializeField, Range(0, 1)]
     private float minSpeedTurnRate;
-    [SerializeField, Range(-1, 3)]
+    [SerializeField, Range(-2, 5)]
     private float slippiness;
 
     [Header("Nitros")]
@@ -169,7 +171,8 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        if (isDead.Bool)
+            return;
         CalculateSuspension();
         CalculateGroundNormal();
         Steering();
@@ -197,7 +200,7 @@ public class CarController : MonoBehaviour
             {
                 float compressRatio = Vector3.Distance(t.position, hit.point) / maxDist;
                 float force =(1 - compressRatio) * maxForce;
-                rb.AddForceAtPosition(force * t.up, t.position);
+                rb.AddForceAtPosition(force * t.up, t.position, ForceMode.Acceleration);
                 grounded = true;
             }
             isGrounded = grounded;
@@ -225,20 +228,20 @@ public class CarController : MonoBehaviour
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / maxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
-        rb.AddForceAtPosition(projectedForward * acceleration * accelerationMultiplier * throttle,relativePos.position);
+        rb.AddForceAtPosition(projectedForward * acceleration * accelerationMultiplier * throttle,relativePos.position, ForceMode.Acceleration);
     }
 
     private void Steering()
     {
         if (rb.velocity.magnitude < maxSpeed * minSpeedTurnRate && throttle == 0)
             return;
-        rb.AddTorque(Vector3.up * turningForce * steering);
+        rb.AddTorque(Vector3.up * turningForce * steering, ForceMode.Acceleration);
     }
 
     private void AddCounterCentrifugalForce()
     {
         Vector3 proj = Vector3.Project(rb.velocity, transform.right);
-        rb.AddForce(-proj * slippiness);
+        rb.AddForce(-proj * slippiness, ForceMode.Acceleration);
     }
 
     private void ApplyNitros()
@@ -261,7 +264,7 @@ public class CarController : MonoBehaviour
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / nitrosMaxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
-        rb.AddForceAtPosition(boostDir * nitrosBoost * accelerationMultiplier, relativePos.position);
+        rb.AddForceAtPosition(boostDir * nitrosBoost * accelerationMultiplier, relativePos.position, ForceMode.Acceleration);
     }
 
     private void CalculateRemainingNitros()

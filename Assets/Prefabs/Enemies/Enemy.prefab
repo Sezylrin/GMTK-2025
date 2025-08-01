@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2156705069042554659}
   - component: {fileID: 3416644755334476349}
   - component: {fileID: 7590251793353741836}
-  - component: {fileID: 8604895810990770092}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -62,7 +61,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: 8e1c877cf06c043428483e7b2ce7c150, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -85,27 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8604895810990770092
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589210484613561055}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5075696756140837917
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +94,6 @@ GameObject:
   - component: {fileID: 5138726691011710926}
   - component: {fileID: 4818229816713066079}
   - component: {fileID: 4256316115135278183}
-  - component: {fileID: 200997279549790653}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -168,7 +144,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: 8e1c877cf06c043428483e7b2ce7c150, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -191,27 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &200997279549790653
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5075696756140837917}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7208694082496358332
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +263,6 @@ GameObject:
   - component: {fileID: 6863420816907562900}
   - component: {fileID: 8011469413501401585}
   - component: {fileID: 653111069250664695}
-  - component: {fileID: 4439055745062150173}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -360,7 +313,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: 8e1c877cf06c043428483e7b2ce7c150, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -383,27 +335,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4439055745062150173
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7601548927855008185}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8147498034944236681
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,9 +433,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2a55cf00e1c8549a1ff91304791b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  maxSpeed: 20
+  minSpeed: 15
+  acceleration: 50
   playerPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
   healthToGive: {fileID: 11400000, guid: 0d6ffa6da0ba3e74cbd64c55545948e5, type: 2}
-  healthGain: 10
+  healthGain: 20
   damageToDo: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
-  damage: 5
+  damage: 10
+  knockbackForce: 200
+  deathExplosionForce: 0

@@ -9,7 +9,7 @@ public class TransformUpdater : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void Awake()
     {
         carPos.transform = transform;
     }

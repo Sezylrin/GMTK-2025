@@ -21,6 +21,8 @@ public class CarHealthFuel : MonoBehaviour
     private FloatSO DoDamage;
     [SerializeField]
     private FloatSO HealthGain;
+    [SerializeField]
+    private BoolSO triggerDeath;
 
     void Start()
     {
@@ -72,7 +74,12 @@ public class CarHealthFuel : MonoBehaviour
     {
         if(currentHealthSO.Float < 0)
         {
-            ///dead
+            triggerDeath.Bool = true;
+        }
+        else if (triggerDeath.Bool)
+        {
+            Debug.Log("temporary solution");
+            triggerDeath.Bool = false;
         }
     }
 
