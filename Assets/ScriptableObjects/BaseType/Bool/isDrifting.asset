@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f607f5db595c6d4591bc1d975332ab7, type: 3}
-  m_Name: isDrawLine
+  m_Name: isDrifting
   m_EditorClassIdentifier: 
   Bool: 0
