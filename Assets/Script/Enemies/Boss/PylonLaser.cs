@@ -5,29 +5,23 @@ using UnityEngine;
 public class PylonLaser : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Vector3 endPoint;
     [SerializeField]
     private List<LineRenderer> lineRenderer = new List<LineRenderer>();
     [SerializeField]
     private TransformSO bossPos;
-    [SerializeField]
-    private LayerMask bossLayerMask;
     [SerializeField]
     private Transform hitPoint;
     void Start()
     {
         if(bossPos.transform != null)
         {
-            if(Physics.Raycast(transform.position, bossPos.transform.position - transform.position, out RaycastHit hit, 1000f, bossLayerMask))
+            
+            foreach(LineRenderer lineRenderer in lineRenderer) 
             {
-                endPoint = hit.point;
-                foreach(LineRenderer lineRenderer in lineRenderer) 
-                {
-                    lineRenderer.positionCount = 2;
-                    lineRenderer.SetPosition(0, transform.position);
-                    lineRenderer.SetPosition(1, endPoint);
-                    hitPoint.position = endPoint;
-                }
+                lineRenderer.positionCount = 2;
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, bossPos.transform.position);
+                hitPoint.position = bossPos.transform.position;
             }
         }
     }
