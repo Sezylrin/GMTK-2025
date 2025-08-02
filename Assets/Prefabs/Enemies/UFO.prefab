@@ -360,7 +360,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8428266015259562630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 8580709936370725134}
   - component: {fileID: 4664345668490739371}
   - component: {fileID: 7448921785394088545}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}

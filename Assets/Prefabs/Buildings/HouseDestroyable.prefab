@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1070277041161744044}
   - component: {fileID: 5299987188376577726}
   - component: {fileID: 3518270464510748192}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BigHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
