@@ -125,7 +125,7 @@ public class Boss : MonoBehaviour, IKillable
 
     private void SpawningSequence()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, shieldSpawnRadius, house);
+        Collider[] cols = Physics.OverlapSphere(transform.position, shieldSpawnRadius + 15f, house);
         foreach (Collider col in cols)
         {
             col.GetComponentInParent<IKillable>().KillEnemy();

@@ -13,16 +13,17 @@ public class PylonLaser : MonoBehaviour
     private Transform hitPoint;
     void Start()
     {
-        if(bossPos.transform != null)
+        foreach(LineRenderer lineRenderer in lineRenderer) 
         {
-            
-            foreach(LineRenderer lineRenderer in lineRenderer) 
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, transform.position);
+            if (bossPos && bossPos.transform)
             {
-                lineRenderer.positionCount = 2;
-                lineRenderer.SetPosition(0, transform.position);
                 lineRenderer.SetPosition(1, bossPos.transform.position);
                 hitPoint.position = bossPos.transform.position;
             }
+            else
+                lineRenderer.SetPosition(1, transform.position + new Vector3(0, 2000, 0));
         }
     }
 
