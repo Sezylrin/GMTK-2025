@@ -6,10 +6,6 @@ public class ShieldPylon : MonoBehaviour, IKillable
 {
     [SerializeField]
     private FloatSO shieldAmount;
-    [SerializeField]
-    private LineRenderer lineRenderer;
-    [SerializeField]
-    private Transform laserSpawnPos;
     public void KillEnemy()
     {
         shieldAmount.Float--;
@@ -21,7 +17,6 @@ public class ShieldPylon : MonoBehaviour, IKillable
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame

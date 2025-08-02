@@ -1169,6 +1169,12 @@ MonoBehaviour:
   maxNitro: {fileID: 11400000, guid: 530420e187e52d04c928e135a805bc78, type: 2}
   HPbar: {fileID: 805462782}
   NitroBar: {fileID: 394694668}
+  beaconsRemaining: {fileID: 0}
+  bossSpawned: {fileID: 0}
+  bossFlag: 0
+  beaconCount: {fileID: 0}
+  beaconGroup: {fileID: 0}
+  bossGroup: {fileID: 0}
 --- !u!114 &1179886992
 MonoBehaviour:
   m_ObjectHideFlags: 0
