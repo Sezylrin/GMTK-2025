@@ -20010,12 +20010,12 @@ MonoBehaviour:
   maxSpeedSO: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
   acceleration: 120
   velocitySO: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
-  turningForce: 3
+  turningForce: 4.5
   minSpeedTurnRate: 0.4
   slippiness: 4
   currentTurnForce: 0
   driftSlippiness: -1
-  driftTurningForce: 4
+  driftTurningForce: 6
   nitrosMaxSpeed: 80
   nitrosBoost: 180
   nitrosMaxDuration: 0.75

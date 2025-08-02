@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour, IKillable
     private FloatSO damageToDo;
     [SerializeField]
     private float damage;
+    [SerializeField]
+    private Transform look;
 
     [Header("ragdoll")]
     [SerializeField]
@@ -76,10 +78,7 @@ public class EnemyAI : MonoBehaviour, IKillable
         {
             return;
         }
-        Vector3 lookdir = UtilityFunction.Vector3ToFlatVector2(transform.position);
-        lookdir.y = rb.transform.position.y;
-        rb.transform.LookAt(lookdir);
-        Vector3 dir = rb.transform.forward;
+        Vector3 dir = playerPos.transform.position - rb.transform.position;
         Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / speed));
         if (normalized.magnitude < 0.5f)
@@ -87,6 +86,11 @@ public class EnemyAI : MonoBehaviour, IKillable
         rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
 
 
+    }
+
+    private void Update()
+    {
+        look.transform.LookAt(playerPos.transform, Vector3.up);
     }
 
 

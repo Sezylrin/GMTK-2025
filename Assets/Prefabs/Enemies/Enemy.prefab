@@ -304,5 +304,6 @@ MonoBehaviour:
   healthGain: 20
   damageToDo: {fileID: 11400000, guid: 4419fadc966b63a43b601dc7b659df3a, type: 2}
   damage: 10
+  look: {fileID: 4071242863466810262}
   knockbackForce: 200
   deathExplosionForce: 0

@@ -57,7 +57,7 @@ public class Explosion : MonoBehaviour
     {
 
 
-        Beam.transform.DOScale(new Vector3(0, 100, 1), windupTime).SetEase(Ease.InQuad);
+        Beam.transform.DOScale(new Vector3(0, 100, 1), windupTime).SetEase(Ease.InExpo);
         yield return new WaitForSeconds(windupTime - shockOffset);
 
         ShockPart.SetActive(true);
@@ -69,8 +69,6 @@ public class Explosion : MonoBehaviour
         ExplPart.SetActive(true);
 
         ElecPart.SetActive(true);
-
-        SmokePart.SetActive(true);
 
         yield return new WaitForSeconds(6f);
 
