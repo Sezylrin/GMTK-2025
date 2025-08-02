@@ -24,6 +24,9 @@ public class Boss : MonoBehaviour, IKillable
     private BoolSO triggerWin;
     [SerializeField]
     private LayerMask house;
+    [SerializeField]
+    private BoolSO BossSpawned;
+
     [Header("Spawning")]
     [SerializeField]
     private VisualEffect effect;
@@ -69,6 +72,7 @@ public class Boss : MonoBehaviour, IKillable
         Phase++;
         if(Phase > 2)
         {
+            BossSpawned.Bool = false;
             triggerWin.Bool = true;
             Destroy(gameObject);
             return;
@@ -130,6 +134,7 @@ public class Boss : MonoBehaviour, IKillable
         {
             col.GetComponentInParent<IKillable>().KillEnemy();
         }
+        BossSpawned.Bool = true;
         SpawnShield(1);
     }
     // Start is called before the first frame update
