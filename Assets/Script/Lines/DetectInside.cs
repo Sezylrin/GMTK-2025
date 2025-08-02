@@ -20,7 +20,7 @@ public class DetectInside : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        col2D.offset = UtilityFunction.Vector3ToFlatVector2(transform.position) - (Vector2)transform.position;
+        col2D.offset = new Vector2(0,transform.position.z);
     }
     public void CheckDetection()
     {

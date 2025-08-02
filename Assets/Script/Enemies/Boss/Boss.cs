@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Boss : MonoBehaviour, IKillable
 {
@@ -20,6 +22,13 @@ public class Boss : MonoBehaviour, IKillable
     private TimerManager timerManager;
     [SerializeField]
     private BoolSO triggerWin;
+    [SerializeField]
+    private LayerMask house;
+    [Header("Spawning")]
+    [SerializeField]
+    private VisualEffect effect;
+    [SerializeField]
+    private Transform bossInitial;
 
     [Header("shield")]
     [SerializeField]
@@ -109,12 +118,25 @@ public class Boss : MonoBehaviour, IKillable
         timers = timerManager.GenerateTimers(typeof(AttackCD), gameObject);
         timers.SetTime((int)AttackCD.meteor, meteorInterval);
         activeShields.Float = 0;
+
         
+
+    }
+
+    private void SpawningSequence()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, shieldSpawnRadius, house);
+        foreach (Collider col in cols)
+        {
+            col.GetComponentInParent<IKillable>().KillEnemy();
+        }
+        SpawnShield(1);
     }
     // Start is called before the first frame update
     void Start()
     {
-        SpawnShield(1);
+        bossInitial.DOMove(transform.position, effect.GetFloat("Anticipation")).OnComplete(() => SpawningSequence() ).SetEase(Ease.InCirc);
+
         if(playerPos.transform == null)
             playerPos.transform = transform;
     }

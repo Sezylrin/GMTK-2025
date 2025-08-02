@@ -76,8 +76,9 @@ public class EnemyAI : MonoBehaviour, IKillable
         {
             return;
         }
-
-        rb.transform.LookAt(playerPos.transform);
+        Vector3 lookdir = UtilityFunction.Vector3ToFlatVector2(transform.position);
+        lookdir.y = rb.transform.position.y;
+        rb.transform.LookAt(lookdir);
         Vector3 dir = rb.transform.forward;
         Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / speed));
