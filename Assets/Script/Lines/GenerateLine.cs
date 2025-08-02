@@ -55,9 +55,8 @@ public class GenerateLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eraseTimer = timerManager.GenerateTimers(1, gameObject);
-        eraseTimer.SetTime(durationTillErase,false);
-        eraseTimer.times[0].OnTimeIsZero += RemovePoint;
+
+        SetTime();
         resolutionRatio = 1 / collisionResolution;
         lineResoRatio = 1 / lineResolution;
         maxQueueSize = Mathf.CeilToInt(trailDuration * lineResolution);
@@ -67,6 +66,17 @@ public class GenerateLine : MonoBehaviour
         startingColor = lineRenderer.material.GetColor("_Color");
         block = new MaterialPropertyBlock();
         
+    }
+
+    private void SetTime()
+    {
+        if(eraseTimer != null)
+        {
+            return;
+        }
+        eraseTimer = timerManager.GenerateTimers(1, gameObject);
+        eraseTimer.SetTime(durationTillErase, false);
+        eraseTimer.times[0].OnTimeIsZero += RemovePoint;
     }
 
     // Update is called once per frame
@@ -126,12 +136,7 @@ public class GenerateLine : MonoBehaviour
 
     public void StartDecay(bool isBloom)
     {
-        if (eraseTimer == null)
-            Debug.Log("timer is null");
-        if (this == null)
-            Debug.Log("somehow");
-        if (edgeCollider == null)
-            Debug.Log("collider is null");
+        SetTime();
         eraseTimer.ResumeTimer();
         if(isBloom)
             DOVirtual.Color(startingColor, bloomColor, eraseTimer.GetTime(), (value) => { block.SetColor("_Color", value); });
