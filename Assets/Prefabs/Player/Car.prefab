@@ -20010,16 +20010,17 @@ MonoBehaviour:
   maxSpeedSO: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
   acceleration: 120
   velocitySO: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
-  turningForce: 5
+  turningForce: 3
   minSpeedTurnRate: 0.4
   slippiness: 4
-  driftSlippiness: -1.5
-  driftTurningForce: 8
+  currentTurnForce: 0
+  driftSlippiness: -1
+  driftTurningForce: 4
   nitrosMaxSpeed: 80
   nitrosBoost: 180
-  nitrosMaxDuration: 2
+  nitrosMaxDuration: 0.75
   nitroDrainRate: 1
-  nitrosRecoveryDelay: 1
+  nitrosRecoveryDelay: 0.5
   nitrosRecoveryRate: 1
   nitrosTurnFactor: 1.5
   currentNitros: {fileID: 11400000, guid: 7ec894e73f10a804c8370359e95bb67c, type: 2}
@@ -20079,17 +20080,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7263825737613432649}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a67991540b5c98544a76eeb9dd43b2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 0}
   maxSpeed: {fileID: 11400000, guid: 2fae3063452424541b2df3fa9dc87327, type: 2}
   currentSpeed: {fileID: 11400000, guid: 5ad424b4d047c4a47b75b74a90c2dfc6, type: 2}
   isThrottleOn: {fileID: 11400000, guid: 22f205bfc1dc4d648a041f9be23d4a1c, type: 2}
   maxPitch: 2.74
   valueToScale: 0
+  win: {fileID: 11400000, guid: 0b33f16d2bc332043b1f14514efd8874, type: 2}
+  lose: {fileID: 11400000, guid: 0dec416bd94ee82438de6d9e44d7b72d, type: 2}
 --- !u!114 &8318505280478440448
 MonoBehaviour:
   m_ObjectHideFlags: 0

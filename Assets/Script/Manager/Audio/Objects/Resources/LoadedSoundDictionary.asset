@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadedSound:
     _serializedList:
+    - Key: AlienDeath
+      Value: {fileID: 11400000, guid: 788e73c608f24f74aa00b7c980cfd91f, type: 2}
+    - Key: AlienGIbberish
+      Value: {fileID: 11400000, guid: 25b3e525bc4e8ce4bb3054cea192489b, type: 2}
     - Key: EngineDriving
       Value: {fileID: 11400000, guid: 68a78990cd914524c827f6b841640043, type: 2}
     - Key: EngineIdle
       Value: {fileID: 11400000, guid: 545c191d4f3847a4d8c1c79696d88e10, type: 2}
     - Key: EngineStart
       Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
+    - Key: CarHum
+      Value: {fileID: 11400000, guid: b76cfeefeb38e494ca9252ac81ba49ec, type: 2}
     - Key: UFODeploy
       Value: {fileID: 11400000, guid: 662deca6a995ab04f84c97136dd916bb, type: 2}
     - Key: UFOFlyIn

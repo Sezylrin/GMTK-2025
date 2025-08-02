@@ -12,7 +12,6 @@ public class TransformUpdater : MonoBehaviour
     void Awake()
     {
         carPos.transform = transform;
-        Debug.Log(carPos.transform);
     }
 
 

@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: UFODeploy
+  m_Name: AlienDeath
   m_EditorClassIdentifier: 
-  ReferenceName: UFODeploy
+  ReferenceName: AlienDeath
   clips:
-  - {fileID: 8300000, guid: 6eaef5f48ebe9964f9021b18da0c283b, type: 3}
-  - {fileID: 8300000, guid: 49f5e2eb4ec0b5841bb629c7b18d2d38, type: 3}
-  - {fileID: 8300000, guid: 6824f39dc048b9e488a7b04a6e0511ec, type: 3}
-  - {fileID: 8300000, guid: 43c21d87105612c459b2ad7eb12a4263, type: 3}
+  - {fileID: 8300000, guid: 649c25e5c98a008408df850969aedb37, type: 3}
+  - {fileID: 8300000, guid: e4f30c0fca844254bbc9b169c2d5153a, type: 3}
+  - {fileID: 8300000, guid: 0d337ea6293d41d48ad07dd64b3054d7, type: 3}
+  - {fileID: 8300000, guid: 29ba7df0d36ac524c9c9dca78ea6b721, type: 3}
+  - {fileID: 8300000, guid: b98c749671c0f554aba5e9a86d092f20, type: 3}
+  - {fileID: 8300000, guid: 31f87e67f08a0e04ba3f1bcad5df9575, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
-  notDefault: 1
-  maxDistance: 250
+  notDefault: 0
+  maxDistance: 50
   minDistance: 15
   transitionPoint: 0
   isStaticSpatial: 1
-  staticSpatial: 0.95
+  staticSpatial: 0.5
   maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1
-  defaultSet: 0
+  defaultSet: 1

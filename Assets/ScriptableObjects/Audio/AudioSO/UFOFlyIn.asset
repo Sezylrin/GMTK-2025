@@ -15,6 +15,9 @@ MonoBehaviour:
   ReferenceName: UFOFlyIn
   clips:
   - {fileID: 8300000, guid: 602612d34d43bc44aaba38f593bf2dd1, type: 3}
+  - {fileID: 8300000, guid: 6a6c3fa17f8c5274c8c419812a87eec1, type: 3}
+  - {fileID: 8300000, guid: 765c626ea1b820a42ab29c88afb9c8fc, type: 3}
+  - {fileID: 8300000, guid: c39f018b8b1c33a4bb0d3abb57b1db2a, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
   notDefault: 1

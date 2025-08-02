@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
+  m_Name: AlienGibberish
+  m_EditorClassIdentifier: 
+  ReferenceName: AlienGIbberish
+  clips:
+  - {fileID: 8300000, guid: fe25d2720102b0e43bb898faed524cca, type: 3}
+  - {fileID: 8300000, guid: d1e98f89291b6c742882d89a27bf1964, type: 3}
+  - {fileID: 8300000, guid: 369eaf82019b0b94a88ba305e03873bc, type: 3}
+  - {fileID: 8300000, guid: f4dd380e84e444c488ad7b6879f969c9, type: 3}
+  - {fileID: 8300000, guid: 94b000d2f8a1f45409abe75019a836d2, type: 3}
+  - {fileID: 8300000, guid: 28bb6b19f45a4d143a3428a881a66dc1, type: 3}
+  - {fileID: 8300000, guid: b8d04ae69f4da404ab1b5192abbe7ff7, type: 3}
+  - {fileID: 8300000, guid: 5049a2c1da1fb48479507cdedb6a33a5, type: 3}
+  - {fileID: 8300000, guid: 50d458e614663ad4f80d4f59423c6c27, type: 3}
+  - {fileID: 8300000, guid: 6c2f908bc197bdc4d9b1c46da76c9d44, type: 3}
+  - {fileID: 8300000, guid: 31cf97e1700c62f40a579fc6e8cf8c66, type: 3}
+  - {fileID: 8300000, guid: fc3671fc9881af249aed0523e362a79c, type: 3}
+  - {fileID: 8300000, guid: 8822a2bac50b6294fa35ce1b51a8632e, type: 3}
+  mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
+  setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
+  notDefault: 0
+  maxDistance: 50
+  minDistance: 15
+  transitionPoint: 0
+  isStaticSpatial: 1
+  staticSpatial: 0.5
+  maxSpatialBlend: 0
+  minSpatialBlend: 0
+  rolloffMode: 1
+  defaultSet: 1

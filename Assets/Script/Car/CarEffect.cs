@@ -12,9 +12,12 @@ public class CarEffect : MonoBehaviour
     private ParticleSystem trailA;
     [SerializeField]
     private ParticleSystem trailB;
+
+    AudioObj lightningSound;
     void Start()
     {
-        
+        lightningSound = AudioManager.Instance.PlaySound(AudioRef.CarHum, transform, true, 0.15f);
+        lightningSound.PauseSound();
     }
 
     // Update is called once per frame
@@ -33,6 +36,14 @@ public class CarEffect : MonoBehaviour
         else if (throttle.Float <= 0 && lightning.isPlaying)
         {
             lightning.Stop();
+        }
+        if(throttle.Float > 0 && (lightningSound.IsPaused() || lightningSound.IsPausing()))
+        {
+            lightningSound.ResumeSound(true,0.25f);
+        }
+        else if (throttle.Float <= 0 && (!lightningSound.IsPaused() || !lightningSound.IsPausing()))
+        {
+            lightningSound.PauseSound(true, 0.25f);
         }
     }
 

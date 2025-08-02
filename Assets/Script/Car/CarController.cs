@@ -41,6 +41,7 @@ public class CarController : MonoBehaviour
     [SerializeField, Range(-2, 5)]
     private float slippiness;
     private float currentSlippiness;
+    [SerializeField,ReadOnlyProp]
     private float currentTurnForce;
     [Header("Drifting")]
     [SerializeField, Range(-2,0)]
@@ -318,8 +319,8 @@ public class CarController : MonoBehaviour
     {
         
         if (isNitros && currentNitros.Float > 0)
-            currentTurnForce = IsDrifting ? driftTurningForce * nitrosTurnFactor : turningForce * nitrosTurnFactor;
+            currentTurnForce = IsDrifting.Bool ? driftTurningForce * nitrosTurnFactor : turningForce * nitrosTurnFactor;
         else
-            currentTurnForce = IsDrifting ? driftTurningForce : turningForce;
+            currentTurnForce = IsDrifting.Bool ? driftTurningForce : turningForce;
     }
 }

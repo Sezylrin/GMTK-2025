@@ -15,6 +15,9 @@ MonoBehaviour:
   ReferenceName: UFOFlyOut
   clips:
   - {fileID: 8300000, guid: 06f651f8d01185443b4175b0e259ad09, type: 3}
+  - {fileID: 8300000, guid: 3af2c2e336aebfd4b995c7609231dc8c, type: 3}
+  - {fileID: 8300000, guid: 8920cf84da675524c9aa9a3644554755, type: 3}
+  - {fileID: 8300000, guid: 9835e9977a057594590877bda3b24152, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
   notDefault: 1

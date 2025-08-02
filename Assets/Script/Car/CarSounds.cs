@@ -6,8 +6,6 @@ using UnityEngine;
 public class CarSounds : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private AudioManager audioManager;
     private AudioObj carEngine;
     private AudioObj carIdle;
     private AudioObj carStart;
@@ -21,11 +19,15 @@ public class CarSounds : MonoBehaviour
     private float maxPitch;
     [SerializeField]
     private float valueToScale;
+    [SerializeField]
+    private BoolSO win;
+    [SerializeField]
+    private BoolSO lose;
     void Start()
     {
-        carStart = audioManager.PlaySound(AudioRef.EngineStart, transform);
+        carStart = AudioManager.Instance.PlaySound(AudioRef.EngineStart, transform, false, 0.15f);
         carStart.OnIsComplete += StartIdle;
-        carEngine = audioManager.PlaySound(AudioRef.EngineDriving, transform, true);
+        carEngine = AudioManager.Instance.PlaySound(AudioRef.EngineDriving, transform, true, 0.1f);
         carEngine.PauseSound();
     }
 
@@ -34,6 +36,15 @@ public class CarSounds : MonoBehaviour
     {
         DetermineAudio();
         DeterminePitch();
+        if(win.Bool || lose.Bool)
+        {
+            carIdle.StopSound(true, 0.2f);
+            carIdle = null;
+            carStart = null;
+            carEngine.StopSound(true, 0.2f);
+            carEngine = null;
+            this.enabled = false;
+        }
     }
 
     private void DetermineAudio()
@@ -42,11 +53,11 @@ public class CarSounds : MonoBehaviour
             return;
         if(isThrottleOn.Float == 0)
         {
-            carIdle.FadeIn(0.44f, 0.8f, 1f);
+            carIdle.FadeIn(0.1f, 0.2f, 1f);
         }
         else if (currentSpeed.Float <= 5)
         {
-            carIdle.FadeIn(0.8f, 0.44f, 1f);
+            carIdle.FadeIn(0.2f, 0.1f, 1f);
         }
         if(isThrottleOn.Float != 0)
         {
@@ -78,8 +89,8 @@ public class CarSounds : MonoBehaviour
 
     private void StartIdle(object sender, EventArgs e)
     {
-        carIdle = audioManager.PlaySound(AudioRef.EngineIdle, transform, true, 1);
-        carIdle.FadeIn(0, 1, 0.2f);
+        carIdle = AudioManager.Instance.PlaySound(AudioRef.EngineIdle, transform, true, 0.5f);
+        carIdle.FadeIn(0, 0.2f, 0.2f);
         carStart.OnIsComplete -= StartIdle;
     }
 }

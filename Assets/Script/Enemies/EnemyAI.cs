@@ -46,8 +46,29 @@ public class EnemyAI : MonoBehaviour, IKillable
 
     }
 
+    private void Start()
+    {
+        AttemptPlaySound();
+    }
 
+    private void AttemptPlaySound()
+    {
+        PlaySound();
+    }
 
+    private void OnDestroy()
+    {
+        CancelInvoke();
+    }
+    private void PlaySound()
+    {
+        int chance = Random.Range(0, 100);
+        if (chance > 70)
+        {
+            AudioManager.Instance.PlaySound(AudioRef.AlienGIbberish, transform,false,0.7f);
+        }
+        Invoke("AttemptPlaySound", Random.Range(1f, 6f));
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -71,6 +92,11 @@ public class EnemyAI : MonoBehaviour, IKillable
     public void KillEnemy()
     {
         healthToGive.Float += healthGain;
+        int chance = Random.Range(0, 100);
+        if(chance > 65)
+        {
+            AudioManager.Instance.PlaySound(AudioRef.AlienDeath, transform);
+        }
         Destroy(gameObject);
     }
 
