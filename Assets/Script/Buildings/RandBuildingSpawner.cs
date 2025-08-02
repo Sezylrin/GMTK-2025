@@ -15,7 +15,7 @@ public class RandBuildingSpawner : MonoBehaviour
     public GameObject factoryPrefab;
 
 
-
+    public float spacialVariance = 0f;
 
 
     // Start is called before the first frame update
@@ -26,13 +26,17 @@ public class RandBuildingSpawner : MonoBehaviour
 
         int angleVal = 0;
 
-        switch(randVal)
+        Vector3 distanceVariation = new Vector3(Random.Range(-spacialVariance, spacialVariance), 0, Random.Range(-spacialVariance, spacialVariance));
+
+
+
+        switch (randVal)
         {
             case 0:
 
                 angleVal = Random.Range(0,4);
 
-                Instantiate(flatPrefab, transform.position, Quaternion.Euler(0,angleVal * 90,0), transform.parent);
+                Instantiate(flatPrefab, transform.position + distanceVariation, Quaternion.Euler(0,angleVal * 90,0), transform.parent);
 
                 break;
             case 1:
@@ -40,7 +44,7 @@ public class RandBuildingSpawner : MonoBehaviour
                 angleVal = Random.Range(2, 4);
 
 
-                Instantiate(bigHousePrefab, transform.position, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
+                Instantiate(bigHousePrefab, transform.position + distanceVariation, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
 
                 break;
             case 2:
@@ -48,7 +52,7 @@ public class RandBuildingSpawner : MonoBehaviour
                 angleVal = Random.Range(1, 4);
 
 
-                Instantiate(smallHousePrefab, transform.position, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
+                Instantiate(smallHousePrefab, transform.position + distanceVariation, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
 
                 break;
             default:
@@ -56,7 +60,7 @@ public class RandBuildingSpawner : MonoBehaviour
                 angleVal = Random.Range(0, 4);
 
 
-                Instantiate(factoryPrefab, transform.position, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
+                Instantiate(factoryPrefab, transform.position + distanceVariation, Quaternion.Euler(0, angleVal * 90, 0), transform.parent);
 
                 break;
         }
