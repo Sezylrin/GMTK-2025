@@ -40,13 +40,13 @@ public class DrawPoint : MonoBehaviour
             if (currentLine == null)
                 return;
             currentLine.DetectAllInternal(pos);
-            DecayLine();
+            DecayLine(true);
         }
     }
 
-    private void DecayLine()
+    private void DecayLine(bool isBloom)
     {
-        currentLine.StartDecay();
+        currentLine.StartDecay(isBloom);
         currentLine = null;
     }
 
@@ -55,7 +55,7 @@ public class DrawPoint : MonoBehaviour
         if (throttle.Float <= 0)
         {
             if (currentLine)
-                DecayLine();
+                DecayLine(false);
             return;
         }
         if (currentLine == null)

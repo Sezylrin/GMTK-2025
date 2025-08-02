@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GenerateLine : MonoBehaviour
 {
@@ -36,6 +38,13 @@ public class GenerateLine : MonoBehaviour
     private FloatSO maxRadius;
     [SerializeField]
     private BoolSO spawnExplosion;
+    [Header("colour")]
+    [SerializeField]
+    [ColorUsage(true, true)]
+    private Color bloomColor;
+    private Color startingColor;
+    private MaterialPropertyBlock block;
+    
 
 
     private Timer eraseTimer;
@@ -55,6 +64,9 @@ public class GenerateLine : MonoBehaviour
         maxColSize = Mathf.CeilToInt(trailDuration * collisionResolution);
         nextLineCheck = Time.time;
         nextCollisionCheck = Time.time;
+        startingColor = lineRenderer.material.GetColor("_Color");
+        block = new MaterialPropertyBlock();
+        
     }
 
     // Update is called once per frame
@@ -64,6 +76,7 @@ public class GenerateLine : MonoBehaviour
     {
         ShouldAddPoint();
         removeLine();
+        ModifyBloom();
     }
 
     private void removeLine()
@@ -111,7 +124,7 @@ public class GenerateLine : MonoBehaviour
         this.newPoint = newPoint;
     }
 
-    public void StartDecay()
+    public void StartDecay(bool isBloom)
     {
         if (eraseTimer == null)
             Debug.Log("timer is null");
@@ -120,7 +133,22 @@ public class GenerateLine : MonoBehaviour
         if (edgeCollider == null)
             Debug.Log("collider is null");
         eraseTimer.ResumeTimer();
+        if(isBloom)
+            DOVirtual.Color(startingColor, bloomColor, eraseTimer.GetTime(), (value) => { block.SetColor("_Color", value); });
+        else
+        {
+            bloomColor.a = 0;
+            DOVirtual.Color(startingColor, bloomColor, eraseTimer.GetTime(), (value) => { block.SetColor("_Color", value); });
+        }
         edgeCollider.enabled = false;
+    }
+
+    private void ModifyBloom()
+    {
+        if (!eraseTimer.IsTimeZero() && !eraseTimer.IsPaused())
+        {
+            lineRenderer.SetPropertyBlock(block);
+        }
     }
 
     public void DetectAllInternal(Vector2 collisionPoint)
