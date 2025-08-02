@@ -16,6 +16,10 @@ public class PauseMenu : MonoBehaviour
     public bool gamePaused = false;
 
 
+    public BoolSO winScreen;
+
+    public BoolSO deathScreen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +30,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !winScreen.Bool && !deathScreen.Bool)
         {
             TogglePauseMenu();
         }

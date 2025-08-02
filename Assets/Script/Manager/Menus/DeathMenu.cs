@@ -35,6 +35,8 @@ public class DeathMenu : MonoBehaviour
     void Start()
     {
         showDeathScreen.Bool = false;
+        BgFade.enabled = false;
+        BgFade1.enabled = false;
     }
 
     // Update is called once per frame
@@ -63,6 +65,8 @@ public class DeathMenu : MonoBehaviour
 
     private IEnumerator DeathScreenRoutine()
     {
+        BgFade.enabled = true;
+
         BgFade.DOColor(BgFadeFinalColor, fadeInTime);
 
         //BgFade.DOFade(150, fadeInTime);
@@ -77,6 +81,8 @@ public class DeathMenu : MonoBehaviour
 
     private IEnumerator WinScreenRoutine()
     {
+        BgFade1.enabled = true;
+
         BgFade1.DOColor(BgFadeFinalColor, fadeInTime);
 
         //BgFade.DOFade(150, fadeInTime);
