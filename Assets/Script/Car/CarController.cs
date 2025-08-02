@@ -48,6 +48,8 @@ public class CarController : MonoBehaviour
     private float driftSlippiness;
     [SerializeField]
     private float driftTurningForce;
+    [SerializeField, Range(0,1)]
+    private float driftSlowDownFactor;
 
     [Header("Nitros")]
     [SerializeField]
@@ -141,6 +143,7 @@ public class CarController : MonoBehaviour
     private void SetDrift(InputAction.CallbackContext context)
     {
         IsDrifting.Bool = !IsDrifting.Bool;
+        maxSpeedSO.Float = IsDrifting.Bool ? maxSpeed * driftSlowDownFactor : maxSpeed;
     }
     private void SetNitros(InputAction.CallbackContext context)
     {
@@ -234,7 +237,7 @@ public class CarController : MonoBehaviour
             return;
         Vector3 dir = rb.transform.forward * throttle;
         Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
-        float maxSpeed = throttle > 0 ? this.maxSpeed : this.maxSpeed * 0.5f;
+        float maxSpeed = throttle > 0 ? maxSpeedSO.Float : maxSpeedSO.Float * 0.5f;
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / maxSpeed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;

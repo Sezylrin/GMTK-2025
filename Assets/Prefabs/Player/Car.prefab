@@ -20016,6 +20016,7 @@ MonoBehaviour:
   currentTurnForce: 0
   driftSlippiness: -1
   driftTurningForce: 6
+  driftSlowDownFactor: 1
   nitrosMaxSpeed: 80
   nitrosBoost: 180
   nitrosMaxDuration: 0.75
