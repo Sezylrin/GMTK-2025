@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -16,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     public TransformSO enemyParent;
 
-
+    public LayerMask house;
 
 
     // Start is called before the first frame update
@@ -63,15 +64,29 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 PickSpawnSpot()
     {
 
-        float dist = Random.Range(innerRadius, outerRadius);
+        bool isValid = false;
+        Vector3 spawnPoint = Vector3.zero;
+        while (!isValid)
+        {
+            float dist = Random.Range(innerRadius, outerRadius);
 
-        float angle = Random.Range(0f, 360f);
+            float angle = Random.Range(0f, 360f);
 
-        float addX = Mathf.Sin(angle) * dist;
+            float addX = Mathf.Sin(angle) * dist;
 
-        float addZ = Mathf.Cos(angle) * dist;
+            float addZ = Mathf.Cos(angle) * dist;
+            spawnPoint = new Vector3(addX, 0, addZ);
+            Collider[] col = new Collider[2];
+            if (Physics.OverlapSphereNonAlloc(spawnPoint,5f, col, house) == 0)
+            {
+                isValid = true;
+                spawnPoint.y = 10;
+            }
+        }
 
-        return new Vector3(addX, 10, addZ);
+
+
+        return spawnPoint;
 
     }
 

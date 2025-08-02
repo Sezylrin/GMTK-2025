@@ -472,6 +472,12 @@ MonoBehaviour:
   maxSpawnRange: 50
   minSpawnRange: 15
   playerPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
+  areaClear: 125
+  house:
+    serializedVersion: 2
+    m_Bits: 16384
+  PylonCount: {fileID: 11400000, guid: 500cc0889337ee247a6c6e912aba5193, type: 2}
+  BossSpawned: {fileID: 11400000, guid: 3f59c5f6ddbf7294d8118d174da35f6c, type: 2}
 --- !u!1 &4833287243281033728
 GameObject:
   m_ObjectHideFlags: 0

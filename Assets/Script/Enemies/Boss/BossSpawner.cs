@@ -14,6 +14,10 @@ public class BossSpawner : MonoBehaviour
     private float minSpawnRange;
     [SerializeField]
     private TransformSO playerPos;
+    [SerializeField]
+    private float areaClear;
+    [SerializeField]
+    private LayerMask house;
 
     [SerializeField]
     private FloatSO PylonCount;
@@ -44,6 +48,11 @@ public class BossSpawner : MonoBehaviour
             if (playerPos.transform)
                 spawn += playerPos.transform.position;
             Instantiate(boss,spawn,Quaternion.identity);
+            Collider[] cols = Physics.OverlapSphere(spawn, areaClear, house);
+            foreach (Collider col in cols)
+            {
+                col.GetComponentInParent<IKillable>().KillEnemy();
+            }
         }
     }
 

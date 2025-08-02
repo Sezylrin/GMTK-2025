@@ -20123,6 +20123,9 @@ MonoBehaviour:
   outerRadius: 30
   enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
   enemyParent: {fileID: 11400000, guid: e8a3de13d5ebc914ea0695997bedc5d0, type: 2}
+  house:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!114 &363552916028700327
 MonoBehaviour:
   m_ObjectHideFlags: 0
