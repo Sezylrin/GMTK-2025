@@ -16,17 +16,24 @@ public class TutorialScript : MonoBehaviour
 
     public float readTime = 4f;
 
-
+    [TextArea(15, 30)]
     public string[] tutorialTexts;
 
-
+    [TextArea(15, 30)]
     public string[] randomTexts;
+
+    [TextArea(15, 30)]
+    public string[] bossTexts;
 
 
     public TMP_Text textBoxToShow;
 
 
     private Queue<string> textQueue = new Queue<string>();
+
+
+    public BoolSO bossSpawned;
+    private bool bossFlag = false;
 
 
     // Start is called before the first frame update
@@ -36,7 +43,6 @@ public class TutorialScript : MonoBehaviour
 
         textQueue.Enqueue(tutorialTexts[0]);
         textQueue.Enqueue(tutorialTexts[1]);
-        textQueue.Enqueue(tutorialTexts[2]);
 
 
         StartCoroutine("TextBoxSlide");
@@ -55,7 +61,18 @@ public class TutorialScript : MonoBehaviour
     {
 
 
+        if (bossSpawned.Bool && !bossFlag)
+        {
+            bossFlag = true;
 
+
+            textQueue.Enqueue(bossTexts[0]);
+            textQueue.Enqueue(bossTexts[1]);
+            textQueue.Enqueue(bossTexts[1]);
+
+            StartCoroutine("TextBoxSlide");
+
+        }
 
 
 
