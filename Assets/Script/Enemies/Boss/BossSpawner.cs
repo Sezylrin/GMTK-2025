@@ -14,10 +14,18 @@ public class BossSpawner : MonoBehaviour
     private float minSpawnRange;
     [SerializeField]
     private TransformSO playerPos;
+
+    [SerializeField]
+    private FloatSO PylonCount;
+
+    [SerializeField]
+    private BoolSO BossSpawned;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        PylonCount.Float = Pylons;
     }
 
     // Update is called once per frame
@@ -29,6 +37,7 @@ public class BossSpawner : MonoBehaviour
     public void PylonDestoyed()
     {
         Pylons--;
+        PylonCount.Float = Pylons;
         if(Pylons == 0)
         {
             Vector3 spawn = PickSpawnSpot(minSpawnRange, maxSpawnRange);
