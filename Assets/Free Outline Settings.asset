@@ -41,13 +41,13 @@ MonoBehaviour:
   renderQueue: 0
   occlusion: 2
   maskingStrategy: 0
-  color: {r: 0.32570603, g: 0.5943396, b: 0.2999733, a: 1}
+  color: {r: 0.36822373, g: 0.8867924, b: 0.23145835, a: 1}
   enableOcclusion: 0
   occludedColor: {r: 1, g: 0, b: 0, a: 1}
   blendMode: 0
   extrusionMethod: 0
   scaling: 0
-  width: 10
+  width: 2
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 0}
   isActive: 1
-  RenderingLayer: 0
+  RenderingLayer: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 16384
@@ -81,7 +81,7 @@ MonoBehaviour:
   blendMode: 0
   extrusionMethod: 0
   scaling: 0
-  width: 7
+  width: 4
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 0
@@ -109,13 +109,13 @@ MonoBehaviour:
   renderQueue: 0
   occlusion: 2
   maskingStrategy: 0
-  color: {r: 0, g: 1, b: 0, a: 1}
+  color: {r: 0.28752556, g: 1, b: 0.09748411, a: 1}
   enableOcclusion: 0
   occludedColor: {r: 1, g: 0, b: 0, a: 1}
   blendMode: 0
   extrusionMethod: 0
   scaling: 0
-  width: 10
+  width: 5
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 0
@@ -143,13 +143,13 @@ MonoBehaviour:
   renderQueue: 0
   occlusion: 2
   maskingStrategy: 0
-  color: {r: 1, g: 0, b: 0, a: 1}
+  color: {r: 1, g: 0.58654, b: 0, a: 1}
   enableOcclusion: 0
   occludedColor: {r: 1, g: 0, b: 0, a: 1}
   blendMode: 0
   extrusionMethod: 0
   scaling: 0
-  width: 4
+  width: 2
   minWidth: 0
   scaleWithResolution: 1
   referenceResolution: 0
