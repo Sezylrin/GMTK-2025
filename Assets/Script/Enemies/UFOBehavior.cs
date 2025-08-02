@@ -27,11 +27,11 @@ public class UFOBehavior : MonoBehaviour
     {
         size = Mathf.CeilToInt(Random.Range(minSpawn.Float, minSpawn.Float * 2f));
 
-        transform.position = new Vector3(transform.position.x, transform.position.y * (size / 4f), transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y * (size / 5f), transform.position.z);
 
         targetPos = transform.position;
 
-        transform.position = transform.position + new Vector3(70 + transform.position.x, transform.position.y, transform.position.z);
+        transform.position = transform.position + new Vector3(70, 0, 0);
 
 
         StartCoroutine(UFOFlyRoutine());

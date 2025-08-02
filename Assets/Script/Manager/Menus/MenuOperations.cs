@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuOperations : MonoBehaviour
 {
@@ -17,6 +19,16 @@ public class MenuOperations : MonoBehaviour
 
     public string mainLevelToStart;
 
+
+
+    public Slider MasterVol;
+
+    public Slider BGMVol;
+
+    public Slider SFXVol;
+
+
+
     public void StartButton()
     {
         SceneManager.LoadScene(mainLevelToStart);
@@ -24,6 +36,12 @@ public class MenuOperations : MonoBehaviour
 
     public void SettingsButton()
     {
+
+        MasterVol.value = AudioManager.Instance.masterVolume / 100;
+        BGMVol.value = AudioManager.Instance.bgmVolume / 100;
+        SFXVol.value = AudioManager.Instance.sfxVolume / 100;
+
+
         mainMenu.SetActive(!mainMenu.activeInHierarchy);
         settingsMenu.SetActive(!settingsMenu.activeInHierarchy);
     }
@@ -42,7 +60,30 @@ public class MenuOperations : MonoBehaviour
 
 
 
-    
+
+    public void ChangeMasterVolume()
+    {
+        float vol = MasterVol.value;
+        AudioManager.Instance.ModifyMasterVolume(vol * 100);
+    }
+
+
+    public void ChangeBGMVolume()
+    {
+        float vol = BGMVol.value;
+        AudioManager.Instance.ModifyBGMVolume(vol * 100);
+    }
+
+
+    public void ChangeSFXVolume()
+    {
+        float vol = SFXVol.value;
+        AudioManager.Instance.ModifySFXVolume(vol * 100);
+    }
+
+
+
+
 
     //public void ChangeVolume()
     //{
