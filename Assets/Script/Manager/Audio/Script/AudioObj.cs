@@ -39,7 +39,7 @@ public class AudioObj : MonoBehaviour
         {
             CalculateSpatialBlend();
         }
-        if (!source.isPlaying && isPaused == false && !source.loop)
+        if (!source.isPlaying && (isPaused == false && isPausing == false) && !source.loop)
         {
             OnIsComplete?.Invoke(this, EventArgs.Empty);
             OnComplete();
@@ -92,14 +92,22 @@ public class AudioObj : MonoBehaviour
         enabled = true;
         source.outputAudioMixerGroup = group;
         source.clip = clipToPlay;
-        source.Play();
         source.loop = loop;
         source.volume = volume;
         initialVolume = volume;
+        source.Play();
+    }
+
+    public void PlaySound()
+    {
+        source.volume = initialVolume;
+        source.Play();
     }
 
     public void PauseSound(bool fade = false, float dur = 1)
     {
+        if(isPaused) return;
+
         if (!fade)
         {
             source.Pause();
@@ -138,6 +146,10 @@ public class AudioObj : MonoBehaviour
         source.pitch = newPitch;
     }
 
+    public bool IsSourcePlaying()
+    {
+        return source.isPlaying;
+    }
     public void StopSound(bool fade = false, float dur = 1)
     {
         if (!fade)
@@ -154,11 +166,20 @@ public class AudioObj : MonoBehaviour
             });
         }
     }
+    [SerializeField]
+    private bool dontReturn = false;
+    public void SetDontReturnAudio(bool toReturn)
+    {
+        dontReturn = toReturn;
+    }
 
     private void OnComplete()
     {
+        if (dontReturn)
+            return;
         enabled = false;
         isPaused = false;
+        isPausing = false;
         manager.ReAddToStack(this);
     }
 

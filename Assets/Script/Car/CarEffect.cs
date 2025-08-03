@@ -7,11 +7,17 @@ public class CarEffect : MonoBehaviour
     [SerializeField]
     private FloatSO throttle;
     [SerializeField]
+    private BoolSO IsNitro;
+    [SerializeField]
+    private FloatSO nitroAmount;
+    [SerializeField]
     private ParticleSystem lightning;
     [SerializeField]
     private ParticleSystem trailA;
     [SerializeField]
     private ParticleSystem trailB;
+    [SerializeField]
+    private ParticleSystem[] boost;
 
     AudioObj lightningSound;
     void Start()
@@ -25,6 +31,7 @@ public class CarEffect : MonoBehaviour
     {
         Lightning();
         Smoke();
+        Boost();
     }
 
     private void Lightning()
@@ -58,6 +65,20 @@ public class CarEffect : MonoBehaviour
         {
             trailA.Stop();
             trailB.Stop();
+        }
+    }
+
+    private void Boost()
+    {
+        if(IsNitro.Bool && nitroAmount.Float > 0 && !boost[0].isEmitting)
+        {
+            foreach(var b in boost)
+                b.Play();
+        }
+        else if ((!IsNitro.Bool || nitroAmount.Float ==0) && boost[0].isEmitting)
+        {
+            foreach (var b in boost)
+                b.Stop();
         }
     }
 }

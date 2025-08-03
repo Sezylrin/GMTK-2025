@@ -28,10 +28,10 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
     - Key: CarHum
       Value: {fileID: 11400000, guid: b76cfeefeb38e494ca9252ac81ba49ec, type: 2}
-    - Key: endTheme
-      Value: {fileID: 11400000, guid: 930483299e0d3a5438197c104a2f5abc, type: 2}
-    - Key: levelTheme
-      Value: {fileID: 11400000, guid: 06de345f6cee3a047892c6786be2ff9d, type: 2}
+    - Key: NitroContinue
+      Value: {fileID: 11400000, guid: 9c61829bce5465843ad8fdecf60d6840, type: 2}
+    - Key: NitroStart
+      Value: {fileID: 11400000, guid: 2c8a61d355cb4bf4e840a29c4774e24d, type: 2}
     - Key: mainTheme
       Value: {fileID: 11400000, guid: d267489d187aa9e46a3ebfcbd4b85259, type: 2}
     - Key: UFODeploy
