@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Audio;
 [CreateAssetMenu(fileName = "AudioClipObj", menuName = "ScriptableObjects/Audio/AudioClipSO")]
@@ -27,7 +29,9 @@ public class AudioClipSO : ScriptableObject
     [HideInInspector] public bool defaultSet;
     public void SetDefaultSetting()
     {
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
+#endif
         if (notDefault)
             return;
         defaultSet = true;
