@@ -51,14 +51,22 @@ public class CarSounds : MonoBehaviour
         DetermineAudio();
         DeterminePitch();
         if(win.Bool || lose.Bool)
-        {
-            carIdle.StopSound(true, 0.2f);
-            carIdle = null;
-            carStart = null;
-            carEngine.StopSound(true, 0.2f);
-            carEngine = null;
-            enabled = false;
-        }
+        StopSounds();
+    }
+
+    private void OnDisable()
+    {
+        StopSounds();
+    }
+
+    private void StopSounds()
+    {
+        carIdle.StopSound(true, 0.2f);
+        carIdle = null;
+        carStart = null;
+        carEngine.StopSound(true, 0.2f);
+        carEngine = null;
+        enabled = false;
     }
     [SerializeField]
     private bool NitroPlayed = false;
