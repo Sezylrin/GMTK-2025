@@ -20021,7 +20021,7 @@ MonoBehaviour:
   driftSlowDownFactor: 0.6
   nitrosMaxSpeed: 80
   nitrosBoost: 180
-  nitrosMaxDuration: 0.75
+  nitrosMaxDuration: 1.75
   nitroDrainRate: 1
   nitrosRecoveryDelay: 0.5
   nitrosRecoveryRate: 1
@@ -20126,6 +20126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawning: 1
   spawnDelay: 3
+  fixedDelay: 1
+  minDelay: 0
+  maxDelay: 0
+  minSpawnDist: 0
+  playerPos: {fileID: 0}
   innerRadius: 5
   outerRadius: 30
   enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
