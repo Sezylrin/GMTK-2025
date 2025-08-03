@@ -20,6 +20,8 @@ public class PauseMenu : MonoBehaviour
 
     public BoolSO deathScreen;
 
+    public BoolSO bossSPawned;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,9 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         DOTween.KillAll();
+        bossSPawned.Bool = false;
+        winScreen.Bool = false;
+        deathScreen.Bool = false;
         SceneManager.LoadScene(mainMenuStr);
 
     }
