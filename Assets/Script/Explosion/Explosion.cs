@@ -33,7 +33,7 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        AudioManager.Instance.PlaySound(AudioRef.LoopComplete);
         DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
 
 

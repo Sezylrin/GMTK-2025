@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: UFOFlyIn
+  m_Name: BossHum
   m_EditorClassIdentifier: 
-  ReferenceName: UFOFlyIn
+  ReferenceName: BossHum
   clips:
-  - {fileID: 8300000, guid: 1108b1eaae9b1e84198481f9839b7ba8, type: 3}
-  - {fileID: 8300000, guid: 6a6c3fa17f8c5274c8c419812a87eec1, type: 3}
-  - {fileID: 8300000, guid: 765c626ea1b820a42ab29c88afb9c8fc, type: 3}
-  - {fileID: 8300000, guid: c39f018b8b1c33a4bb0d3abb57b1db2a, type: 3}
+  - {fileID: 8300000, guid: 4706cb3829bec52449a9f59e9e277b78, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
   notDefault: 1
-  maxDistance: 250
+  maxDistance: 500
   minDistance: 15
   transitionPoint: 0
   isStaticSpatial: 1
-  staticSpatial: 0.95
+  staticSpatial: 1
   maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1

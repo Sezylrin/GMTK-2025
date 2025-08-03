@@ -18,7 +18,7 @@ public class Boss : MonoBehaviour, IKillable
     }
 
     private int Phase = 0;
-    private bool isShielded = true;
+    private bool isShielded = false;
     [Header("Core")]
     [SerializeField]
     private TransformSO playerPos;
@@ -78,6 +78,7 @@ public class Boss : MonoBehaviour, IKillable
         {
             BossSpawned.Bool = false;
             triggerWin.Bool = true;
+            bossHum.StopSound(true,0.25f);
             Destroy(gameObject);
             return;
         }
@@ -112,6 +113,7 @@ public class Boss : MonoBehaviour, IKillable
         {
             shield.DOScale(Vector3.zero, 4f).SetEase(Ease.InElastic);
             isShielded = false;
+            AudioManager.Instance.PlaySound(AudioRef.BossShieldBreak,false,0.5f);
         }
     }
 
@@ -130,9 +132,11 @@ public class Boss : MonoBehaviour, IKillable
         
 
     }
-
+    private AudioObj bossHum;
     private void SpawningSequence()
     {
+        AudioManager.Instance.PlaySound(AudioRef.BossMeteor);
+        bossHum = AudioManager.Instance.PlaySound(AudioRef.BossHum,true);
         Collider[] cols = Physics.OverlapSphere(transform.position, shieldSpawnRadius + 15f, house);
         foreach (Collider col in cols)
         {
@@ -141,6 +145,7 @@ public class Boss : MonoBehaviour, IKillable
         BossSpawned.Bool = true;
         timers.ResumeTimer((int)AttackCD.spawning);
         timers.times[(int)AttackCD.spawning].OnTimeIsZero += SpawnFirstShield;
+
     }
 
     private void SpawnFirstShield(object sender, EventArgs e)

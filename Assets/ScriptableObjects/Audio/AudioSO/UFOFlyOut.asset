@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReferenceName: UFOFlyOut
   clips:
-  - {fileID: 8300000, guid: 06f651f8d01185443b4175b0e259ad09, type: 3}
+  - {fileID: 8300000, guid: 37468d3d73aa439419640398bd60b196, type: 3}
   - {fileID: 8300000, guid: 3af2c2e336aebfd4b995c7609231dc8c, type: 3}
   - {fileID: 8300000, guid: 8920cf84da675524c9aa9a3644554755, type: 3}
   - {fileID: 8300000, guid: 9835e9977a057594590877bda3b24152, type: 3}

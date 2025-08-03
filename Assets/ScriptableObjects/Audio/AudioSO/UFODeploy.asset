@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReferenceName: UFODeploy
   clips:
-  - {fileID: 8300000, guid: 6eaef5f48ebe9964f9021b18da0c283b, type: 3}
+  - {fileID: 8300000, guid: 4c57e5df6bdfe2a41bbe26584efb1866, type: 3}
   - {fileID: 8300000, guid: 49f5e2eb4ec0b5841bb629c7b18d2d38, type: 3}
   - {fileID: 8300000, guid: 6824f39dc048b9e488a7b04a6e0511ec, type: 3}
   - {fileID: 8300000, guid: 43c21d87105612c459b2ad7eb12a4263, type: 3}

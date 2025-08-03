@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: UFOFlyIn
+  m_Name: BossMeteorAttack
   m_EditorClassIdentifier: 
-  ReferenceName: UFOFlyIn
+  ReferenceName: BossMeteor
   clips:
-  - {fileID: 8300000, guid: 1108b1eaae9b1e84198481f9839b7ba8, type: 3}
-  - {fileID: 8300000, guid: 6a6c3fa17f8c5274c8c419812a87eec1, type: 3}
-  - {fileID: 8300000, guid: 765c626ea1b820a42ab29c88afb9c8fc, type: 3}
-  - {fileID: 8300000, guid: c39f018b8b1c33a4bb0d3abb57b1db2a, type: 3}
+  - {fileID: 8300000, guid: 225ed2b48ce01ce498ae8261f18a697e, type: 3}
+  - {fileID: 8300000, guid: ce51a44ce4355c54dbc649ebdaeeb00a, type: 3}
+  - {fileID: 8300000, guid: 87a332d90ac651d4c958a9f4373fb337, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
-  notDefault: 1
-  maxDistance: 250
+  notDefault: 0
+  maxDistance: 500
   minDistance: 15
   transitionPoint: 0
   isStaticSpatial: 1
@@ -29,4 +28,4 @@ MonoBehaviour:
   maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1
-  defaultSet: 0
+  defaultSet: 1

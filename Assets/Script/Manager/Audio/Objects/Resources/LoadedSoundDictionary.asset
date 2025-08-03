@@ -18,8 +18,14 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 788e73c608f24f74aa00b7c980cfd91f, type: 2}
     - Key: AlienGIbberish
       Value: {fileID: 11400000, guid: 25b3e525bc4e8ce4bb3054cea192489b, type: 2}
+    - Key: BossHum
+      Value: {fileID: 11400000, guid: a93c3caed3377ff46b4289274b9086a3, type: 2}
+    - Key: BossMeteor
+      Value: {fileID: 11400000, guid: 148f53d3a91473e41aa0cd5e1ecca982, type: 2}
     - Key: bossTheme
       Value: {fileID: 11400000, guid: 83b946319064e6a4599248dbd7a83bcf, type: 2}
+    - Key: BossShieldBreak
+      Value: {fileID: 11400000, guid: d5b28ceea21865743aeac19e07937b85, type: 2}
     - Key: EngineDriving
       Value: {fileID: 11400000, guid: 68a78990cd914524c827f6b841640043, type: 2}
     - Key: EngineIdle
@@ -28,6 +34,8 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
     - Key: CarHum
       Value: {fileID: 11400000, guid: b76cfeefeb38e494ca9252ac81ba49ec, type: 2}
+    - Key: LoopComplete
+      Value: {fileID: 11400000, guid: 887afe34a5e966445a4d089ac67bec62, type: 2}
     - Key: NitroContinue
       Value: {fileID: 11400000, guid: 9c61829bce5465843ad8fdecf60d6840, type: 2}
     - Key: NitroStart

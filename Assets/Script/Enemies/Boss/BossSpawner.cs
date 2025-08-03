@@ -32,6 +32,7 @@ public class BossSpawner : MonoBehaviour
     {
         
     }
+    [ContextMenu("test")]
     public void PylonDestoyed()
     {
         Pylons--;

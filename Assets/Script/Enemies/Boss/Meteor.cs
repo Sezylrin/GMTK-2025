@@ -24,7 +24,7 @@ public class Meteor : MonoBehaviour
         effect.SetVector3("MeteorSpawn", spawnPos);
         effect.Play();
         this.damage = damage;
-        DOTween.To(() => anticipation, x => anticipation = x, 0f, anticipation);
+        DOTween.To(() => anticipation, x => anticipation = x, 0f, anticipation).OnComplete(() => AudioManager.Instance.PlaySound(AudioRef.BossMeteor));
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class Meteor : MonoBehaviour
         }
         if(anticipation <= 0 && !doDamage)
         {
-            if(Physics.OverlapSphereNonAlloc(transform.position, transform.localScale.x * 0.5f, new Collider[1], player) == 1)
+            if (Physics.OverlapSphereNonAlloc(transform.position, transform.localScale.x * 0.5f, new Collider[1], player) == 1)
             {
                 damageToDO.Float += damage;
                 doDamage = true;
