@@ -17,6 +17,8 @@ public class MenuOperations : MonoBehaviour
 
     public GameObject creditsMenu;
 
+    public GameObject briefingMenu;
+
     public string mainLevelToStart;
 
 
@@ -28,6 +30,7 @@ public class MenuOperations : MonoBehaviour
     public Slider SFXVol;
 
 
+    public BriefingScript briefScript;
 
     public void StartButton()
     {
@@ -58,7 +61,12 @@ public class MenuOperations : MonoBehaviour
     }
 
 
-
+    public void OpenBriefing()
+    {
+        mainMenu.SetActive(!mainMenu.activeInHierarchy);
+        briefingMenu.SetActive(true);
+        briefScript.OpenBriefing();
+    }
 
 
     public void ChangeMasterVolume()

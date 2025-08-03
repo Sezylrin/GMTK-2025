@@ -18,6 +18,8 @@ public class BossSpawner : MonoBehaviour
     [SerializeField]
     private FloatSO PylonCount;
 
+    [SerializeField]
+    private BoolSO bossSpawned;
 
     // Start is called before the first frame update
     void Start()
