@@ -31,7 +31,7 @@ public class UFOBehavior : MonoBehaviour
 
         targetPos = transform.position;
 
-        transform.position = transform.position + new Vector3(70, 0, 0);
+        transform.position = transform.position + new Vector3(150, 0, Random.Range(-20,20));
 
 
         StartCoroutine(UFOFlyRoutine());
@@ -60,7 +60,7 @@ public class UFOBehavior : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
         AudioManager.Instance.PlaySound(AudioRef.UFOFlyOut, transform);
-        transform.DOMove(new Vector3(-70 + transform.position.x, transform.position.y, transform.position.z), speed).SetEase(Ease.InQuart).OnComplete(() => AnimationDone());
+        transform.DOMove(new Vector3(-150 + transform.position.x, transform.position.y, transform.position.z + Random.Range(-20,20)), speed).SetEase(Ease.InQuart).OnComplete(() => AnimationDone());
 
     }
 
