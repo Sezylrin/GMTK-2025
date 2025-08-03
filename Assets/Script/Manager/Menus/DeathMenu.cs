@@ -31,6 +31,8 @@ public class DeathMenu : MonoBehaviour
 
     public bool winFlag = false;
 
+    public BoolSO bossSPawned;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,7 +105,10 @@ public class DeathMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         DOTween.KillAll();
+        bossSPawned.Bool = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
     }
 
 
