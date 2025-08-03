@@ -184,7 +184,7 @@ MonoBehaviour:
   AttackIntervalMin: 4
   mDamage: 75
   meteor: {fileID: 2936473937309434801, guid: fd8f040ad2a0dfa479a0f657ae3bd63c, type: 3}
-  meteorInterval: 3
+  meteorInterval: 5
   amountToSpawn: 15
   spawnRadius: 25
   spawnDelay: 0.5

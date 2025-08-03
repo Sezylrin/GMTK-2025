@@ -21,7 +21,7 @@ MonoBehaviour:
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
   notDefault: 1
-  maxDistance: 250
+  maxDistance: 300
   minDistance: 15
   transitionPoint: 0
   isStaticSpatial: 1
