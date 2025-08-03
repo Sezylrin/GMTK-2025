@@ -10,6 +10,8 @@ public enum AudioRef
 	EngineIdle,
 	EngineStart,
 	CarHum,
+	NitroContinue,
+	NitroStart,
 	mainTheme,
 	UFODeploy,
 	UFOFlyIn,

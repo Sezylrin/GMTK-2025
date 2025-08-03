@@ -118,7 +118,7 @@ public class AudioManager : MonoBehaviour
             temp = Instantiate(audioObjPF, transform).GetComponent<AudioObj>();
             temp.Init(this);
         }
-        temp.StartPlaying(clipToPlay, SO.mixGroup, loop, volume);
+            temp.StartPlaying(clipToPlay, SO.mixGroup, loop, volume);
         if (setting.IsAudio3D)
         {
             if (!isStaticSpatial)
@@ -139,6 +139,8 @@ public class AudioManager : MonoBehaviour
     {
         return PlaySound(reference.ToString(), loop, volume, null);
     }
+
+
     /// <summary>
     /// Play clip based on AudioRef
     /// </summary>

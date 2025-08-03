@@ -9,6 +9,8 @@ public class CarSounds : MonoBehaviour
     private AudioObj carEngine;
     private AudioObj carIdle;
     private AudioObj carStart;
+    private AudioObj nitroStart;
+    private AudioObj nitroContinious;
     [SerializeField]
     private FloatSO maxSpeed;
     [SerializeField]
@@ -23,17 +25,29 @@ public class CarSounds : MonoBehaviour
     private BoolSO win;
     [SerializeField]
     private BoolSO lose;
+    [SerializeField]
+    private BoolSO IsNitros;
+    [SerializeField]
+    private FloatSO currentNitro;
     void Start()
     {
         carStart = AudioManager.Instance.PlaySound(AudioRef.EngineStart, transform, false, 0.15f);
         carStart.OnIsComplete += StartIdle;
         carEngine = AudioManager.Instance.PlaySound(AudioRef.EngineDriving, transform, true, 0.1f);
         carEngine.PauseSound();
+        nitroStart = AudioManager.Instance.PlaySound(AudioRef.NitroStart, transform,false,0.35f);
+        nitroStart.SetDontReturnAudio(true);
+        nitroStart.StopSound();
+        nitroStart.OnIsComplete += NitroSoundPlayed;
+
+        nitroContinious = AudioManager.Instance.PlaySound(AudioRef.NitroContinue, transform, true, 0.35f);
+        nitroContinious.PauseSound();
     }
 
     // Update is called once per frame
     void Update()
     {
+        DetermineNitro();
         DetermineAudio();
         DeterminePitch();
         if(win.Bool || lose.Bool)
@@ -43,10 +57,33 @@ public class CarSounds : MonoBehaviour
             carStart = null;
             carEngine.StopSound(true, 0.2f);
             carEngine = null;
-            this.enabled = false;
+            enabled = false;
         }
     }
-
+    [SerializeField]
+    private bool NitroPlayed = false;
+    private void DetermineNitro()
+    {
+        if ((IsNitros.Bool && currentNitro.Float > 0) && !NitroPlayed)
+        {
+            nitroStart.PlaySound();
+            NitroPlayed = true;
+            nitroContinious.ResumeSound(true, 0.25f);
+        }
+        else if ((!IsNitros.Bool || currentNitro.Float == 0) )
+        {
+            if (nitroStart.IsSourcePlaying())
+            {
+                nitroStart.StopSound(true, 0.25f);
+                NitroPlayed = false;
+            }
+            nitroContinious.PauseSound(true, 0.25f);
+        }
+    }
+    private void NitroSoundPlayed(object sender, EventArgs e)
+    {
+        NitroPlayed = false;
+    }
     private void DetermineAudio()
     {
         if (!carIdle)

@@ -72,6 +72,8 @@ public class CarController : MonoBehaviour
     private FloatSO maxNitros;
     [SerializeField]
     private Timer recoveryTimer;
+    [SerializeField]
+    private BoolSO IsNitro;
 
     [Header("Suspension")]
     [SerializeField]
@@ -148,6 +150,7 @@ public class CarController : MonoBehaviour
     private void SetNitros(InputAction.CallbackContext context)
     {
         isNitros = !isNitros;
+        IsNitro.Bool = isNitros;
         if (!isNitros)
         {
             recoveryTimer.ResumeTimer();
