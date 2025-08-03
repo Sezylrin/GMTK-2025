@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.5
-  Volume: 1
+  Volume: 0.5
   bossSpawned: {fileID: 11400000, guid: 3f59c5f6ddbf7294d8118d174da35f6c, type: 2}
   triggerWinScreen: {fileID: 11400000, guid: 0b33f16d2bc332043b1f14514efd8874, type: 2}
+  AmbVolume: 0.2

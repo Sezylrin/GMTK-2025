@@ -34,6 +34,8 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
     - Key: CarHum
       Value: {fileID: 11400000, guid: b76cfeefeb38e494ca9252ac81ba49ec, type: 2}
+    - Key: cityAmb
+      Value: {fileID: 11400000, guid: c0f320db26684774bb332e9b8e740561, type: 2}
     - Key: endTheme
       Value: {fileID: 11400000, guid: 930483299e0d3a5438197c104a2f5abc, type: 2}
     - Key: levelTheme
@@ -52,3 +54,11 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 946d3a1a1f519fb41a503dcffa1d65ce, type: 2}
     - Key: UFOFlyOut
       Value: {fileID: 11400000, guid: 69f5a5ebacd1f1a4b8f38ff2a49b984a, type: 2}
+    - Key: uiAccpet
+      Value: {fileID: 11400000, guid: 595c853ed6093704b87839b16010196d, type: 2}
+    - Key: uiCancel
+      Value: {fileID: 11400000, guid: 163a27fd9274262419f20d07e6412f69, type: 2}
+    - Key: uiSpy
+      Value: {fileID: 11400000, guid: 94667c5cde0c04f4a9b566889701af92, type: 2}
+    - Key: uiWoosh
+      Value: {fileID: 11400000, guid: db81b945d27c16e44a845419768d550b, type: 2}

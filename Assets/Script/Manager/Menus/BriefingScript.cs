@@ -46,8 +46,12 @@ public class BriefingScript : MonoBehaviour
 
     public void NextButton()
     {
+
+
         if (textQueue.Count > 0)
         {
+            AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
+
             textBox.text = textQueue.Dequeue();
             return;
         }

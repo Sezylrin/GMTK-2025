@@ -103,6 +103,9 @@ public class DeathMenu : MonoBehaviour
 
     public void TryAgain()
     {
+
+        AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
+
         Time.timeScale = 1f;
         DOTween.KillAll();
         bossSPawned.Bool = false;

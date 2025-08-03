@@ -45,11 +45,13 @@ public class PauseMenu : MonoBehaviour
 
         if (gamePaused)
         {
+            AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
         else
         {
+            AudioManager.Instance.PlaySound(AudioRef.uiCancel);
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -58,6 +60,7 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMenu()
     {
+        AudioManager.Instance.PlaySound(AudioRef.uiCancel);
         Time.timeScale = 1f;
         DOTween.KillAll();
         bossSPawned.Bool = false;

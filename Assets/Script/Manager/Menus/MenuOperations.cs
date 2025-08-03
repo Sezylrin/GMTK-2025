@@ -34,11 +34,23 @@ public class MenuOperations : MonoBehaviour
 
     public void StartButton()
     {
+        AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
         SceneManager.LoadScene(mainLevelToStart);
     }
 
     public void SettingsButton()
     {
+
+
+        if (mainMenu.activeInHierarchy)
+        {
+            AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(AudioRef.uiCancel);
+        }
+
 
         MasterVol.value = AudioManager.Instance.masterVolume / 100;
         BGMVol.value = AudioManager.Instance.bgmVolume / 100;
@@ -51,18 +63,28 @@ public class MenuOperations : MonoBehaviour
 
     public void CreditsButton()
     {
+        if (mainMenu.activeInHierarchy)
+        {
+            AudioManager.Instance.PlaySound(AudioRef.uiAccpet);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(AudioRef.uiCancel);
+        }
         mainMenu.SetActive(!mainMenu.activeInHierarchy);
         creditsMenu.SetActive(!creditsMenu.activeInHierarchy);
     }
 
     public void QuitButton()
     {
+        AudioManager.Instance.PlaySound(AudioRef.uiCancel);
         Application.Quit();
     }
 
 
     public void OpenBriefing()
     {
+        AudioManager.Instance.PlaySound(AudioRef.uiSpy);
         mainMenu.SetActive(!mainMenu.activeInHierarchy);
         briefingMenu.SetActive(true);
         briefScript.OpenBriefing();

@@ -21,8 +21,13 @@ public class MusicManager : MonoBehaviour
 
     private int musicState = 0;
 
+    [SerializeField, Range(0f, 1f)]
+    private float AmbVolume;
+
     void Start()
     {
+
+        AudioManager.Instance.PlaySound(AudioRef.cityAmb, true, AmbVolume);
 
         mainMenuMusic = AudioManager.Instance.PlaySound(AudioRef.mainTheme, true, Volume);
         levelMusic = AudioManager.Instance.PlaySound(AudioRef.levelTheme, true, Volume);
@@ -61,6 +66,40 @@ public class MusicManager : MonoBehaviour
 
 
 
+        //if (SceneManager.GetActiveScene().buildIndex == 0 && musicState != 0)
+        //{
+        //    print("main");
+        //    musicState = 0;
+        //    ResetMusic();
+        //}
+        //else if (SceneManager.GetActiveScene().buildIndex == 1 && musicState < 1)
+        //{
+        //    print("level");
+
+        //    musicState = 1;
+        //    mainMenuMusic.PauseSound(true, fadeDuration);
+        //    levelMusic.ResumeSound(true, fadeDuration);
+        //}
+        //else if (bossSpawned.Bool && musicState < 2)
+        //{
+        //    print("boss");
+
+        //    musicState = 2;
+        //    levelMusic.PauseSound(true, fadeDuration);
+        //    bossMusic.ResumeSound(true, fadeDuration);
+        //}
+        //else if (triggerWinScreen.Bool && musicState < 3)
+        //{
+        //    print("end");
+
+        //    musicState = 3;
+        //    bossMusic.PauseSound(true, fadeDuration);
+        //    winMusic.ResumeSound(true, fadeDuration);
+        //}
+
+
+
+
         if (SceneManager.GetActiveScene().buildIndex == 0 && musicState != 0)
         {
             print("main");
@@ -75,23 +114,14 @@ public class MusicManager : MonoBehaviour
             mainMenuMusic.PauseSound(true, fadeDuration);
             levelMusic.ResumeSound(true, fadeDuration);
         }
-        else if (bossSpawned.Bool && musicState < 2)
-        {
-            print("boss");
-
-            musicState = 2;
-            levelMusic.PauseSound(true, fadeDuration);
-            bossMusic.ResumeSound(true, fadeDuration);
-        }
         else if (triggerWinScreen.Bool && musicState < 3)
         {
             print("end");
 
             musicState = 3;
-            bossMusic.PauseSound(true, fadeDuration);
+            levelMusic.PauseSound(true, fadeDuration);
             winMusic.ResumeSound(true, fadeDuration);
         }
-
 
 
 

@@ -13,6 +13,7 @@ public enum AudioRef
 	EngineIdle,
 	EngineStart,
 	CarHum,
+	cityAmb,
 	endTheme,
 	levelTheme,
 	LoopComplete,
@@ -22,4 +23,8 @@ public enum AudioRef
 	UFODeploy,
 	UFOFlyIn,
 	UFOFlyOut,
+	uiAccpet,
+	uiCancel,
+	uiSpy,
+	uiWoosh,
 }
