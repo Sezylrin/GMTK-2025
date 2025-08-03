@@ -5334,7 +5334,7 @@ GameObject:
   - component: {fileID: 222753572}
   - component: {fileID: 222753574}
   - component: {fileID: 222753573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5773,7 +5773,7 @@ GameObject:
   - component: {fileID: 333545740}
   - component: {fileID: 333545742}
   - component: {fileID: 333545741}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6161,7 +6161,7 @@ GameObject:
   - component: {fileID: 438827999}
   - component: {fileID: 438828001}
   - component: {fileID: 438828000}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFO (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12864,7 +12864,7 @@ GameObject:
   - component: {fileID: 862598345}
   - component: {fileID: 862598347}
   - component: {fileID: 862598346}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13990,7 +13990,7 @@ GameObject:
   - component: {fileID: 1097063606}
   - component: {fileID: 1097063605}
   - component: {fileID: 1097063604}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFO (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15084,7 +15084,7 @@ GameObject:
   - component: {fileID: 1437060193}
   - component: {fileID: 1437060192}
   - component: {fileID: 1437060191}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17775,7 +17775,7 @@ GameObject:
   - component: {fileID: 4796122713821545237}
   - component: {fileID: 8439916846585154736}
   - component: {fileID: 5964011576751814778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18040,7 +18040,7 @@ GameObject:
   - component: {fileID: 9090444965811219944}
   - component: {fileID: 5298595038314717773}
   - component: {fileID: 7956896634157504135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GovCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18058,7 +18058,7 @@ GameObject:
   - component: {fileID: 1018204671008695709}
   - component: {fileID: 8752933691804874250}
   - component: {fileID: 969608319131058783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18126,7 +18126,7 @@ GameObject:
   - component: {fileID: 8283816360668274798}
   - component: {fileID: 4997267714264051659}
   - component: {fileID: 7114891139444660993}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
