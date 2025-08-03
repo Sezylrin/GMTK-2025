@@ -30,6 +30,10 @@ public class Boss : MonoBehaviour, IKillable
     private LayerMask house;
     [SerializeField]
     private BoolSO BossSpawned;
+    [SerializeField]
+    private float areaClearRadius;
+    [SerializeField]
+    private Transform model;
 
     [Header("Spawning")]
     [SerializeField]
@@ -126,7 +130,7 @@ public class Boss : MonoBehaviour, IKillable
     private void Awake()
     {
         timers = timerManager.GenerateTimers(typeof(AttackCD), gameObject);
-        timers.SetTime((int)AttackCD.meteor, meteorInterval);
+        timers.SetTime((int)AttackCD.meteor, meteorInterval,false);
         activeShields.Float = 0;
         timers.SetTime((int)AttackCD.spawning, 1f, false);
         
@@ -136,22 +140,23 @@ public class Boss : MonoBehaviour, IKillable
     private void SpawningSequence()
     {
         AudioManager.Instance.PlaySound(AudioRef.BossMeteor);
-        bossHum = AudioManager.Instance.PlaySound(AudioRef.BossHum,true);
-        Collider[] cols = Physics.OverlapSphere(transform.position, shieldSpawnRadius + 15f, house);
+        bossHum = AudioManager.Instance.PlaySound(AudioRef.BossHum,true,0.5f);
+        Collider[] cols = Physics.OverlapSphere(transform.position, areaClearRadius, house);
         foreach (Collider col in cols)
         {
             col.GetComponentInParent<IKillable>().KillEnemy();
         }
         BossSpawned.Bool = true;
         timers.ResumeTimer((int)AttackCD.spawning);
-        timers.times[(int)AttackCD.spawning].OnTimeIsZero += SpawnFirstShield;
+        SpawnShield(1);
+        timers.times[(int)AttackCD.spawning].OnTimeIsZero += StartAttacking;
 
     }
 
-    private void SpawnFirstShield(object sender, EventArgs e)
+    private void StartAttacking(object sender, EventArgs e)
     {
-        SpawnShield(1);
-        timers.times[(int)AttackCD.spawning].OnTimeIsZero -= SpawnFirstShield;
+        timers.ResumeTimer((int)AttackCD.meteor);
+        timers.times[(int)AttackCD.spawning].OnTimeIsZero -= StartAttacking;
     }
     // Start is called before the first frame update
     void Start()
@@ -167,6 +172,12 @@ public class Boss : MonoBehaviour, IKillable
     {
         attemptMeteorAttack();
         CheckShield();
+        LookAtPlayer();
+    }
+
+    private void LookAtPlayer()
+    {
+        model.rotation = Quaternion.LookRotation(playerPos.transform.position - model.transform.position, Vector3.up);
     }
 
     private void attemptMeteorAttack()
