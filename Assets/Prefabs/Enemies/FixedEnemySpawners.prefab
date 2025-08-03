@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2435289862451965882
 Transform:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 7771133237839049682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9474125, y: 24.467327, z: -24.552076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -137,7 +137,7 @@ MonoBehaviour:
   playerPos: {fileID: 11400000, guid: c9850eaeda9990047bffe52ef58d9fa5, type: 2}
   innerRadius: 3
   outerRadius: 10
-  enemyPrefab: {fileID: 8147498034944236681, guid: c295746c221c6934fa7dcb32ce3d28bd, type: 3}
+  enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
   enemyParent: {fileID: 11400000, guid: e8a3de13d5ebc914ea0695997bedc5d0, type: 2}
   house:
     serializedVersion: 2
