@@ -13,6 +13,8 @@ public enum AudioRef
 	EngineIdle,
 	EngineStart,
 	CarHum,
+	endTheme,
+	levelTheme,
 	LoopComplete,
 	NitroContinue,
 	NitroStart,
