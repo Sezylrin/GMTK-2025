@@ -85,6 +85,39 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.7
+--- !u!1 &487701475423412756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8061878955318632744}
+  m_Layer: 0
+  m_Name: ShieldPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8061878955318632744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487701475423412756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 5154979900373642653}
+  - {fileID: 1080947985928360386}
+  m_Father: {fileID: 8224593643054841445}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3044964878436747721
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +177,7 @@ MonoBehaviour:
   ShieldPylon: {fileID: 4687014419952929313, guid: be0f8ecb91fa43f4093c7f4c57bfd9c3, type: 3}
   shieldSpawnRadius: 50
   activeShields: {fileID: 11400000, guid: 110432e310780e6468b8c02e3b565521, type: 2}
-  shield: {fileID: 6727018368020579668}
+  shield: {fileID: 8061878955318632744}
   AttackIntervalMax: 3
   AttackIntervalMin: 4
   mDamage: 75
@@ -194,10 +227,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
+  m_LocalScale: {x: 21, y: 21, z: 21}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9017351040118849454}
+  m_Father: {fileID: 8061878955318632744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8081130627640042040
 MeshFilter:
@@ -294,39 +327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPos: {fileID: 11400000, guid: 13b8601186b268940a4a27464abf18cc, type: 2}
---- !u!1 &6727018368020579668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9017351040118849454}
-  m_Layer: 9
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9017351040118849454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6727018368020579668}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 30}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 5154979900373642653}
-  - {fileID: 1080947985928360386}
-  m_Father: {fileID: 8224593643054841445}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6953993243414689723
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,11 +388,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 819755819787747942}
-  - {fileID: 9017351040118849454}
   - {fileID: 635438746426885726}
   - {fileID: 1425440259159204761}
   - {fileID: 2781300903027038986}
   - {fileID: 8729536056689035783}
+  - {fileID: 8061878955318632744}
   m_Father: {fileID: 1356451938778725082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7716216969580873886
@@ -475,10 +475,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4000001, y: 1.4000001, z: 1.4000001}
+  m_LocalScale: {x: 42, y: 42, z: 42}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9017351040118849454}
+  m_Father: {fileID: 8061878955318632744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2638710307594625156
 SphereCollider:
@@ -570,7 +570,13 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0.9315528, z: 3.9999998, w: 1}
+        m_Name: BrightColor
+        m_Overridden: 1
+      - m_Value: {x: 0.032773282, y: 0.021792466, z: 0.66, w: 1}
+        m_Name: DarkColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -580,7 +586,39 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 0.12941174, g: 0.46320444, b: 0.8862745, a: 1}
+          key2: {r: 0.14901957, g: 0.17248118, b: 0.8509804, a: 0}
+          key3: {r: 0.06977572, g: 0.0706056, b: 0.3018868, a: 0}
+          key4: {r: 0.07903168, g: 0.08125854, b: 0.1509434, a: 0}
+          key5: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 5204
+          ctime2: 29684
+          ctime3: 46067
+          ctime4: 51657
+          ctime5: 63608
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: 1
+          m_NumColorKeys: 6
+          m_NumAlphaKeys: 2
+        m_Name: ColorOverTime
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:

@@ -79,12 +79,13 @@ public class EnemyAI : MonoBehaviour, IKillable
             return;
         }
         Vector3 dir = playerPos.transform.position - rb.transform.position;
-        Vector3 normalized = 0.5f * (dir + rb.velocity.normalized);
+        Vector3 normalized = 0.5f * (dir.normalized + rb.velocity.normalized);
         float accelerationMultiplier = (1 - (rb.velocity.magnitude / speed));
         if (normalized.magnitude < 0.5f)
             accelerationMultiplier = 1;
         rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
-
+        Vector3 proj = Vector3.Project(rb.velocity, look.transform.right);
+        rb.AddForce(-proj * 3, ForceMode.Acceleration);
 
         if (Vector3.Distance(playerPos.transform.position, transform.position) > 200)
         {
@@ -117,7 +118,7 @@ public class EnemyAI : MonoBehaviour, IKillable
         if (collision.collider.CompareTag(Tags.T_Player))
         {
             damageToDo.Float += damage;
-            rb.AddExplosionForce(knockbackForce, collision.transform.position, 5f, 1f, ForceMode.Acceleration);
+            rb.AddExplosionForce(knockbackForce, playerPos.transform.position, 0,0f, ForceMode.VelocityChange);
         }
     }
 

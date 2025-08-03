@@ -1,14 +1,18 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
+using Random = UnityEngine.Random;
+
 
 public class Boss : MonoBehaviour, IKillable
 {
     private enum AttackCD
     {
+        spawning,
         attackAttempt,
         meteor,
     }
@@ -41,7 +45,7 @@ public class Boss : MonoBehaviour, IKillable
     [SerializeField]
     private FloatSO activeShields;
     [SerializeField]
-    private GameObject shield;
+    private Transform shield;
     
 
     [Header("General")]
@@ -98,7 +102,7 @@ public class Boss : MonoBehaviour, IKillable
             spawnPoint.Add(spawn);
             Instantiate(ShieldPylon, spawn + transform.position, Quaternion.identity);
             isShielded = true;
-            shield.SetActive(true);
+            shield.DOScale(Vector3.one, 3f).SetEase(Ease.OutCubic);
         }
     }
 
@@ -106,7 +110,7 @@ public class Boss : MonoBehaviour, IKillable
     {
         if(activeShields.Float <= 0 && isShielded)
         {
-            shield.SetActive(false);
+            shield.DOScale(Vector3.zero, 4f).SetEase(Ease.InElastic);
             isShielded = false;
         }
     }
@@ -122,7 +126,7 @@ public class Boss : MonoBehaviour, IKillable
         timers = timerManager.GenerateTimers(typeof(AttackCD), gameObject);
         timers.SetTime((int)AttackCD.meteor, meteorInterval);
         activeShields.Float = 0;
-
+        timers.SetTime((int)AttackCD.spawning, 1f, false);
         
 
     }
@@ -135,7 +139,14 @@ public class Boss : MonoBehaviour, IKillable
             col.GetComponentInParent<IKillable>().KillEnemy();
         }
         BossSpawned.Bool = true;
+        timers.ResumeTimer((int)AttackCD.spawning);
+        timers.times[(int)AttackCD.spawning].OnTimeIsZero += SpawnFirstShield;
+    }
+
+    private void SpawnFirstShield(object sender, EventArgs e)
+    {
         SpawnShield(1);
+        timers.times[(int)AttackCD.spawning].OnTimeIsZero -= SpawnFirstShield;
     }
     // Start is called before the first frame update
     void Start()
