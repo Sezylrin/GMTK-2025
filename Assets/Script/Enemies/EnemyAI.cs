@@ -86,6 +86,12 @@ public class EnemyAI : MonoBehaviour, IKillable
         rb.AddForce(dir * acceleration * accelerationMultiplier, ForceMode.Acceleration);
 
 
+        if (Vector3.Distance(playerPos.transform.position, transform.position) > 200)
+        {
+            Destroy(this.gameObject);
+        }
+
+
     }
 
     private void Update()

@@ -19928,6 +19928,7 @@ GameObject:
   - component: {fileID: 363552916028700327}
   - component: {fileID: 7450168924159284617}
   - component: {fileID: 2246086755151435760}
+  - component: {fileID: 5412460996607064168}
   m_Layer: 3
   m_Name: Car
   m_TagString: Player
@@ -20016,7 +20017,7 @@ MonoBehaviour:
   currentTurnForce: 0
   driftSlippiness: -1
   driftTurningForce: 6
-  driftSlowDownFactor: 1
+  driftSlowDownFactor: 0.6
   nitrosMaxSpeed: 80
   nitrosBoost: 180
   nitrosMaxDuration: 0.75
@@ -20119,7 +20120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawning: 1
-  spawnDelay: 4
+  spawnDelay: 3
   innerRadius: 5
   outerRadius: 30
   enemyPrefab: {fileID: 2519869437210872693, guid: ca01709f6298bb348bef19abba9a6f5e, type: 3}
@@ -20176,6 +20177,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnExplosion: {fileID: 11400000, guid: db28bbe00e0650042ad4b803f5530c22, type: 2}
   explosionPrefab: {fileID: 4930612583977904521, guid: c9739289e78a235438f865bbc33d8dc1, type: 3}
+--- !u!114 &5412460996607064168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263825737613432649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351b26fa61f7a9e459e4398f5238b075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSpawned: {fileID: 11400000, guid: 3f59c5f6ddbf7294d8118d174da35f6c, type: 2}
 --- !u!1 &7489164484233605628
 GameObject:
   m_ObjectHideFlags: 0
