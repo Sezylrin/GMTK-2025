@@ -45,6 +45,7 @@ public class CarSounds : MonoBehaviour
     }
 
     // Update is called once per frame
+    private bool soundsStopped = false;
     void Update()
     {
         DetermineNitro();
@@ -61,6 +62,9 @@ public class CarSounds : MonoBehaviour
 
     private void StopSounds()
     {
+        if(soundsStopped) return;
+
+        soundsStopped = true;
         carIdle.StopSound(true, 0.2f);
         carIdle = null;
         carStart = null;
