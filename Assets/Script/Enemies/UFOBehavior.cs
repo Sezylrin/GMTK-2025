@@ -44,7 +44,7 @@ public class UFOBehavior : MonoBehaviour
 
     private IEnumerator UFOFlyRoutine()
     {
-        AudioManager.Instance.PlaySound(AudioRef.UFOFlyIn, transform, false,0.75f);
+        AudioManager.Instance.PlaySound(AudioRef.UFOFlyIn, transform);
         transform.DOMove(targetPos, speed).SetEase(Ease.OutQuart);
         yield return new WaitForSeconds(speed);
 

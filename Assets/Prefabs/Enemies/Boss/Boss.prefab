@@ -173,7 +173,7 @@ MonoBehaviour:
     m_Bits: 16384
   BossSpawned: {fileID: 11400000, guid: 3f59c5f6ddbf7294d8118d174da35f6c, type: 2}
   areaClearRadius: 30
-  model: {fileID: 819755819787747942}
+  model: {fileID: 1164641467895544501}
   effect: {fileID: 2459671016526153100}
   bossInitial: {fileID: 8224593643054841445}
   ShieldPylon: {fileID: 4687014419952929313, guid: be0f8ecb91fa43f4093c7f4c57bfd9c3, type: 3}

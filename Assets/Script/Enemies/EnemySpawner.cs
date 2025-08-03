@@ -9,6 +9,16 @@ public class EnemySpawner : MonoBehaviour
     public bool spawning = true;
 
     public float spawnDelay = 2;
+    [SerializeField]
+    private bool fixedDelay = true;
+    [SerializeField]
+    private float minDelay;
+    [SerializeField]
+    private float maxDelay;
+    [SerializeField]
+    private float minSpawnDist;
+    [SerializeField]
+    private TransformSO playerPos;
 
     public float innerRadius = 3;
     public float outerRadius = 10;
@@ -35,7 +45,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
-
+        if(!fixedDelay)
+            spawnDelay = Random.Range(minDelay, maxDelay);
         while (spawning)
         {
             yield return new WaitForSeconds(spawnDelay);
@@ -55,7 +66,13 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogWarning("No enemy parent transform SO in scene");
             return;
         }
-        Instantiate(enemyPrefab, PickSpawnSpot() + transform.position, Quaternion.identity, enemyParent.transform);
+        if (!playerPos)
+        {
+            Instantiate(enemyPrefab, PickSpawnSpot() + transform.position, Quaternion.identity, enemyParent.transform);
+            return;
+        }
+        if(Vector3.Distance(transform.position,playerPos.transform.position) < minSpawnDist)
+            Instantiate(enemyPrefab, PickSpawnSpot() + transform.position, Quaternion.identity, enemyParent.transform);
 
 
     }
