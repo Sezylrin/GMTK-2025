@@ -15991,30 +15991,29 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Team Lead/Game Designer/2D Artist/Programming Assist:
 
-    - Matthew Edwards
-    (SquidSnoozeStudio)
+    - SquidSnoozeStudio
 
 
     Programmer:
 
-    - Alastair Lu
+    -
+    Alastair Lu
 
 
     3D Artist:
 
-    -
-    Sooty Batchelor
+    - Sooty Batchelor
 
 
     Sound Designer:
 
-    - Shiou Hsu
+    -
+    Shiou Hsu
 
 
     Music Composer:
 
-    -
-    Jack ???'
+    - Mr_MusicGuy'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75bcb33e04c23c3489cd5a88c84701a3, type: 2}
   m_sharedMaterial: {fileID: -1865419352449371799, guid: 75bcb33e04c23c3489cd5a88c84701a3, type: 2}
